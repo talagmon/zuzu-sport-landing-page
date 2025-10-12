@@ -41,10 +41,21 @@
                         'assistant': ['Assistant', 'sans-serif']
                     },
                     colors: {
+                        // Original colors (keeping for fallback)
                         'sage': '#8FBC8F',
-                        'coral': '#FF7F7F',
+                        'coral': '#FF7F7F', 
                         'teal': '#2F4F4F',
-                        'cream': '#FDF5E6'
+                        'cream': '#FDF5E6',
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        // Additional complementary colors
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8' 
                     }
                 }
             }
@@ -53,7 +64,7 @@
     
     <style>
         body { 
-            background-color: #FDF5E6; 
+            background-color: #F8FCFF; /* ocean-cream - fresh and clean */ 
             font-family: 'Assistant', 'Heebo', sans-serif;
         }
         
@@ -67,13 +78,18 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%); /* ocean-bright to ocean-deep */
             transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4); /* ocean-bright shadow */
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%); /* lighter ocean gradient on hover */
         }
         
         .reveal {
@@ -104,7 +120,13 @@
             top: 0;
             width: 2rem;
             height: 2rem;
-            background: linear-gradient(135deg, #8FBC8F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, 
+                #F8FCFF 0%,     /* ocean-cream */
+                #CAF0F8 25%,    /* ocean-pale */
+                #90E0EF 50%,    /* ocean-light */
+                #00B4D8 75%,    /* ocean-bright */
+                #F5B7B1 100%    /* coral-soft accent */
+            );
             color: white;
             border-radius: 50%;
             display: flex;
@@ -120,7 +142,13 @@
         }
         
         .safety-icon {
-            background: linear-gradient(135deg, #8FBC8F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, 
+                #F8FCFF 0%,     /* ocean-cream */
+                #CAF0F8 25%,    /* ocean-pale */
+                #90E0EF 50%,    /* ocean-light */
+                #00B4D8 75%,    /* ocean-bright */
+                #F5B7B1 100%    /* coral-soft accent */
+            );
         }
         
         /* Focus styles for better keyboard navigation */
@@ -141,12 +169,12 @@
 </head>
 <body class="font-assistant text-gray-800">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20" role="navigation" aria-label="ניווט ראשי">
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20" role="navigation" aria-label="ניווט ראשי">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center" dir="rtl">
                     <div class="text-2xl font-canela font-bold text-teal" role="img" aria-label="לוגו זוזו ספורט">זוזו ספורט</div>
-                    <div class="mr-2 text-sm text-sage" aria-label="סלוגן">לילדים בריאים</div>
+                    <div class="mr-2 text-sm text-ocean-light" aria-label="סלוגן">לילדים בריאים</div>
                 </div>
                 <div class="hidden md:flex space-x-8 space-x-reverse" role="menubar" dir="rtl">
                     <a href="index-he.html" class="text-gray-600 hover:text-teal transition-colors" role="menuitem">עמוד ראשי</a>
@@ -163,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage/20" role="menu" aria-labelledby="mobile-menu-btn">
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-ocean-light/20" role="menu" aria-labelledby="mobile-menu-btn">
             <div class="px-4 py-2 space-y-2" dir="rtl">
                 <a href="index-he.html" class="block py-2 text-gray-600" role="menuitem">עמוד ראשי</a>
                 <a href="safety-he.html" class="block py-2 text-teal font-medium" role="menuitem" aria-current="page">בטיחות</a>
@@ -240,12 +268,12 @@
             <div class="grid lg:grid-cols-2 gap-12">
                 <div class="reveal" dir="rtl">
                     <div class="safety-checklist space-y-8">
-                        <div class="safety-item bg-sage/10 p-6 rounded-2xl">
+                        <div class="safety-item bg-ocean-light/10 p-6 rounded-2xl">
                             <h3 class="text-xl font-canela font-bold text-teal mb-3 text-right">יצירת תוכן על ידי מומחים</h3>
                             <p class="text-gray-600 mb-4 text-right">
                                 כל תרגיל ופעילות מעוצבים על ידי מומחי כושר לילדים מוסמכים, פיזיותרפיסטים ילדים ומומחי התפתחות הילד.
                             </p>
-                            <div class="flex items-center text-sm text-sage font-medium justify-end">
+                            <div class="flex items-center text-sm text-ocean-light font-medium justify-end">
                                 <span>מומחים מוסמכים עם מעל 10 שנות ניסיון</span>
                                 <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -266,7 +294,7 @@
                             </div>
                         </div>
                         
-                        <div class="safety-item bg-teal/10 p-6 rounded-2xl">
+                        <div class="safety-item /10 p-6 rounded-2xl" style="background-color: #CAF0F8;">
                             <h3 class="text-xl font-canela font-bold text-teal mb-3 text-right">ללא צורך בציוד</h3>
                             <p class="text-gray-600 mb-4 text-right">
                                 כל הפעילויות משתמשות רק במשקל הגוף, מבטלות סיכונים הקשורים לציוד כושר. התרגילים מעוצבים לחללים קטנים.
@@ -279,12 +307,12 @@
                             </div>
                         </div>
                         
-                        <div class="safety-item bg-sage/10 p-6 rounded-2xl">
+                        <div class="safety-item bg-ocean-light/10 p-6 rounded-2xl">
                             <h3 class="text-xl font-canela font-bold text-teal mb-3 text-right">הנחיות השגחה הורית</h3>
                             <p class="text-gray-600 mb-4 text-right">
                                 הנחיות ברורות להשגחה הורית, במיוחד לגילאי 6-8, עם המלצות לסביבות תרגול בטוחות.
                             </p>
-                            <div class="flex items-center text-sm text-sage font-medium justify-end">
+                            <div class="flex items-center text-sm text-ocean-light font-medium justify-end">
                                 <span>הנחיות בטיחות מפורטות להורים</span>
                                 <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -300,32 +328,32 @@
                         <div class="space-y-4">
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">שטח תרגול נקי של 2x2 מטר</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">משטח לא מחליק או מזרון יוגה</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">בגדים נוחים וגמישים</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">בקבוק מים בקרבת מקום</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">השגחת מבוגר לגילאי 6-8</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                             <label class="flex items-center space-x-3 space-x-reverse cursor-pointer">
                                 <span class="text-gray-700">מידע ליצירת קשר חירום זמין</span>
-                                <input type="checkbox" class="form-checkbox h-5 w-5 text-sage rounded focus:ring-sage">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-ocean-light rounded focus:ring-ocean-light">
                             </label>
                         </div>
                         
-                        <div class="mt-8 p-4 bg-sage/10 rounded-xl">
-                            <div class="flex items-center text-sage font-medium mb-2 justify-end">
+                        <div class="mt-8 p-4 bg-ocean-light/10 rounded-xl">
+                            <div class="flex items-center text-ocean-light font-medium mb-2 justify-end">
                                 <span>תזכורת בטיחות</span>
                                 <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
@@ -336,7 +364,7 @@
                             </p>
                         </div>
                         
-                        <button id="download-safety-guide" class="w-full mt-6 bg-sage text-white py-3 px-6 rounded-xl font-medium hover:bg-sage/90 transition-colors">
+                        <button id="download-safety-guide" class="w-full mt-6 bg-ocean-light text-white py-3 px-6 rounded-xl font-medium hover:bg-ocean-light/90 transition-colors">
                             הורדת מדריך בטיחות (PDF)
                         </button>
                     </div>
@@ -346,7 +374,7 @@
     </section>
 
     <!-- Expert Team -->
-    <section class="py-20 bg-sage/10">
+    <section class="py-20 bg-ocean-light/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal" dir="rtl">
                 <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
@@ -361,32 +389,32 @@
                 <div class="expert-card rounded-3xl p-8 text-center card-hover reveal">
                     <img src="resources/safety-expert.jpg" alt="ד״ר שרה כהן" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover">
                     <h3 class="text-xl font-canela font-bold text-teal mb-2">ד״ר שרה כהן</h3>
-                    <p class="text-sage font-medium mb-4">מומחית כושר ילדים ראשית</p>
+                    <p class="text-ocean-light font-medium mb-4">מומחית כושר ילדים ראשית</p>
                     <p class="text-gray-600 text-sm mb-4">
                         מעל 15 שנות ניסיון בפיזיותרפיה לילדים. דוקטורט בהתפתחות הילד מאוניברסיטת סטנפורד.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="bg-sage/20 text-sage px-3 py-1 rounded-full text-xs font-medium">PhD</span>
+                        <span class="bg-ocean-light/20 text-ocean-light px-3 py-1 rounded-full text-xs font-medium">PhD</span>
                         <span class="bg-coral/20 text-coral px-3 py-1 rounded-full text-xs font-medium">CPT</span>
-                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-xs font-medium">15+ שנים</span>
+                        <span class="/20 text-teal px-3 py-1 rounded-full text-xs font-medium" style="background-color: #CAF0F8;">15+ שנים</span>
                     </div>
                 </div>
                 
                 <div class="expert-card rounded-3xl p-8 text-center card-hover reveal">
-                    <div class="w-24 h-24 bg-sage/20 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <svg class="w-12 h-12 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-24 h-24 bg-ocean-light/20 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-canela font-bold text-teal mb-2">ד״ר מיכאל רודריגז</h3>
-                    <p class="text-sage font-medium mb-4">רפואת ספורט ילדים</p>
+                    <p class="text-ocean-light font-medium mb-4">רפואת ספורט ילדים</p>
                     <p class="text-gray-600 text-sm mb-4">
                         רופא ילדים מוסמך המתמחה ברפואת ספורט. מעל 12 שנים בכושר נוער ומניעת פציעות.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="bg-sage/20 text-sage px-3 py-1 rounded-full text-xs font-medium">MD</span>
+                        <span class="bg-ocean-light/20 text-ocean-light px-3 py-1 rounded-full text-xs font-medium">MD</span>
                         <span class="bg-coral/20 text-coral px-3 py-1 rounded-full text-xs font-medium">רפואת ספורט</span>
-                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-xs font-medium">12+ שנים</span>
+                        <span class="/20 text-teal px-3 py-1 rounded-full text-xs font-medium" style="background-color: #CAF0F8;">12+ שנים</span>
                     </div>
                 </div>
                 
@@ -397,14 +425,14 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-canela font-bold text-teal mb-2">ליסה תומפסון</h3>
-                    <p class="text-sage font-medium mb-4">מומחית התפתחות הילד</p>
+                    <p class="text-ocean-light font-medium mb-4">מומחית התפתחות הילד</p>
                     <p class="text-gray-600 text-sm mb-4">
                         תואר שני בפסיכולוגיית ילדים. מתמחה ביצירת תוכן כושר מעורר ומתאים להתפתחות לילדים.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="bg-sage/20 text-sage px-3 py-1 rounded-full text-xs font-medium">MA</span>
+                        <span class="bg-ocean-light/20 text-ocean-light px-3 py-1 rounded-full text-xs font-medium">MA</span>
                         <span class="bg-coral/20 text-coral px-3 py-1 rounded-full text-xs font-medium">פסיכ׳ ילדים</span>
-                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-xs font-medium">10+ שנים</span>
+                        <span class="/20 text-teal px-3 py-1 rounded-full text-xs font-medium" style="background-color: #CAF0F8;">10+ שנים</span>
                     </div>
                 </div>
             </div>
@@ -427,8 +455,8 @@
                 <div class="reveal" dir="rtl">
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                 </svg>
                             </div>
@@ -455,7 +483,7 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-teal/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 /20 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CAF0F8;">
                                 <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -470,8 +498,8 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                                 </svg>
                             </div>
@@ -491,37 +519,37 @@
                         <div class="space-y-4 text-sm text-gray-600">
                             <div class="flex items-center justify-end">
                                 <span>ללא צורך במידע אישי</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             <div class="flex items-center justify-end">
                                 <span>ללא פרסום או שיווק לילדים</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             <div class="flex items-center justify-end">
                                 <span>ללא שיתוף מידע עם צדדים שלישיים</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             <div class="flex items-center justify-end">
                                 <span>ביקורות אבטחה ועדכונים קבועים</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             <div class="flex items-center justify-end">
                                 <span>נדרש אישור הורים לכל התכונות</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
                             <div class="flex items-center justify-end">
                                 <span>מחיקת חשבון ונתונים קלה</span>
-                                <svg class="w-5 h-5 text-sage ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-5 h-5 text-ocean-light ml-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
@@ -532,7 +560,7 @@
                             <p class="text-sm text-gray-600 mb-4 text-right">
                                 צוות הפרטיות שלנו כאן לעזור עם כל שאלה לגבי הגנת מידע ובטיחות.
                             </p>
-                            <button class="w-full bg-teal text-white py-2 px-4 rounded-lg font-medium hover:bg-teal/90 transition-colors">
+                            <button class="w-full  text-white py-2 px-4 rounded-lg font-medium hover:bg-teal/90 transition-colors" style="background-color: #CAF0F8;">
                                 פנו לצוות הפרטיות
                             </button>
                         </div>
@@ -543,7 +571,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-teal text-white">
+    <section class="py-20  text-white" style="background-color: #CAF0F8;">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" dir="rtl">
             <h2 class="text-4xl lg:text-5xl font-canela font-bold mb-6">
                 מוכנים להתחיל בבטחה?
@@ -588,11 +616,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-cream py-12 border-t border-sage/20">
+    <footer class="bg-cream py-12 border-t border-ocean-light/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center" dir="rtl">
                 <div class="text-2xl font-canela font-bold text-teal mb-2">זוזו ספורט</div>
-                <div class="text-sage mb-4">הפיכת זמן מסך לתנועה בריאה</div>
+                <div class="text-ocean-light mb-4">הפיכת זמן מסך לתנועה בריאה</div>
                 <div class="text-sm text-gray-600">
                     © 2024 זוזו ספורט. כל הזכויות שמורות. | מעוצב עבור משפחות בריאות ושמחות.
                 </div>
@@ -774,9 +802,9 @@ Phone: +972-3-SAFETY-1
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `fixed top-20 left-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
-                type === 'success' ? 'bg-sage text-white' : 
+                type === 'success' ? 'bg-ocean-light text-white' : 
                 type === 'error' ? 'bg-coral text-white' : 
-                'bg-teal text-white'
+                'text-gray-800" style="background-color: #CAF0F8;'
             }`;
             
             notification.innerHTML = `

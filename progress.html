@@ -28,10 +28,21 @@
                         'suisse': ['Suisse International', 'sans-serif']
                     },
                     colors: {
+                        // Original colors (keeping for fallback)
                         'sage': '#8FBC8F',
-                        'coral': '#FF7F7F',
+                        'coral': '#FF7F7F', 
                         'teal': '#2F4F4F',
-                        'cream': '#FDF5E6'
+                        'cream': '#FDF5E6',
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        // Additional complementary colors
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8' 
                     }
                 }
             }
@@ -40,7 +51,7 @@
     
     <style>
         body { 
-            background-color: #FDF5E6; 
+            background-color: #F8FCFF; /* ocean-cream - fresh and clean */ 
             font-family: 'Suisse International', sans-serif;
         }
         
@@ -54,13 +65,18 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%); /* ocean-bright to ocean-deep */
             transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4); /* ocean-bright shadow */
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%); /* lighter ocean gradient on hover */
         }
         
         .reveal {
@@ -110,7 +126,13 @@
             top: 0.5rem;
             width: 1rem;
             height: 1rem;
-            background: linear-gradient(135deg, #8FBC8F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, 
+                #F8FCFF 0%,     /* ocean-cream */
+                #CAF0F8 25%,    /* ocean-pale */
+                #90E0EF 50%,    /* ocean-light */
+                #00B4D8 75%,    /* ocean-bright */
+                #F5B7B1 100%    /* coral-soft accent */
+            );
             border-radius: 50%;
         }
         
@@ -141,12 +163,12 @@
 </head>
 <body class="font-suisse text-gray-800">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20">
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="text-2xl font-canela font-bold text-teal">Zuzu Sport</div>
-                    <div class="ml-2 text-sm text-sage">For Healthy Kids</div>
+                    <div class="ml-2 text-sm text-ocean-light">For Healthy Kids</div>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-gray-600 hover:text-teal transition-colors">Home</a>
@@ -163,7 +185,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage/20">
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-ocean-light/20">
             <div class="px-4 py-2 space-y-2">
                 <a href="index.html" class="block py-2 text-gray-600">Home</a>
                 <a href="safety.html" class="block py-2 text-gray-600">Safety</a>
@@ -245,7 +267,7 @@
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-sage">88%</div>
+                                <div class="text-2xl font-bold text-ocean-light">88%</div>
                                 <div class="text-xs text-gray-600">Overall</div>
                             </div>
                         </div>
@@ -276,7 +298,7 @@
                             <div class="bg-white p-6 rounded-2xl shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
                                     <h3 class="text-lg font-canela font-bold text-teal">Weekly Activity</h3>
-                                    <div class="text-2xl font-bold text-sage">5/7</div>
+                                    <div class="text-2xl font-bold text-ocean-light">5/7</div>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-3">
                                     <div class="bg-gradient-to-r from-sage to-teal h-3 rounded-full" style="width: 71%"></div>
@@ -305,7 +327,7 @@
                             <div class="bg-white p-6 rounded-2xl shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
                                     <h3 class="text-lg font-canela font-bold text-teal">Achievements</h3>
-                                    <div class="text-2xl font-bold text-sage">8</div>
+                                    <div class="text-2xl font-bold text-ocean-light">8</div>
                                 </div>
                                 <div class="text-3xl mb-2">🏆</div>
                                 <p class="text-sm text-gray-600">Earned this month</p>
@@ -359,10 +381,10 @@
                                 <div>
                                     <div class="flex justify-between mb-1">
                                         <span class="text-sm font-medium text-gray-700">Balance</span>
-                                        <span class="text-sm text-sage">Level 4</span>
+                                        <span class="text-sm text-ocean-light">Level 4</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="bg-sage h-2 rounded-full" style="width: 80%"></div>
+                                        <div class="bg-ocean-light h-2 rounded-full" style="width: 80%"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -380,16 +402,16 @@
                                         <span class="text-sm text-teal">Level 5</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="bg-teal h-2 rounded-full" style="width: 90%"></div>
+                                        <div class=" h-2 rounded-full" style="background-color: #CAF0F8;" style="width: 90%"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="flex justify-between mb-1">
                                         <span class="text-sm font-medium text-gray-700">Coordination</span>
-                                        <span class="text-sm text-sage">Level 4</span>
+                                        <span class="text-sm text-ocean-light">Level 4</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="bg-sage h-2 rounded-full" style="width: 75%"></div>
+                                        <div class="bg-ocean-light h-2 rounded-full" style="width: 75%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -401,7 +423,7 @@
     </section>
 
     <!-- Educational Benefits Explorer -->
-    <section class="py-20 bg-sage/10">
+    <section class="py-20 bg-ocean-light/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
@@ -473,8 +495,8 @@
                         <h3 class="text-2xl font-canela font-bold text-teal mb-6">Cognitive Benefits</h3>
                         <div class="space-y-6">
                             <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                     </svg>
                                 </div>
@@ -501,7 +523,7 @@
                             </div>
                             
                             <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-teal/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <div class="w-12 h-12 /20 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CAF0F8;">
                                     <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                     </svg>
@@ -515,8 +537,8 @@
                             </div>
                             
                             <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a1.5 1.5 0 011.5 1.5v1.5a1.5 1.5 0 01-1.5 1.5H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </div>
@@ -549,8 +571,8 @@
             <div class="grid lg:grid-cols-3 gap-8">
                 <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-16 h-16 bg-ocean-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                             </svg>
                         </div>
@@ -558,25 +580,25 @@
                     </div>
                     <ul class="space-y-3 text-sm text-gray-600">
                         <li class="flex items-center">
-                            <svg class="w-4 h-4 text-sage mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                             Activity summary and trends
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-4 h-4 text-sage mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                             Skill development progress
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-4 h-4 text-sage mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                             Behavioral improvements
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-4 h-4 text-sage mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                             Personalized recommendations
@@ -623,7 +645,7 @@
                 
                 <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 /20 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #CAF0F8;">
                             <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
@@ -662,7 +684,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-teal text-white">
+    <section class="py-20  text-white" style="background-color: #CAF0F8;">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl lg:text-5xl font-canela font-bold mb-6">
                 Start Tracking Your Child's Growth Today
@@ -707,11 +729,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-cream py-12 border-t border-sage/20">
+    <footer class="bg-cream py-12 border-t border-ocean-light/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <div class="text-2xl font-canela font-bold text-teal mb-2">Zuzu Sport</div>
-                <div class="text-sage mb-4">Transforming Screen Time Into Healthy Movement</div>
+                <div class="text-ocean-light mb-4">Transforming Screen Time Into Healthy Movement</div>
                 <div class="text-sm text-gray-600">
                     © 2024 Zuzu Sport. All rights reserved. | Designed for healthy, happy families.
                 </div>
@@ -941,9 +963,9 @@
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
-                type === 'success' ? 'bg-sage text-white' : 
+                type === 'success' ? 'bg-ocean-light text-white' : 
                 type === 'error' ? 'bg-coral text-white' : 
-                'bg-teal text-white'
+                'text-gray-800" style="background-color: #CAF0F8;'
             }`;
             
             notification.innerHTML = `

@@ -21,10 +21,21 @@
                         'suisse': ['Suisse International', 'sans-serif']
                     },
                     colors: {
+                        // Original colors (keeping for fallback)
                         'sage': '#8FBC8F',
-                        'coral': '#FF7F7F',
+                        'coral': '#FF7F7F', 
                         'teal': '#2F4F4F',
-                        'cream': '#FDF5E6'
+                        'cream': '#FDF5E6',
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        // Additional complementary colors
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8' 
                     }
                 }
             }
@@ -33,18 +44,23 @@
     
     <style>
         body { 
-            background-color: #FDF5E6; 
+            background-color: #F8FCFF; /* ocean-cream - fresh and clean */ 
             font-family: 'Suisse International', sans-serif;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%); /* ocean-bright to ocean-deep */
             transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4); /* ocean-bright shadow */
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%); /* lighter ocean gradient on hover */
         }
         
         .reveal {
@@ -61,12 +77,12 @@
 </head>
 <body class="font-suisse text-gray-800">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20">
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-canela font-bold text-teal">Zuzu Sport</a>
-                    <div class="ml-2 text-sm text-sage">For Healthy Kids</div>
+                    <div class="ml-2 text-sm text-ocean-light">For Healthy Kids</div>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-gray-600 hover:text-teal transition-colors">Home</a>
@@ -84,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage/20">
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-ocean-light/20">
             <div class="px-4 py-2 space-y-2">
                 <a href="index.html" class="block py-2 text-gray-600">Home</a>
                 <a href="safety.html" class="block py-2 text-gray-600">Safety</a>
@@ -105,7 +121,7 @@
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Your family's privacy and your child's safety are our top priorities. Learn how we protect and secure your data.
                 </p>
-                <div class="mt-6 p-4 bg-sage/10 rounded-2xl">
+                <div class="mt-6 p-4 bg-ocean-light/10 rounded-2xl">
                     <p class="text-sm text-teal font-medium">
                         🛡️ COPPA Compliant • 🔒 GDPR Compliant • 👨‍👩‍👧‍👦 Parental Controls
                     </p>
@@ -216,7 +232,7 @@
                 </div>
 
                 <!-- Last updated notice -->
-                <div class="mt-12 p-6 bg-teal/5 rounded-2xl">
+                <div class="mt-12 p-6 /5 rounded-2xl" style="background-color: #CAF0F8;">
                     <p class="text-sm text-teal">
                         <strong>Last Updated:</strong> October 2024<br>
                         <strong>Effective Date:</strong> October 2024<br>
@@ -250,7 +266,7 @@
                     </svg>
                     WhatsApp
                 </a>
-                <a href="index.html" class="border-2 border-teal text-teal px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-teal hover:text-white transition-all duration-300 inline-flex items-center justify-center">
+                <a href="index.html" class="border-2 border-teal text-teal px-8 py-4 rounded-2xl font-semibold text-lg hover: hover:text-white transition-all duration-300 inline-flex items-center justify-center" style="background-color: #CAF0F8;">
                     Back to Home
                 </a>
             </div>
@@ -258,7 +274,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-teal text-white py-12">
+    <footer class=" text-white py-12" style="background-color: #CAF0F8;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">

@@ -41,10 +41,21 @@
                         'assistant': ['Assistant', 'sans-serif']
                     },
                     colors: {
+                        // Original colors (keeping for fallback)
                         'sage': '#8FBC8F',
-                        'coral': '#FF7F7F',
+                        'coral': '#FF7F7F', 
                         'teal': '#2F4F4F',
-                        'cream': '#FDF5E6'
+                        'cream': '#FDF5E6',
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        // Additional complementary colors
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8' 
                     }
                 }
             }
@@ -53,7 +64,7 @@
     
     <style>
         body { 
-            background-color: #FDF5E6; 
+            background-color: #F8FCFF; /* ocean-cream - fresh and clean */ 
             font-family: 'Assistant', 'Heebo', sans-serif;
         }
         
@@ -67,13 +78,18 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%); /* ocean-bright to ocean-deep */
             transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4); /* ocean-bright shadow */
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%); /* lighter ocean gradient on hover */
         }
         
         .reveal {
@@ -154,12 +170,12 @@
 </head>
 <body class="font-assistant text-gray-800">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20" role="navigation" aria-label="ניווט ראשי">
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20" role="navigation" aria-label="ניווט ראשי">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center" dir="rtl">
                     <div class="text-2xl font-canela font-bold text-teal" role="img" aria-label="לוגו זוזו ספורט">זוזו ספורט</div>
-                    <div class="mr-2 text-sm text-sage" aria-label="סלוגן">לילדים בריאים</div>
+                    <div class="mr-2 text-sm text-ocean-light" aria-label="סלוגן">לילדים בריאים</div>
                 </div>
                 <div class="hidden md:flex space-x-8 space-x-reverse" role="menubar" dir="rtl">
                     <a href="index-he.html" class="text-gray-600 hover:text-teal transition-colors" role="menuitem">עמוד ראשי</a>
@@ -176,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage/20" role="menu" aria-labelledby="mobile-menu-btn">
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-ocean-light/20" role="menu" aria-labelledby="mobile-menu-btn">
             <div class="px-4 py-2 space-y-2" dir="rtl">
                 <a href="index-he.html" class="block py-2 text-gray-600" role="menuitem">עמוד ראשי</a>
                 <a href="safety-he.html" class="block py-2 text-gray-600" role="menuitem">בטיחות</a>
@@ -271,7 +287,7 @@
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-600">5 מתוך 7 ימים</span>
-                                <span class="font-medium text-sage">פעילות</span>
+                                <span class="font-medium text-ocean-light">פעילות</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-600">145 דקות</span>
@@ -306,7 +322,7 @@
                         <p class="text-sm">השלמת השבוע הראשון</p>
                     </div>
                     
-                    <div class="bg-sage rounded-2xl p-6 text-center text-white">
+                    <div class="bg-ocean-light rounded-2xl p-6 text-center text-white">
                         <svg class="w-12 h-12 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
@@ -322,7 +338,7 @@
                         <p class="text-sm">3 שבועות של שיפור</p>
                     </div>
                     
-                    <div class="bg-teal rounded-2xl p-6 text-center text-white">
+                    <div class=" rounded-2xl p-6 text-center text-white" style="background-color: #CAF0F8;">
                         <svg class="w-12 h-12 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -335,7 +351,7 @@
     </section>
 
     <!-- Detailed Metrics -->
-    <section class="py-20 bg-sage/10">
+    <section class="py-20 bg-ocean-light/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal" dir="rtl">
                 <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
@@ -348,14 +364,14 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div class="metric-card rounded-3xl p-8 text-center card-hover reveal">
-                    <div class="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-16 h-16 bg-ocean-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <div class="text-3xl font-bold text-teal mb-2">23.5</div>
                     <div class="text-gray-600 mb-2">דקות ממוצע יומי</div>
-                    <div class="text-sm text-sage">↑ 15% מהשבוע שעבר</div>
+                    <div class="text-sm text-ocean-light">↑ 15% מהשבוע שעבר</div>
                 </div>
                 
                 <div class="metric-card rounded-3xl p-8 text-center card-hover reveal">
@@ -370,7 +386,7 @@
                 </div>
                 
                 <div class="metric-card rounded-3xl p-8 text-center card-hover reveal">
-                    <div class="w-16 h-16 bg-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-16 h-16 /20 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #CAF0F8;">
                         <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
@@ -381,14 +397,14 @@
                 </div>
                 
                 <div class="metric-card rounded-3xl p-8 text-center card-hover reveal">
-                    <div class="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-16 h-16 bg-ocean-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                         </svg>
                     </div>
                     <div class="text-3xl font-bold text-teal mb-2">8</div>
                     <div class="text-gray-600 mb-2">הישגים השבוע</div>
-                    <div class="text-sm text-sage">🏆 שיא חדש!</div>
+                    <div class="text-sm text-ocean-light">🏆 שיא חדש!</div>
                 </div>
             </div>
             
@@ -398,7 +414,7 @@
                     <h3 class="text-2xl font-canela font-bold text-teal mb-8 text-right">ציר זמן התקדמות</h3>
                     <div class="space-y-6 custom-scrollbar max-h-96 overflow-y-auto">
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center text-white flex-shrink-0">
+                            <div class="w-12 h-12 bg-ocean-light rounded-full flex items-center justify-center text-white flex-shrink-0">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
@@ -424,7 +440,7 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-teal rounded-full flex items-center justify-center text-white flex-shrink-0">
+                            <div class="w-12 h-12  rounded-full flex items-center justify-center text-white flex-shrink-0" style="background-color: #CAF0F8;">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path>
                                 </svg>
@@ -437,7 +453,7 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center text-white flex-shrink-0">
+                            <div class="w-12 h-12 bg-ocean-light rounded-full flex items-center justify-center text-white flex-shrink-0">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
@@ -470,8 +486,8 @@
                 <div class="reveal" dir="rtl">
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                                 </svg>
                             </div>
@@ -498,7 +514,7 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-teal/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div class="w-12 h-12 /20 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CAF0F8;">
                                 <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                 </svg>
@@ -512,8 +528,8 @@
                         </div>
                         
                         <div class="flex items-start space-x-4 space-x-reverse">
-                            <div class="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                 </svg>
                             </div>
@@ -538,8 +554,8 @@
                                 </p>
                             </div>
                             
-                            <div class="bg-sage/10 rounded-xl p-4">
-                                <h4 class="font-semibold text-sage mb-2 text-right">דגשים חיוביים</h4>
+                            <div class="bg-ocean-light/10 rounded-xl p-4">
+                                <h4 class="font-semibold text-ocean-light mb-2 text-right">דגשים חיוביים</h4>
                                 <ul class="text-sm text-gray-600 space-y-1 text-right">
                                     <li>שיפור באיזון ויציבות</li>
                                     <li>הוספת 3 תרגילי חוזק חדשים</li>
@@ -554,7 +570,7 @@
                                 </p>
                             </div>
                             
-                            <div class="bg-teal/10 rounded-xl p-4">
+                            <div class="/10 rounded-xl p-4" style="background-color: #CAF0F8;">
                                 <h4 class="font-semibold text-teal mb-2 text-right">יעדים לשבוע הבא</h4>
                                 <ul class="text-sm text-gray-600 space-y-1 text-right">
                                     <li>6 ימי פעילות</li>
@@ -564,7 +580,7 @@
                             </div>
                         </div>
                         
-                        <button id="export-report" class="w-full mt-6 bg-teal text-white py-3 px-6 rounded-xl font-medium hover:bg-teal/90 transition-colors">
+                        <button id="export-report" class="w-full mt-6  text-white py-3 px-6 rounded-xl font-medium hover:bg-teal/90 transition-colors" style="background-color: #CAF0F8;">
                             הורדת דוח מלא (PDF)
                         </button>
                     </div>
@@ -574,7 +590,7 @@
     </section>
 
     <!-- Goal Setting Feature -->
-    <section class="py-20 bg-sage/10">
+    <section class="py-20 bg-ocean-light/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal" dir="rtl">
                 <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
@@ -590,13 +606,13 @@
                     <div class="bg-white rounded-3xl shadow-xl p-8">
                         <h3 class="text-2xl font-canela font-bold text-teal mb-8 text-right" dir="rtl">יעדים פעילים</h3>
                         <div class="space-y-6" dir="rtl">
-                            <div class="border-r-4 border-sage pr-4">
+                            <div class="border-r-4 border-ocean-light pr-4">
                                 <div class="flex justify-between items-start mb-2">
                                     <span class="text-sm text-gray-500">עד סוף השבוع</span>
                                     <h4 class="font-semibold text-teal">5 ימי פעילות השבוע</h4>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-                                    <div class="bg-sage h-3 rounded-full" style="width: 80%"></div>
+                                    <div class="bg-ocean-light h-3 rounded-full" style="width: 80%"></div>
                                 </div>
                                 <div class="text-sm text-gray-600 text-right">4/5 ימים הושלמו</div>
                             </div>
@@ -618,13 +634,13 @@
                                     <h4 class="font-semibold text-teal">50 תרגילי חוזק</h4>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
-                                    <div class="bg-teal h-3 rounded-full" style="width: 60%"></div>
+                                    <div class=" h-3 rounded-full" style="background-color: #CAF0F8;" style="width: 60%"></div>
                                 </div>
                                 <div class="text-sm text-gray-600 text-right">30/50 תרגילים</div>
                             </div>
                         </div>
                         
-                        <button id="add-goal" class="w-full mt-6 bg-sage text-white py-3 px-6 rounded-xl font-medium hover:bg-sage/90 transition-colors">
+                        <button id="add-goal" class="w-full mt-6 bg-ocean-light text-white py-3 px-6 rounded-xl font-medium hover:bg-ocean-light/90 transition-colors">
                             הוספת יעד חדש
                         </button>
                     </div>
@@ -647,7 +663,7 @@
                             </div>
                             
                             <div class="flex items-center space-x-3 space-x-reverse">
-                                <div class="w-10 h-10 bg-sage rounded-full flex items-center justify-center">
+                                <div class="w-10 h-10 bg-ocean-light rounded-full flex items-center justify-center">
                                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
@@ -684,7 +700,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-teal text-white">
+    <section class="py-20  text-white" style="background-color: #CAF0F8;">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" dir="rtl">
             <h2 class="text-4xl lg:text-5xl font-canela font-bold mb-6">
                 מוכנים לראות התקדמות אמיתית?
@@ -729,11 +745,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-cream py-12 border-t border-sage/20">
+    <footer class="bg-cream py-12 border-t border-ocean-light/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center" dir="rtl">
                 <div class="text-2xl font-canela font-bold text-teal mb-2">זוזו ספורט</div>
-                <div class="text-sage mb-4">הפיכת זמן מסך לתנועה בריאה</div>
+                <div class="text-ocean-light mb-4">הפיכת זמן מסך לתנועה בריאה</div>
                 <div class="text-sm text-gray-600">
                     © 2024 זוזו ספורט. כל הזכויות שמורות. | מעקב התקדמות חכם לילדים בריאים.
                 </div>
@@ -1010,9 +1026,9 @@
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `fixed top-20 left-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
-                type === 'success' ? 'bg-sage text-white' : 
+                type === 'success' ? 'bg-ocean-light text-white' : 
                 type === 'error' ? 'bg-coral text-white' : 
-                'bg-teal text-white'
+                'text-gray-800" style="background-color: #CAF0F8;'
             }`;
             
             notification.innerHTML = `
