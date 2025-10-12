@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זוזו ספורט - עיצוב אוקיינוס-אלמוג | הפכו זמן מסך לתנועה בריאה</title>
+    <meta name="description" content="חוו את העיצוב החדש שלנו באוקיינוס-אלמוג! הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14.">
+    
+    <!-- Accessibility Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0077B6">
+    <link rel="canonical" href="https://zuzusport.com/landing-ocean-coral-he">
+    
+    <!-- Fonts - Hebrew Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'canela': ['Canela', 'serif'],
+                        'suisse': ['Suisse International', 'sans-serif'],
+                        'heebo': ['Heebo', 'sans-serif'],
+                        'assistant': ['Assistant', 'sans-serif']
+                    },
+                    colors: {
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #F8FCFF; /* ocean-cream */
+            font-family: 'Assistant', 'Heebo', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, 
+                #F8FCFF 0%,     /* ocean-cream */
+                #CAF0F8 25%,    /* ocean-pale */
+                #90E0EF 50%,    /* ocean-light */
+                #00B4D8 75%,    /* ocean-bright */
+                #F5B7B1 100%    /* coral-soft accent */
+            );
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="15" cy="15" r="2" fill="rgba(255,179,186,0.4)"/><circle cx="75" cy="35" r="2.5" fill="rgba(255,103,125,0.4)"/><circle cx="35" cy="75" r="1.5" fill="rgba(248,180,0,0.4)"/><circle cx="60" cy="20" r="2" fill="rgba(212,165,165,0.4)"/><circle cx="25" cy="60" r="1.8" fill="rgba(57,47,90,0.3)"/></svg>');
+            animation: float 25s ease-in-out infinite;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 100px;
+            height: 50px;
+            background: rgba(245,183,177,0.2);
+            border-radius: 60px;
+            animation: cloudFloat 25s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(245,183,177,0.1);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes cloudFloat {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px);
+                opacity: 0.1;
+            }
+            33% { 
+                transform: translateX(30px) translateY(-10px);
+                opacity: 0.2;
+            }
+            66% { 
+                transform: translateX(-20px) translateY(-5px);
+                opacity: 0.15;
+            }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%);
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4);
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%);
+        }
+        
+        .typewriter {
+            border-left: 3px solid #374151;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #374151; }
+        }
+        
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 119, 182, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-ocean-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-canela font-bold text-ocean-deep">זוזו ספורט</div>
+                    <div class="mr-2 text-sm text-ocean-light">עיצוב אוקיינוס-אלמוג</div>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="index-he.html" class="text-ocean-deep hover:text-ocean-bright transition-colors">בית</a>
+                    <a href="safety-he.html" class="text-gray-600 hover:text-ocean-deep transition-colors">בטיחות</a>
+                    <a href="progress-he.html" class="text-gray-600 hover:text-ocean-deep transition-colors">התקדמות</a>
+                    <a href="#trial" class="btn-primary text-white px-6 py-2 rounded-full font-medium">הורדת האפליקציה</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg flex items-center">
+        <div class="content-overlay w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <!-- Color Palette Showcase -->
+                <div class="mb-12">
+                    <h1 class="text-5xl lg:text-7xl font-canela font-bold mb-6 text-gray-800">
+                        <span id="typed-text" class="typewriter"></span>
+                    </h1>
+                    <p class="text-2xl mb-8 text-gray-700 max-w-4xl mx-auto">
+                        חוו את <strong>לוח הצבעים החדש שלנו אוקיינוס-אלמוג</strong> - שילוב הרמוני של כחולי אוקיינוס מרגיעים וגווני אלמוג חמים, המיועדים למקצועיות ידידותית לילדים.
+                    </p>
+                </div>
+
+                <!-- Color Swatches Display -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-canela font-bold mb-8 text-gray-800">לוח צבעים אוקיינוס-אלמוג</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 max-w-6xl mx-auto">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #0077B6;"></div>
+                            <div class="text-sm font-medium text-gray-700">אוקיינוס עמוק</div>
+                            <div class="text-xs text-gray-500">#0077B6</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #00B4D8;"></div>
+                            <div class="text-sm font-medium text-gray-700">אוקיינוס בהיר</div>
+                            <div class="text-xs text-gray-500">#00B4D8</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #48B2D8;"></div>
+                            <div class="text-sm font-medium text-gray-700">אוקיינוס בינוני</div>
+                            <div class="text-xs text-gray-500">#48B2D8</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #90E0EF;"></div>
+                            <div class="text-sm font-medium text-gray-700">אוקיינוס בהיר</div>
+                            <div class="text-xs text-gray-500">#90E0EF</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #CAF0F8;"></div>
+                            <div class="text-sm font-medium text-gray-700">אוקיינוס חיוור</div>
+                            <div class="text-xs text-gray-500">#CAF0F8</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #F8FCFF;"></div>
+                            <div class="text-sm font-medium text-gray-700">קרם אוקיינוס</div>
+                            <div class="text-xs text-gray-500">#F8FCFF</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #F5B7B1;"></div>
+                            <div class="text-sm font-medium text-gray-700">אלמוג רך</div>
+                            <div class="text-xs text-gray-500">#F5B7B1</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full shadow-lg mb-2" style="background-color: #FADBD8;"></div>
+                            <div class="text-sm font-medium text-gray-700">אלמוג בהיר</div>
+                            <div class="text-xs text-gray-500">#FADBD8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Features -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
+                    <div class="bg-white/80 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="w-16 h-16 bg-ocean-light/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 000-8h-4V9a2 2 0 012-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-canela font-bold text-ocean-deep mb-4">אוקיינוס מרגיע</h3>
+                        <p class="text-gray-600">גוני כחול מרגיעים היוצרים אווירה מקצועית אך ידידותית לילדים</p>
+                    </div>
+                    
+                    <div class="bg-white/80 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="w-16 h-16 bg-coral-soft/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-coral-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-canela font-bold text-ocean-deep mb-4">אלמוג חם</h3>
+                        <p class="text-gray-600">גווני אלמוג עדינים המוסיפים חמימות ושמחת משחק</p>
+                    </div>
+                    
+                    <div class="bg-white/80 p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="w-16 h-16 bg-ocean-bright/20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-ocean-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-canela font-bold text-ocean-deep mb-4">איזון מושלם</h3>
+                        <p class="text-gray-600">שילוב הרמוני של אמון, אנרגיה ונגישות</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                        <a href="index-he.html" class="btn-primary text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center">
+                            <svg class="ml-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            צפייה באתר המלא
+                        </a>
+                        <a href="index.html" class="bg-coral-soft hover:bg-coral-light text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all">
+                            English Version
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        חוו את האתר המלא של זוזו ספורט עם העיצוב החדש שלנו אוקיינוס-אלמוג
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-gray-800" style="background-color: #CAF0F8;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-2xl font-canela font-bold mb-2 text-ocean-deep">זוזו ספורט</div>
+            <div class="text-gray-700 mb-4">מערכת עיצוב אוקיינוס-אלמוג</div>
+            <div class="text-sm text-gray-600">
+                © 2024 זוזו ספורט. הפיכת זמן מסך לתנועה בריאה.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize typewriter effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const typed = new Typed('#typed-text', {
+                strings: [
+                    'עיצוב אוקיינוס-אלמוג',
+                    'מקצועי ושמח',
+                    'צבעים ידידותיים לילדים'
+                ],
+                typeSpeed: 80,
+                backSpeed: 50,
+                backDelay: 2000,
+                startDelay: 500,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        });
+    </script>
+</body>
+</html>
