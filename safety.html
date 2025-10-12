@@ -308,7 +308,7 @@
                             </p>
                         </div>
                         
-                        <button class="w-full mt-6 bg-sage text-white py-3 px-6 rounded-xl font-medium hover:bg-sage/90 transition-colors">
+                        <button id="download-safety-guide" class="w-full mt-6 bg-sage text-white py-3 px-6 rounded-xl font-medium hover:bg-sage/90 transition-colors">
                             Download Safety Guide (PDF)
                         </button>
                     </div>
@@ -625,21 +625,107 @@
             });
 
             // Download safety guide
-            const downloadBtn = document.querySelector('button:contains("Download Safety Guide")');
+            const downloadBtn = document.getElementById('download-safety-guide');
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', function() {
-                    showNotification('Safety guide download coming soon! We\'ll email you when it\'s available.', 'info');
+                    // Create and download a sample PDF
+                    createAndDownloadSafetyGuide();
                 });
             }
 
-            // Contact privacy team
-            const contactBtn = document.querySelector('button:contains("Contact Privacy Team")');
-            if (contactBtn) {
-                contactBtn.addEventListener('click', function() {
-                    showNotification('Privacy team contact form coming soon!', 'info');
-                });
-            }
+            // Contact privacy team (if exists)
+            const contactButtons = document.querySelectorAll('button');
+            contactButtons.forEach(btn => {
+                if (btn.textContent.includes('Contact Privacy Team')) {
+                    btn.addEventListener('click', function() {
+                        showNotification('Privacy team contact form coming soon!', 'info');
+                    });
+                }
+            });
         });
+
+        // Create and download safety guide PDF
+        function createAndDownloadSafetyGuide() {
+            const safetyGuideContent = `
+# Zuzu Sport Safety Guide
+
+## Age-Appropriate Exercise Guidelines
+
+### Ages 6-8
+- Adult supervision required at all times
+- Maximum 15-20 minute sessions
+- Focus on fun and basic movements
+- Immediate stop if child shows fatigue
+
+### Ages 9-11
+- Adult supervision recommended
+- 20-30 minute sessions allowed
+- Introduce more complex movements gradually
+- Teach proper hydration habits
+
+### Ages 12-14
+- Independent exercise with check-ins
+- Up to 45 minute sessions
+- Focus on proper form and technique
+- Encourage goal-setting and progress tracking
+
+## Pre-Exercise Safety Checklist
+
+✓ Clear 2x2 meter practice space
+✓ Non-slip surface or yoga mat
+✓ Comfortable, flexible clothing
+✓ Water bottle nearby
+✓ Adult supervision for ages 6-8
+✓ Emergency contact info accessible
+
+## Exercise Environment
+
+- Temperature: 18-22°C (65-72°F)
+- Good ventilation required
+- Remove obstacles and hazards
+- Adequate lighting
+- No pets in exercise area
+
+## Warning Signs to Stop Exercise
+
+- Excessive fatigue or breathlessness
+- Dizziness or nausea
+- Joint or muscle pain
+- Overheating or excessive sweating
+- Any discomfort or reluctance from child
+
+## Emergency Procedures
+
+1. Stop activity immediately
+2. Ensure child is safe and comfortable
+3. Provide water if needed
+4. Contact healthcare provider if concerns persist
+5. Keep emergency contacts readily available
+
+## Contact Information
+
+For questions about child safety:
+Email: safety@zuzusport.com
+Phone: +972-3-SAFETY-1
+
+---
+
+© 2024 Zuzu Sport - Your Child's Safety is Our Priority
+            `;
+            
+            // Create blob and download
+            const blob = new Blob([safetyGuideContent], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Zuzu-Sport-Safety-Guide.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Safety guide downloaded successfully! Check your Downloads folder.', 'success');
+        }
 
         // Notification system
         function showNotification(message, type = 'info') {
