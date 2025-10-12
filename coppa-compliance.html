@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPPA Compliance & Child Safety - Zuzu Sport</title>
+    <meta name="description" content="Learn about Zuzu Sport's commitment to child safety and COPPA compliance. Parental controls, data protection, and safe environment for children under 13.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'canela': ['Canela', 'serif'],
+                        'suisse': ['Suisse International', 'sans-serif']
+                    },
+                    colors: {
+                        'sage': '#8FBC8F',
+                        'coral': '#FF7F7F',
+                        'teal': '#2F4F4F',
+                        'cream': '#FDF5E6'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #FDF5E6; 
+            font-family: 'Suisse International', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+        }
+
+        .age-verification-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .warning-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            border-left: 6px solid #FF4757;
+        }
+    </style>
+</head>
+<body class="font-suisse text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-canela font-bold text-teal">Zuzu Sport</div>
+                    <div class="ml-2 text-sm text-sage">For Healthy Kids</div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-teal transition-colors">Home</a>
+                    <a href="safety.html" class="text-gray-600 hover:text-teal transition-colors">Safety</a>
+                    <a href="progress.html" class="text-gray-600 hover:text-teal transition-colors">Progress</a>
+                    <a href="privacy-policy.html" class="text-gray-600 hover:text-teal transition-colors">Privacy</a>
+                    <a href="terms.html" class="text-gray-600 hover:text-teal transition-colors">Terms</a>
+                    <a href="coppa-compliance.html" class="text-teal font-medium border-b-2 border-coral pb-1">Child Safety</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-teal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Age Verification Modal -->
+    <div id="age-verification-modal" class="age-verification-modal">
+        <div class="modal-content">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-coral rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-teal mb-2">Age Verification Required</h2>
+                <p class="text-gray-600 mb-6">To ensure child safety and COPPA compliance, please verify your age.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <button id="parent-btn" class="w-full bg-teal text-white py-3 px-6 rounded-lg font-semibold hover:bg-teal/90 transition-colors">
+                    I'm a Parent/Guardian (18+)
+                </button>
+                <button id="child-btn" class="w-full bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                    I'm Under 18
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="py-20 bg-gradient-to-br from-teal to-sage text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl lg:text-5xl font-canela font-bold mb-6">Child Safety & COPPA Compliance</h1>
+                <p class="text-xl opacity-90 leading-relaxed">
+                    Zuzu Sport is committed to creating the safest possible environment for children and fully complies with the Children's Online Privacy Protection Act (COPPA).
+                </p>
+            </div>
+        </section>
+
+        <!-- Warning Banner -->
+        <section class="py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="warning-banner rounded-lg p-6 text-center">
+                    <div class="flex items-center justify-center mb-2">
+                        <svg class="w-6 h-6 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <h2 class="text-lg font-bold text-red-900">Important: Parental Supervision Required</h2>
+                    </div>
+                    <p class="text-red-800 font-medium">
+                        Children under 13 must have parental permission and supervision to use Zuzu Sport. 
+                        <a href="#parental-controls" class="underline hover:no-underline">Learn about our parental controls →</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COPPA Overview -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-canela font-bold text-teal mb-4">What is COPPA?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        The Children's Online Privacy Protection Act (COPPA) is a U.S. federal law that requires special protections for children under 13 years old.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center bg-cream rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-teal mb-4">Data Collection Limits</h3>
+                        <p class="text-gray-600">We only collect the minimum necessary information and never collect personal data from children without verifiable parental consent.</p>
+                    </div>
+
+                    <div class="text-center bg-cream rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-coral rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-teal mb-4">Parental Consent</h3>
+                        <p class="text-gray-600">Parents must provide verifiable consent before their child can use features that collect personal information.</p>
+                    </div>
+
+                    <div class="text-center bg-cream rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-teal rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-teal mb-4">Data Protection</h3>
+                        <p class="text-gray-600">All collected data is encrypted, securely stored, and never shared with third parties for marketing purposes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parental Controls Section -->
+        <section id="parental-controls" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-canela font-bold text-teal mb-4">Parental Controls & Oversight</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        We provide comprehensive tools for parents to monitor and control their child's experience.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-sage rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-teal mb-2">Account Verification</h3>
+                                    <p class="text-gray-600">Parents must create and verify their account before children can access any features that collect personal information.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-coral rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-teal mb-2">Activity Monitoring</h3>
+                                    <p class="text-gray-600">Parents can view their child's activity history, progress reports, and time spent using the app.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-teal rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-teal mb-2">Privacy Settings</h3>
+                                    <p class="text-gray-600">Comprehensive privacy controls allow parents to customize what information is collected and how it's used.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-sage rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a2 2 0 002 2h8a2 2 0 002-2V3a2 2 0 012 2v6h-3a3 3 0 01-3 3H9a3 3 0 01-3-3H4V5z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-teal mb-2">Data Deletion Rights</h3>
+                                    <p class="text-gray-600">Parents can request deletion of their child's data at any time through our simple data deletion process.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-teal mb-6 text-center">Request Parental Access</h3>
+                        <form id="parental-access-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Parent/Guardian Name *</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Child's Name *</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Child's Age *</label>
+                                <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent">
+                                    <option value="">Select Age</option>
+                                    <option value="6">6 years old</option>
+                                    <option value="7">7 years old</option>
+                                    <option value="8">8 years old</option>
+                                    <option value="9">9 years old</option>
+                                    <option value="10">10 years old</option>
+                                    <option value="11">11 years old</option>
+                                    <option value="12">12 years old</option>
+                                    <option value="13">13 years old</option>
+                                    <option value="14">14 years old</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Request Type *</label>
+                                <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent">
+                                    <option value="">Select Request</option>
+                                    <option value="access">Request Access to Child's Information</option>
+                                    <option value="deletion">Request Deletion of Child's Information</option>
+                                    <option value="correction">Request Correction of Child's Information</option>
+                                    <option value="consent">Provide/Withdraw Consent</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Additional Details</label>
+                                <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent" placeholder="Please provide any additional details about your request..."></textarea>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" required id="verification-check" class="rounded border-gray-300 text-teal focus:ring-teal">
+                                <label for="verification-check" class="text-sm text-gray-600">I certify that I am the parent/guardian of the child named above and am authorized to make this request. *</label>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-white py-3 px-6 rounded-lg font-semibold">
+                                Submit Request
+                            </button>
+                        </form>
+                        <p class="text-sm text-gray-500 text-center mt-4">
+                            We will respond to your request within 10 business days and may require additional verification.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Child Safety Features -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-canela font-bold text-teal mb-4">Child Safety Features</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Our app is designed with multiple layers of protection to ensure a safe experience for children.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center bg-cream rounded-xl p-6">
+                        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-teal mb-2">No External Links</h3>
+                        <p class="text-sm text-gray-600">The app contains no external links that could take children away from the safe environment.</p>
+                    </div>
+
+                    <div class="text-center bg-cream rounded-xl p-6">
+                        <div class="w-12 h-12 bg-coral rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-teal mb-2">No Ads</h3>
+                        <p class="text-sm text-gray-600">Zero advertisements ensure children are not exposed to inappropriate content or tracking.</p>
+                    </div>
+
+                    <div class="text-center bg-cream rounded-xl p-6">
+                        <div class="w-12 h-12 bg-teal rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-teal mb-2">No Chat Features</h3>
+                        <p class="text-sm text-gray-600">No communication features prevent any possibility of contact with unknown individuals.</p>
+                    </div>
+
+                    <div class="text-center bg-cream rounded-xl p-6">
+                        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-teal mb-2">Expert Content</h3>
+                        <p class="text-sm text-gray-600">All content is created and reviewed by certified child fitness and safety experts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-canela font-bold text-teal mb-6">Questions About Child Safety?</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Our child safety team is available to answer any questions about COPPA compliance, data protection, or parental controls.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <a href="mailto:help@zuzusport.co.il" class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-coral rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-teal mb-2">Email Support</h3>
+                        <p class="text-gray-600">help@zuzusport.co.il</p>
+                    </a>
+                    <a href="https://wa.me/972546880474" target="_blank" class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-teal mb-2">WhatsApp Support</h3>
+                        <p class="text-gray-600">+972-54-6880474</p>
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 mt-6">
+                    Response time: Within 24 hours for child safety inquiries
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl font-canela font-bold text-coral">Zuzu Sport</div>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Creating safe, fun, and healthy movement experiences for children worldwide.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">App Features</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="safety.html" class="hover:text-coral transition-colors">Safety First</a></li>
+                        <li><a href="progress.html" class="hover:text-coral transition-colors">Progress Tracking</a></li>
+                        <li><a href="coppa-compliance.html" class="hover:text-coral transition-colors">Child Protection</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Support</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="mailto:help@zuzusport.co.il" class="hover:text-coral transition-colors">General Support</a></li>
+                        <li><a href="mailto:help@zuzusport.co.il" class="hover:text-coral transition-colors">Child Safety Team</a></li>
+                        <li><a href="https://wa.me/972546880474" class="hover:text-coral transition-colors" target="_blank">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Legal</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="privacy-policy.html" class="hover:text-coral transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-coral transition-colors">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" class="hover:text-coral transition-colors">Cookie Policy</a></li>
+                        <li><a href="coppa-compliance.html" class="hover:text-coral transition-colors">COPPA Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2024 Zuzu Sport. All rights reserved. • Built with ❤️ for safe, healthy kids</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            // Mobile menu toggle logic
+        });
+
+        // Age verification modal functionality
+        const ageModal = document.getElementById('age-verification-modal');
+        const parentBtn = document.getElementById('parent-btn');
+        const childBtn = document.getElementById('child-btn');
+
+        // Show age verification modal on page load
+        window.addEventListener('load', function() {
+            // Check if user has already been verified in this session
+            if (!sessionStorage.getItem('age-verified')) {
+                ageModal.style.display = 'block';
+            }
+        });
+
+        parentBtn.addEventListener('click', function() {
+            sessionStorage.setItem('age-verified', 'parent');
+            ageModal.style.display = 'none';
+        });
+
+        childBtn.addEventListener('click', function() {
+            alert('Children under 18 must have parental supervision to use this website. Please ask a parent or guardian to help you.');
+            // Redirect to a child-friendly explanation page or back to homepage
+            window.location.href = 'index.html';
+        });
+
+        // Parental access form
+        document.getElementById('parental-access-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            alert('Thank you for your request. We will contact you within 10 business days to verify your identity and process your request.');
+            
+            // In a real implementation, this would send data to your backend
+            console.log('Parental access request submitted');
+        });
+
+        // Close modal when clicking outside of it
+        ageModal.addEventListener('click', function(e) {
+            if (e.target === ageModal) {
+                // Don't close unless age is verified - force interaction
+                alert('Age verification is required to continue browsing this website.');
+            }
+        });
+    </script>
+</body>
+</html>
