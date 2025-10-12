@@ -3,6 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
+    initAccessibilityFeatures();
     initTypewriter();
     initScrollAnimations();
     initMobileMenu();
@@ -10,30 +11,46 @@ document.addEventListener('DOMContentLoaded', function() {
     initBenefitCalculator();
     initParticleBackground();
     initProgressAnimations();
+    initKeyboardNavigation();
+    initFocusManagement();
 });
 
-// Typewriter effect for hero headline
+// Typewriter effect for hero headline with accessibility support
 function initTypewriter() {
-    const typed = new Typed('#typed-text', {
-        strings: [
-            'Transform Screen Time',
-            'Into Healthy Movement',
-            'For Your Kids'
-        ],
-        typeSpeed: 60,
-        backSpeed: 40,
-        backDelay: 2000,
-        startDelay: 500,
-        loop: false,
-        showCursor: true,
-        cursorChar: '|',
-        onComplete: function() {
-            // Remove cursor when done
-            setTimeout(() => {
-                document.querySelector('.typed-cursor').style.display = 'none';
-            }, 1000);
-        }
-    });
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const typedElement = document.getElementById('typed-text');
+    
+    if (!typedElement) return;
+    
+    if (!prefersReducedMotion) {
+        const typed = new Typed('#typed-text', {
+            strings: [
+                'Transform Screen Time',
+                'Into Healthy Movement',
+                'For Your Kids'
+            ],
+            typeSpeed: 60,
+            backSpeed: 40,
+            backDelay: 2000,
+            startDelay: 500,
+            loop: false,
+            showCursor: true,
+            cursorChar: '|',
+            onComplete: function() {
+                // Remove cursor when done and announce completion
+                setTimeout(() => {
+                    const cursor = document.querySelector('.typed-cursor');
+                    if (cursor) cursor.style.display = 'none';
+                    announceToScreenReader('Main headline animation completed');
+                }, 1000);
+            }
+        });
+    } else {
+        // For users who prefer reduced motion, show static text immediately
+        typedElement.textContent = 'Transform Screen Time Into Healthy Movement For Your Kids';
+        announceToScreenReader('Welcome to Zuzu Sport - Transform Screen Time Into Healthy Movement For Your Kids');
+    }
 }
 
 // Scroll-triggered animations
@@ -65,20 +82,70 @@ function initScrollAnimations() {
     });
 }
 
-// Mobile menu functionality
+// Mobile menu functionality with accessibility support
 function initMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
             mobileMenu.classList.toggle('hidden');
+            
+            // Update ARIA attributes
+            mobileMenuBtn.setAttribute('aria-expanded', isHidden);
+            
+            // Focus management
+            if (isHidden) {
+                // Menu is being opened
+                const firstMenuItem = mobileMenu.querySelector('a, button');
+                if (firstMenuItem) {
+                    setTimeout(() => firstMenuItem.focus(), 100);
+                }
+                announceToScreenReader('Menu opened');
+            } else {
+                // Menu is being closed
+                announceToScreenReader('Menu closed');
+            }
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    announceToScreenReader('Menu closed');
+                }
+            }
+        });
+
+        // Keyboard navigation for mobile menu
+        mobileMenu.addEventListener('keydown', (e) => {
+            const menuItems = Array.from(mobileMenu.querySelectorAll('a, button'));
+            const currentIndex = menuItems.indexOf(document.activeElement);
+
+            switch(e.key) {
+                case 'Escape':
+                    e.preventDefault();
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.focus();
+                    announceToScreenReader('Menu closed');
+                    break;
+                    
+                case 'ArrowDown':
+                    e.preventDefault();
+                    const nextIndex = (currentIndex + 1) % menuItems.length;
+                    menuItems[nextIndex].focus();
+                    break;
+                    
+                case 'ArrowUp':
+                    e.preventDefault();
+                    const prevIndex = currentIndex === 0 ? menuItems.length - 1 : currentIndex - 1;
+                    menuItems[prevIndex].focus();
+                    break;
             }
         });
     }
@@ -431,6 +498,245 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Accessibility utility functions
+function initAccessibilityFeatures() {
+    // Add skip link functionality
+    const skipLink = document.querySelector('.skip-link');
+    const mainContent = document.getElementById('main-content');
+    
+    if (skipLink && mainContent) {
+        skipLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            mainContent.tabIndex = -1;
+            mainContent.focus();
+            mainContent.addEventListener('blur', () => {
+                mainContent.removeAttribute('tabindex');
+            }, { once: true });
+        });
+    }
+    
+    // Add proper alt text to images that don't have it
+    document.querySelectorAll('img:not([alt])').forEach(img => {
+        img.setAttribute('alt', 'Decorative image');
+    });
+    
+    // Announce page load to screen readers
+    announceToScreenReader(`Page loaded: ${document.title}`);
+    
+    // Add focus indicators for custom interactive elements
+    addFocusIndicators();
+    
+    // Initialize high contrast mode support
+    initHighContrastMode();
+    
+    // Initialize reduced motion preferences
+    initReducedMotionSupport();
+}
+
+function initKeyboardNavigation() {
+    // Add keyboard support for card interactions
+    document.querySelectorAll('.card-hover').forEach(card => {
+        // Make cards focusable
+        if (!card.hasAttribute('tabindex')) {
+            card.setAttribute('tabindex', '0');
+        }
+        
+        // Add keyboard event listeners
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const link = card.querySelector('a');
+                if (link) {
+                    link.click();
+                }
+            }
+        });
+    });
+    
+    // Add keyboard navigation for main menu
+    const mainMenuItems = document.querySelectorAll('nav [role="menubar"] a');
+    mainMenuItems.forEach((item, index) => {
+        item.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    const nextItem = mainMenuItems[index + 1] || mainMenuItems[0];
+                    nextItem.focus();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    const prevItem = mainMenuItems[index - 1] || mainMenuItems[mainMenuItems.length - 1];
+                    prevItem.focus();
+                    break;
+            }
+        });
+    });
+}
+
+function initFocusManagement() {
+    // Track focus for better keyboard navigation
+    let lastFocusedElement;
+    
+    document.addEventListener('focusin', (e) => {
+        lastFocusedElement = e.target;
+    });
+    
+    // Return focus when modals or overlays close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            // Trap focus within modal or overlay if present
+            const modal = document.querySelector('.modal:not(.hidden)');
+            if (modal) {
+                trapFocusInModal(modal, e);
+            }
+        }
+    });
+}
+
+function trapFocusInModal(modal, e) {
+    const focusableElements = modal.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+        }
+    } else {
+        if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+        }
+    }
+}
+
+function announceToScreenReader(message) {
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent = message;
+    
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+        if (announcement.parentNode) {
+            announcement.parentNode.removeChild(announcement);
+        }
+    }, 1000);
+}
+
+function addFocusIndicators() {
+    // Add visible focus indicators for better accessibility
+    const style = document.createElement('style');
+    style.textContent = `
+        .focus-visible,
+        *:focus-visible {
+            outline: 3px solid #FF7F7F !important;
+            outline-offset: 2px !important;
+        }
+        
+        /* Screen reader only content */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function initHighContrastMode() {
+    // Detect high contrast mode and adjust accordingly
+    const mediaQuery = window.matchMedia('(prefers-contrast: high)');
+    
+    function handleHighContrast(e) {
+        if (e.matches) {
+            document.body.classList.add('high-contrast-mode');
+            announceToScreenReader('High contrast mode enabled');
+        } else {
+            document.body.classList.remove('high-contrast-mode');
+        }
+    }
+    
+    mediaQuery.addListener(handleHighContrast);
+    handleHighContrast(mediaQuery);
+}
+
+function initReducedMotionSupport() {
+    // Detect reduced motion preference and adjust animations
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function handleReducedMotion(e) {
+        if (e.matches) {
+            document.body.classList.add('reduced-motion');
+            // Disable auto-playing carousels
+            const carousels = document.querySelectorAll('[data-autoplay]');
+            carousels.forEach(carousel => {
+                carousel.removeAttribute('data-autoplay');
+            });
+            announceToScreenReader('Reduced motion mode enabled');
+        } else {
+            document.body.classList.remove('reduced-motion');
+        }
+    }
+    
+    mediaQuery.addListener(handleReducedMotion);
+    handleReducedMotion(mediaQuery);
+}
+
+// Enhanced notification system with accessibility
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.setAttribute('role', 'alert');
+    notification.setAttribute('aria-live', 'assertive');
+    notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
+        type === 'success' ? 'bg-sage text-white' : 
+        type === 'error' ? 'bg-coral text-white' : 
+        'bg-teal text-white'
+    }`;
+    
+    notification.innerHTML = `
+        <div class="flex items-center justify-between">
+            <span class="mr-4">${message}</span>
+            <button class="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white" aria-label="Close notification" onclick="this.parentElement.parentElement.remove()">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Focus the notification for screen readers
+    notification.focus();
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(full)';
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 300);
+    }, 5000);
+}
+
 // Console easter egg
 console.log(`
 🏃‍♀️ Welcome to Zuzu Sport! 🏃‍♂️
@@ -442,4 +748,5 @@ Interested in joining our mission?
 Contact us: hello@zuzusport.co.il
 
 Built with ❤️ for healthy, happy families.
+Accessibility-first design for everyone!
 `);

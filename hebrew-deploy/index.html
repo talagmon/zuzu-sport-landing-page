@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זוזו ספורט - הפכו זמן מסך לתנועה בריאה לילדים שלכם</title>
+    <meta name="description" content="הפכו קרבות זמן מסך לתנועה בריאה עם זוזו ספורט. פעילויות מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו מ-App Store או Google Play.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'canela': ['Canela', 'serif'],
+                        'suisse': ['Suisse International', 'sans-serif']
+                    },
+                    colors: {
+                        'sage': '#8FBC8F',
+                        'coral': '#FF7F7F',
+                        'teal': '#2F4F4F',
+                        'cream': '#FDF5E6'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #FDF5E6; 
+            font-family: 'Suisse International', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #8FBC8F 0%, #2F4F4F 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(47, 79, 79, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #8FBC8F 0%, #2F4F4F 100%);
+            height: 8px;
+            border-radius: 4px;
+            transition: width 2s ease-in-out;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .typewriter {
+            border-left: 2px solid #FF7F7F;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #FF7F7F; }
+        }
+        
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hebrew/RTL specific styles */
+        .hebrew-text {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .rtl-flex {
+            flex-direction: row-reverse;
+        }
+
+        /* Mobile Navigation RTL */
+        .mobile-nav-rtl {
+            right: 0;
+            left: auto;
+        }
+    </style>
+</head>
+<body class="font-suisse text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center" dir="rtl">
+                    <div class="text-2xl font-canela font-bold text-teal">זוזו ספורט</div>
+                    <div class="mr-2 text-sm text-sage">לילדים בריאים</div>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse" dir="rtl">
+                    <a href="#home" class="text-teal font-medium border-b-2 border-coral pb-1">עמוד ראשי</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-teal transition-colors">איך זה עובד</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-teal transition-colors">המלצות</a>
+                    <a href="#trial" class="btn-primary text-white px-6 py-2 rounded-full font-medium">הורידו את האפליקציה</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-teal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage/20">
+            <div class="px-4 py-2 space-y-2" dir="rtl">
+                <a href="#home" class="block py-2 text-teal font-medium">עמוד ראשי</a>
+                <a href="#how-it-works" class="block py-2 text-gray-600">איך זה עובד</a>
+                <a href="#testimonials" class="block py-2 text-gray-600">המלצות</a>
+                <a href="#trial" class="block py-2 text-coral font-medium">הורידו את האפליקציה</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative">
+        <canvas id="particles-canvas"></canvas>
+        <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white" dir="rtl">
+                    <h1 class="text-5xl lg:text-7xl font-canela font-bold mb-6 leading-tight">
+                        <span id="typed-text" class="typewriter"></span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl mb-8 leading-relaxed opacity-90">
+                        הפכו קרבות זמן מסך לתנועה בריאה. פעילויות מעוצבות על ידי מומחים שמשמרות על הילדים שלכם פעילים, מעורבים וחזקים יותר מיום ליום.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8 rtl-flex">
+                        <a href="https://play.google.com/store/apps/details?id=com.zuzu.sports&hl=iw&pli=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                            <svg class="ml-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                            Google Play
+                        </a>
+                        <a href="https://apps.apple.com/il/app/zuzusport-זוזו-ספורט-לילדים/id6741363934?l=he" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                            <svg class="ml-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.19 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                            </svg>
+                            App Store
+                        </a>
+                    </div>
+                    <div class="flex items-center space-x-6 space-x-reverse text-sm opacity-80" dir="rtl">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            גילאי 6-14
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            ללא צורך בציוד
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            מעוצב על ידי מומחים
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="resources/hero-kids.jpg" alt="ילדים מתרגלים בשמחה יחד" class="rounded-2xl shadow-2xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+                        <div class="text-2xl font-bold text-teal">5,000+</div>
+                        <div class="text-sm text-gray-600">ילדים פעילים</div>
+                    </div>
+                    <div class="absolute -top-6 -left-6 bg-coral p-4 rounded-xl shadow-lg text-white">
+                        <div class="text-2xl font-bold">7 ימים</div>
+                        <div class="text-sm">ניסיון חינם</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal" dir="rtl">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    המאבק על זמן המסך הוא אמיתי
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    אתם לא לבד במלחמה היומיומית להזיז את הילדים שלכם. הפכנו את זמן המסך הזה להזדמנות לצמיחה בריאה.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover reveal" dir="rtl">
+                    <div class="w-16 h-16 bg-coral/20 rounded-full flex items-center justify-center mb-6 mr-auto">
+                        <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">הבעיה</h3>
+                    <p class="text-gray-600 mb-4">
+                        ילדים מבלים בממוצע 7 שעות ביום מול מסכים, בזמן שרק 1 מתוך 4 מקבל מספיק פעילות גופנית.
+                    </p>
+                    <div class="text-sm text-coral font-medium">
+                        נשמע מוכר? אתם לא לבד.
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover reveal" dir="rtl">
+                    <div class="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mb-6 mr-auto">
+                        <svg class="w-8 h-8 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">הפתרון</h3>
+                    <p class="text-gray-600 mb-4">
+                        הפכו זמן מסך לזמן פעיל עם פעילויות מעוצבות על ידי מומחים שילדים באמת רוצים לעשות.
+                    </p>
+                    <div class="text-sm text-sage font-medium">
+                        כיף קודם, כושר בא אחר כך.
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover reveal" dir="rtl">
+                    <div class="w-16 h-16 bg-teal/20 rounded-full flex items-center justify-center mb-6 mr-auto">
+                        <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">התוצאות</h3>
+                    <p class="text-gray-600 mb-4">
+                        89% מההורים מדווחים שהילדים שלהם מבקשים לעשות יותר פעילויות, ו-94% רואים שיפור במצב הרוח ובריכוז.
+                    </p>
+                    <div class="text-sm text-teal font-medium">
+                        תוצאות אמיתיות, משפחות אמיתיות.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal" dir="rtl">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    איך זה עובד
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    שלושה שלבים פשוטים כדי לשנות את הקשר של הילד שלכם עם תנועה וזמן מסך.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center reveal" dir="rtl">
+                    <div class="w-20 h-20 bg-sage rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">1</div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">בוחרים פעילות</h3>
+                    <p class="text-gray-600 mb-6">
+                        הילד שלכם בוחר מבין יוגה, ריקוד, אימוני חוזק או קרדיו שעוצבו על ידי מומחי כושר לילדים.
+                    </p>
+                    <img src="resources/app-screenshot-1.png" alt="מסך בחירת פעילות" class="w-48 mx-auto rounded-xl shadow-lg">
+                </div>
+                
+                <div class="text-center reveal" dir="rtl">
+                    <div class="w-20 h-20 bg-coral rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">2</div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">זוזים ולומדים</h3>
+                    <p class="text-gray-600 mb-6">
+                        עוקבים אחרי סרטונים מודרכים שמלמדים צורה נכונה תוך שמירה על מעורבות ומוטיבציה של הילדים.
+                    </p>
+                    <img src="resources/app-screenshot-3.png" alt="הישגים ופרסים" class="w-48 mx-auto rounded-xl shadow-lg">
+                </div>
+                
+                <div class="text-center reveal" dir="rtl">
+                    <div class="w-20 h-20 bg-teal rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">3</div>
+                    <h3 class="text-2xl font-canela font-bold text-teal mb-4">זוכים וגדלים</h3>
+                    <p class="text-gray-600 mb-6">
+                        פותחים הישגים, זוכים בפרסים, ורואים איך הביטחון העצמי והכוח של הילד גדלים יום יום.
+                    </p>
+                    <img src="resources/app-screenshot-2.png" alt="תרגיל במהלך" class="w-48 mx-auto rounded-xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Progress Dashboard -->
+    <section class="py-20 bg-sage/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal" dir="rtl">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    עקבו אחר ההתקדמות של הילד
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    ראו איך הילד שלכם הופך חזק יותר, בטוח יותר ובריא יותר עם מערכת מעקב התקדמות המקיפה שלנו.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12 reveal">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div dir="rtl">
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-teal">יעד פעילות שבועי</h4>
+                                    <p class="text-sm text-gray-600">5 ימים השבוע</p>
+                                </div>
+                                <div class="text-left">
+                                    <div class="text-2xl font-bold text-sage">4/5</div>
+                                    <div class="text-sm text-gray-600">ימים הושלמו</div>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="progress-bar w-4/5 rounded-full"></div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mt-8">
+                                <div class="bg-sage/10 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-sage">127</div>
+                                    <div class="text-sm text-gray-600">דקות פעילות</div>
+                                </div>
+                                <div class="bg-coral/10 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-coral">8</div>
+                                    <div class="text-sm text-gray-600">הישגים</div>
+                                </div>
+                                <div class="bg-teal/10 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-teal">12</div>
+                                    <div class="text-sm text-gray-600">רצף ימים</div>
+                                </div>
+                                <div class="bg-sage/10 p-4 rounded-xl text-center">
+                                    <div class="text-2xl font-bold text-sage">3</div>
+                                    <div class="text-sm text-gray-600">כישורים חדשים</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <img src="resources/app-screenshot-1.png" alt="לוח מחוונים מעקב התקדמות" class="w-full rounded-xl shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Calculator -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal" dir="rtl">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    חשבו את החיסכון שלכם
+                </h2>
+                <p class="text-xl text-gray-600">
+                    ראו כמה אתם יכולים לחסוך תוך שמירה על הילדים שלכם פעילים ובריאים.
+                </p>
+            </div>
+            
+            <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div dir="rtl">
+                        <h3 class="text-2xl font-canela font-bold text-teal mb-6">פעילויות נוכחיות</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">פעילות 1</label>
+                                <select id="activity1" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent">
+                                    <option value="0">בחרו פעילות</option>
+                                    <option value="360">שיעורי ריקוד</option>
+                                    <option value="370">הימנסטיקה</option>
+                                    <option value="410">שיעורי לחימה</option>
+                                    <option value="280">כדורגל</option>
+                                    <option value="320">שחייה</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">פעילות 2 (אופציונלי)</label>
+                                <select id="activity2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage focus:border-transparent">
+                                    <option value="0">בחרו פעילות</option>
+                                    <option value="360">שיעורי ריקוד</option>
+                                    <option value="370">הימנסטיקה</option>
+                                    <option value="410">שיעורי לחימה</option>
+                                    <option value="280">כדורגל</option>
+                                    <option value="320">שחייה</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div dir="rtl">
+                        <h3 class="text-2xl font-canela font-bold text-teal mb-6">החיסכון שלכם</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">עלות חודשית כעת</span>
+                                    <span id="current-cost" class="font-bold text-teal">₪0</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">זוזו ספורט חודשי</span>
+                                    <span class="font-bold text-sage">₪19.90</span>
+                                </div>
+                            </div>
+                            <div class="bg-sage/20 p-4 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-teal">חיסכון חודשי</span>
+                                    <span id="savings" class="font-bold text-sage text-xl">₪0</span>
+                                </div>
+                            </div>
+                            <div class="bg-coral/20 p-4 rounded-xl">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-semibold text-teal">חיסכון שנתי</span>
+                                    <span id="annual-savings" class="font-bold text-coral text-xl">₪0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center" dir="rtl">
+                    <div class="bg-teal/10 p-6 rounded-xl">
+                        <h4 class="font-semibold text-teal mb-2">בנוסף לכל היתרונות הבאים:</h4>
+                        <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-4 h-4 text-sage ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                ללא זמן נסיעה
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <svg class="w-4 h-4 text-sage ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                זמין 24/7
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <svg class="w-4 h-4 text-sage ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                הדרכה מומחים
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Testimonials -->
+    <section id="testimonials" class="py-20 bg-sage/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal" dir="rtl">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    מה הורים אומרים
+                </h2>
+                <p class="text-xl text-gray-600">
+                    סיפורים אמיתיים ממשפחות אמיתיות ששינו את הגישה שלהם לכושר.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <div class="flex items-center mb-6" dir="rtl">
+                        <img src="resources/testimonial-1.jpg" alt="עדות הורים" class="w-16 h-16 rounded-full object-cover ml-4">
+                        <div>
+                            <div class="font-semibold text-teal">שרה, אם ל-2</div>
+                            <div class="text-sm text-gray-600">תל אביב</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg leading-relaxed" dir="rtl" style="text-align: right;">
+                        "בפעם הראשונה אי פעם, הילדים שלי מבקשים להתרגל במקום להתחנן לעוד זמן מסך. זה שינה את המשחק לחלוטין עבור המשפחה שלנו."
+                    </p>
+                    <div class="flex text-coral justify-end">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <div class="flex items-center mb-6" dir="rtl">
+                        <img src="resources/testimonial-2.jpg" alt="עדות הורים" class="w-16 h-16 rounded-full object-cover ml-4">
+                        <div>
+                            <div class="font-semibold text-teal">דוד, אב ל-3</div>
+                            <div class="text-sm text-gray-600">ירושלים</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg leading-relaxed" dir="rtl" style="text-align: right;">
+                        "הנוחות היא לא יאומנת. לא עוד ריצות לפעילויות אחרי העבודה. הילדים יכולים להתרגל בכל זמן, ואני יכול לעקוב אחר ההתקדמות שלהם מהטלפון."
+                    </p>
+                    <div class="flex text-coral justify-end">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <div class="flex items-center mb-6" dir="rtl">
+                        <img src="resources/testimonial-3.jpg" alt="עדות הורים" class="w-16 h-16 rounded-full object-cover ml-4">
+                        <div>
+                            <div class="font-semibold text-teal">מיה, אם ל-1</div>
+                            <div class="text-sm text-gray-600">חיפה</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg leading-relaxed" dir="rtl" style="text-align: right;">
+                        "הבת שלי לא הייתה לתוך ספורט בכלל, אבל היא אוהבת את פעילויות הריקוד בזוזו ספורט. הביטחון שלה גדל כל כך, והיא באמת מתרגשת מלהיות פעילה!"
+                    </p>
+                    <div class="flex text-coral justify-end">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="trial" class="py-20 bg-teal text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl lg:text-5xl font-canela font-bold mb-6" dir="rtl">
+                מוכנים לשנות את הקשר של הילד שלכם עם תנועה?
+            </h2>
+            <p class="text-xl mb-8 opacity-90" dir="rtl">
+                הצטרפו לאלפי משפחות שכבר עשו את המעבר לילדים בריאים ושמחים יותר.
+            </p>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-8">
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">7 ימים</div>
+                        <div class="text-sm opacity-80">ניסיון חינם</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">₪19.90</div>
+                        <div class="text-sm opacity-80">לחודש לאחר מכן</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">ביטול</div>
+                        <div class="text-sm opacity-80">בכל עת</div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center rtl-flex">
+                    <a href="https://play.google.com/store/apps/details?id=com.zuzu.sports&hl=iw&pli=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                        <svg class="ml-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        </svg>
+                        Google Play
+                    </a>
+                    <a href="https://apps.apple.com/il/app/zuzusport-זוזו-ספורט-לילדים/id6741363934?l=he" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                        <svg class="ml-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.19 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                        </svg>
+                        App Store
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-sm opacity-75" dir="rtl">
+                ללא צורך בכרטיס אשראי לניסיון • ביטול בכל עת • החזר כספי 30 יום
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cream py-12 border-t border-sage/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" dir="rtl">
+                <div class="text-2xl font-canela font-bold text-teal mb-2">זוזו ספורט</div>
+                <div class="text-sage mb-4">הפכו זמן מסך לתנועה בריאה</div>
+                <div class="text-sm text-gray-600">
+                    © 2024 זוזו ספורט. כל הזכויות שמורות. | מעוצב למשפחות בריאות ושמחות.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Particle Animation
+        let particles = [];
+        
+        function setup() {
+            if (typeof createCanvas !== 'undefined') {
+                const canvas = createCanvas(windowWidth, windowHeight);
+                canvas.parent('particles-canvas');
+                
+                // Create particles
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: random(width),
+                        y: random(height),
+                        size: random(2, 6),
+                        speedX: random(-1, 1),
+                        speedY: random(-1, 1),
+                        opacity: random(0.3, 0.8)
+                    });
+                }
+            }
+        }
+        
+        function draw() {
+            if (typeof clear !== 'undefined') {
+                clear();
+                
+                // Draw and animate particles
+                particles.forEach(particle => {
+                    fill(255, 255, 255, particle.opacity * 255);
+                    noStroke();
+                    ellipse(particle.x, particle.y, particle.size);
+                    
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = width;
+                    if (particle.x > width) particle.x = 0;
+                    if (particle.y < 0) particle.y = height;
+                    if (particle.y > height) particle.y = 0;
+                });
+            }
+        }
+        
+        function windowResized() {
+            if (typeof resizeCanvas !== 'undefined') {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+        }
+
+        // Typed.js for hero text
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Typed !== 'undefined') {
+                const options = {
+                    strings: ['הפכו זמן מסך^1000', 'לתנועה בריאה^1000', 'לילדים שלכם!'],
+                    typeSpeed: 80,
+                    backSpeed: 40,
+                    backDelay: 1500,
+                    startDelay: 500,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|'
+                };
+                
+                new Typed('#typed-text', options);
+            }
+        });
+
+        // Reveal animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Savings calculator functionality
+        function calculateSavings() {
+            const activity1 = parseInt(document.getElementById('activity1')?.value || '0');
+            const activity2 = parseInt(document.getElementById('activity2')?.value || '0');
+            
+            const currentCost = activity1 + activity2;
+            const zuzuCost = 19.90;
+            const monthlySavings = Math.max(0, currentCost - zuzuCost);
+            const annualSavings = monthlySavings * 12;
+            
+            const currentCostElement = document.getElementById('current-cost');
+            const savingsElement = document.getElementById('savings');
+            const annualSavingsElement = document.getElementById('annual-savings');
+            
+            if (currentCostElement) currentCostElement.textContent = `₪${currentCost}`;
+            if (savingsElement) savingsElement.textContent = `₪${monthlySavings.toFixed(2)}`;
+            if (annualSavingsElement) annualSavingsElement.textContent = `₪${annualSavings.toFixed(2)}`;
+        }
+
+        // Initialize calculator when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const activity1Select = document.getElementById('activity1');
+            const activity2Select = document.getElementById('activity2');
+            
+            if (activity1Select) {
+                activity1Select.addEventListener('change', calculateSavings);
+            }
+            if (activity2Select) {
+                activity2Select.addEventListener('change', calculateSavings);
+            }
+            
+            // Initial calculation
+            calculateSavings();
+        });
+    </script>
+</body>
+</html>
