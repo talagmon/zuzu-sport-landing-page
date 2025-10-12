@@ -27,10 +27,19 @@
                         'suisse': ['Suisse International', 'sans-serif']
                     },
                     colors: {
-                        'sage': '#8FBC8F',
-                        'coral': '#FF7F7F',
-                        'teal': '#2F4F4F',
-                        'cream': '#FDF5E6'
+                        'primary-blue': '#4A90E2',
+                        'primary-green': '#7ED321', 
+                        'accent-orange': '#F5A623',
+                        'accent-purple': '#9013FE',
+                        'dark-navy': '#2C3E50',
+                        'light-gray': '#F8F9FA',
+                        'success': '#27AE60',
+                        'warning': '#E67E22',
+                        // Legacy color mapping for gradual transition
+                        'sage': '#7ED321',
+                        'coral': '#F5A623', 
+                        'teal': '#2C3E50',
+                        'cream': '#F8F9FA'
                     }
                 }
             }
@@ -39,12 +48,12 @@
     
     <style>
         body { 
-            background-color: #FDF5E6; 
+            background-color: #F8F9FA; 
             font-family: 'Suisse International', sans-serif;
         }
         
         .hero-bg {
-            background: linear-gradient(135deg, #8FBC8F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #4A90E2 0%, #7ED321 100%);
             position: relative;
             overflow: hidden;
         }
@@ -75,17 +84,17 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            background: linear-gradient(135deg, #F5A623 0%, #4A90E2 100%);
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 127, 127, 0.3);
+            box-shadow: 0 10px 25px rgba(245, 166, 35, 0.4);
         }
         
         .progress-bar {
-            background: linear-gradient(90deg, #8FBC8F 0%, #2F4F4F 100%);
+            background: linear-gradient(90deg, #7ED321 0%, #4A90E2 100%);
             height: 8px;
             border-radius: 4px;
             transition: width 2s ease-in-out;
