@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Typewriter effect for hero headline with accessibility support
 function initTypewriter() {
+    // Skip if Hebrew version is already initialized
+    if (window.hebrewTypewriterInitialized) return;
+    
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const typedElement = document.getElementById('typed-text');
