@@ -1042,6 +1042,9 @@
             document.querySelectorAll('.reveal').forEach(el => {
                 observer.observe(el);
             });
+            
+            // Initialize particle background animation
+            initParticleBackground();
 
             // Calculator functionality
             const activity1 = document.getElementById('activity1');
@@ -1064,6 +1067,63 @@
                 activity1.addEventListener('change', updateCalculator);
                 activity2.addEventListener('change', updateCalculator);
             }
+        });
+        
+        // Particle background animation function
+        function initParticleBackground() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+
+            let particles = [];
+
+            function setup() {
+                const canvasElement = createCanvas(windowWidth, windowHeight);
+                canvasElement.parent('particles-canvas');
+                
+                // Create particles
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: random(width),
+                        y: random(height),
+                        size: random(2, 6),
+                        speedX: random(-0.5, 0.5),
+                        speedY: random(-0.5, 0.5),
+                        opacity: random(0.1, 0.3)
+                    });
+                }
+            }
+
+            function draw() {
+                clear();
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    // Update position
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = width;
+                    if (particle.x > width) particle.x = 0;
+                    if (particle.y < 0) particle.y = height;
+                    if (particle.y > height) particle.y = 0;
+                    
+                    // Draw particle
+                    fill(255, 255, 255, particle.opacity * 255);
+                    noStroke();
+                    ellipse(particle.x, particle.y, particle.size);
+                });
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+
+            // Make functions global for p5.js
+            window.setup = setup;
+            window.draw = draw;
+            window.windowResized = windowResized;
+        }
     </script>
 </body>
 </html>
