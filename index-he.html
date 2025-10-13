@@ -967,6 +967,9 @@
     </a>
 
     <script>
+        // Prevent main.js from overriding Hebrew typewriter - SET FIRST!
+        window.hebrewTypewriterInitialized = true;
+        
         // Mobile Menu Toggle Function
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu-he');
@@ -1005,18 +1008,12 @@
                     }
                 });
             }
-        });
-
-    <script>
-        // Prevent main.js from overriding Hebrew typewriter
-        window.hebrewTypewriterInitialized = true;
-        
-        // Initialize typewriter effect
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Initialize Hebrew typewriter effect
             const typed = new Typed('#typed-text', {
                 strings: [
                     'הפכו זמן מסך',
-                    'לתנועה בריאה',
+                    'לתנועה בריאה', 
                     'עבור הילדים שלכם'
                 ],
                 typeSpeed: 80,
@@ -1046,7 +1043,6 @@
                 observer.observe(el);
             });
 
-
             // Calculator functionality
             const activity1 = document.getElementById('activity1');
             const activity2 = document.getElementById('activity2');
@@ -1068,8 +1064,6 @@
                 activity1.addEventListener('change', updateCalculator);
                 activity2.addEventListener('change', updateCalculator);
             }
-        });
     </script>
-    <script src="main.js"></script>
 </body>
 </html>
