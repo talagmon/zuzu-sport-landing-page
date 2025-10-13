@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-10-13T19:30:47.168Z",
+  "config": {
+    "sourceDir": "resources",
+    "outputDir": "resources/optimized",
+    "inputFormats": [
+      "jpg",
+      "jpeg",
+      "png"
+    ],
+    "outputFormats": [
+      "webp",
+      "avif"
+    ],
+    "breakpoints": {
+      "mobile": 375,
+      "tablet": 768,
+      "desktop": 1200,
+      "large": 1920
+    },
+    "quality": {
+      "webp": 85,
+      "avif": 75,
+      "jpeg": 80,
+      "png": 90
+    },
+    "lazyConfig": {
+      "rootMargin": "50px",
+      "threshold": 0.1
+    }
+  },
+  "images": {
+    "app-screenshot-1.png": {
+      "original": "app-screenshot-1.png",
+      "optimized": {
+        "webp": "optimized/app-screenshot-1.webp",
+        "avif": "optimized/app-screenshot-1.avif",
+        "fallback": "optimized/app-screenshot-1.png"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/app-screenshot-1-375w.webp",
+          "avif": "optimized/app-screenshot-1-375w.avif",
+          "fallback": "optimized/app-screenshot-1-375w.png"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/app-screenshot-1-768w.webp",
+          "avif": "optimized/app-screenshot-1-768w.avif",
+          "fallback": "optimized/app-screenshot-1-768w.png"
+        }
+      ]
+    },
+    "app-screenshot-2.png": {
+      "original": "app-screenshot-2.png",
+      "optimized": {
+        "webp": "optimized/app-screenshot-2.webp",
+        "avif": "optimized/app-screenshot-2.avif",
+        "fallback": "optimized/app-screenshot-2.png"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/app-screenshot-2-375w.webp",
+          "avif": "optimized/app-screenshot-2-375w.avif",
+          "fallback": "optimized/app-screenshot-2-375w.png"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/app-screenshot-2-768w.webp",
+          "avif": "optimized/app-screenshot-2-768w.avif",
+          "fallback": "optimized/app-screenshot-2-768w.png"
+        }
+      ]
+    },
+    "app-screenshot-3.png": {
+      "original": "app-screenshot-3.png",
+      "optimized": {
+        "webp": "optimized/app-screenshot-3.webp",
+        "avif": "optimized/app-screenshot-3.avif",
+        "fallback": "optimized/app-screenshot-3.png"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/app-screenshot-3-375w.webp",
+          "avif": "optimized/app-screenshot-3-375w.avif",
+          "fallback": "optimized/app-screenshot-3-375w.png"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/app-screenshot-3-768w.webp",
+          "avif": "optimized/app-screenshot-3-768w.avif",
+          "fallback": "optimized/app-screenshot-3-768w.png"
+        }
+      ]
+    },
+    "family-exercise.jpg": {
+      "original": "family-exercise.jpg",
+      "optimized": {
+        "webp": "optimized/family-exercise.webp",
+        "avif": "optimized/family-exercise.avif",
+        "fallback": "optimized/family-exercise.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/family-exercise-375w.webp",
+          "avif": "optimized/family-exercise-375w.avif",
+          "fallback": "optimized/family-exercise-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/family-exercise-768w.webp",
+          "avif": "optimized/family-exercise-768w.avif",
+          "fallback": "optimized/family-exercise-768w.jpg"
+        },
+        {
+          "breakpoint": "desktop",
+          "width": 1200,
+          "webp": "optimized/family-exercise-1200w.webp",
+          "avif": "optimized/family-exercise-1200w.avif",
+          "fallback": "optimized/family-exercise-1200w.jpg"
+        }
+      ]
+    },
+    "hero-kids.jpg": {
+      "original": "hero-kids.jpg",
+      "optimized": {
+        "webp": "optimized/hero-kids.webp",
+        "avif": "optimized/hero-kids.avif",
+        "fallback": "optimized/hero-kids.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/hero-kids-375w.webp",
+          "avif": "optimized/hero-kids-375w.avif",
+          "fallback": "optimized/hero-kids-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/hero-kids-768w.webp",
+          "avif": "optimized/hero-kids-768w.avif",
+          "fallback": "optimized/hero-kids-768w.jpg"
+        },
+        {
+          "breakpoint": "desktop",
+          "width": 1200,
+          "webp": "optimized/hero-kids-1200w.webp",
+          "avif": "optimized/hero-kids-1200w.avif",
+          "fallback": "optimized/hero-kids-1200w.jpg"
+        }
+      ]
+    },
+    "icon-144x144.png": {
+      "original": "icon-144x144.png",
+      "optimized": {
+        "webp": "optimized/icon-144x144.webp",
+        "avif": "optimized/icon-144x144.avif",
+        "fallback": "optimized/icon-144x144.png"
+      },
+      "responsive": []
+    },
+    "icon-16x16.png": {
+      "original": "icon-16x16.png",
+      "optimized": {
+        "webp": "optimized/icon-16x16.webp",
+        "avif": "optimized/icon-16x16.avif",
+        "fallback": "optimized/icon-16x16.png"
+      },
+      "responsive": []
+    },
+    "icon-192x192.png": {
+      "original": "icon-192x192.png",
+      "optimized": {
+        "webp": "optimized/icon-192x192.webp",
+        "avif": "optimized/icon-192x192.avif",
+        "fallback": "optimized/icon-192x192.png"
+      },
+      "responsive": []
+    },
+    "icon-32x32.png": {
+      "original": "icon-32x32.png",
+      "optimized": {
+        "webp": "optimized/icon-32x32.webp",
+        "avif": "optimized/icon-32x32.avif",
+        "fallback": "optimized/icon-32x32.png"
+      },
+      "responsive": []
+    },
+    "icon-48x48.png": {
+      "original": "icon-48x48.png",
+      "optimized": {
+        "webp": "optimized/icon-48x48.webp",
+        "avif": "optimized/icon-48x48.avif",
+        "fallback": "optimized/icon-48x48.png"
+      },
+      "responsive": []
+    },
+    "icon-512x512.png": {
+      "original": "icon-512x512.png",
+      "optimized": {
+        "webp": "optimized/icon-512x512.webp",
+        "avif": "optimized/icon-512x512.avif",
+        "fallback": "optimized/icon-512x512.png"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/icon-512x512-375w.webp",
+          "avif": "optimized/icon-512x512-375w.avif",
+          "fallback": "optimized/icon-512x512-375w.png"
+        }
+      ]
+    },
+    "icon-72x72.png": {
+      "original": "icon-72x72.png",
+      "optimized": {
+        "webp": "optimized/icon-72x72.webp",
+        "avif": "optimized/icon-72x72.avif",
+        "fallback": "optimized/icon-72x72.png"
+      },
+      "responsive": []
+    },
+    "icon-96x96.png": {
+      "original": "icon-96x96.png",
+      "optimized": {
+        "webp": "optimized/icon-96x96.webp",
+        "avif": "optimized/icon-96x96.avif",
+        "fallback": "optimized/icon-96x96.png"
+      },
+      "responsive": []
+    },
+    "progress-chart.jpg": {
+      "original": "progress-chart.jpg",
+      "optimized": {
+        "webp": "optimized/progress-chart.webp",
+        "avif": "optimized/progress-chart.avif",
+        "fallback": "optimized/progress-chart.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/progress-chart-375w.webp",
+          "avif": "optimized/progress-chart-375w.avif",
+          "fallback": "optimized/progress-chart-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/progress-chart-768w.webp",
+          "avif": "optimized/progress-chart-768w.avif",
+          "fallback": "optimized/progress-chart-768w.jpg"
+        }
+      ]
+    },
+    "safety-expert.jpg": {
+      "original": "safety-expert.jpg",
+      "optimized": {
+        "webp": "optimized/safety-expert.webp",
+        "avif": "optimized/safety-expert.avif",
+        "fallback": "optimized/safety-expert.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/safety-expert-375w.webp",
+          "avif": "optimized/safety-expert-375w.avif",
+          "fallback": "optimized/safety-expert-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/safety-expert-768w.webp",
+          "avif": "optimized/safety-expert-768w.avif",
+          "fallback": "optimized/safety-expert-768w.jpg"
+        }
+      ]
+    },
+    "testimonial-1.jpg": {
+      "original": "testimonial-1.jpg",
+      "optimized": {
+        "webp": "optimized/testimonial-1.webp",
+        "avif": "optimized/testimonial-1.avif",
+        "fallback": "optimized/testimonial-1.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/testimonial-1-375w.webp",
+          "avif": "optimized/testimonial-1-375w.avif",
+          "fallback": "optimized/testimonial-1-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/testimonial-1-768w.webp",
+          "avif": "optimized/testimonial-1-768w.avif",
+          "fallback": "optimized/testimonial-1-768w.jpg"
+        }
+      ]
+    },
+    "testimonial-2.jpg": {
+      "original": "testimonial-2.jpg",
+      "optimized": {
+        "webp": "optimized/testimonial-2.webp",
+        "avif": "optimized/testimonial-2.avif",
+        "fallback": "optimized/testimonial-2.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/testimonial-2-375w.webp",
+          "avif": "optimized/testimonial-2-375w.avif",
+          "fallback": "optimized/testimonial-2-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/testimonial-2-768w.webp",
+          "avif": "optimized/testimonial-2-768w.avif",
+          "fallback": "optimized/testimonial-2-768w.jpg"
+        }
+      ]
+    },
+    "testimonial-3.jpg": {
+      "original": "testimonial-3.jpg",
+      "optimized": {
+        "webp": "optimized/testimonial-3.webp",
+        "avif": "optimized/testimonial-3.avif",
+        "fallback": "optimized/testimonial-3.jpg"
+      },
+      "responsive": [
+        {
+          "breakpoint": "mobile",
+          "width": 375,
+          "webp": "optimized/testimonial-3-375w.webp",
+          "avif": "optimized/testimonial-3-375w.avif",
+          "fallback": "optimized/testimonial-3-375w.jpg"
+        },
+        {
+          "breakpoint": "tablet",
+          "width": 768,
+          "webp": "optimized/testimonial-3-768w.webp",
+          "avif": "optimized/testimonial-3-768w.avif",
+          "fallback": "optimized/testimonial-3-768w.jpg"
+        }
+      ]
+    }
+  }
+}

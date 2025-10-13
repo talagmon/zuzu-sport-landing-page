@@ -1,0 +1,153 @@
+
+<!-- Service Worker Registration -->
+<script>
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+      try {
+        const registration = await navigator.serviceWorker.register('/service-worker.js');
+        
+        console.log('Service Worker registered successfully:', registration.scope);
+        
+        // Handle service worker updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // New service worker available, show update notification
+                showUpdateNotification();
+              } else {
+                // First time service worker installed
+                console.log('Content cached for offline use.');
+              }
+            }
+          });
+        });
+        
+        // Performance monitoring
+        if (window.performance && window.performance.timing) {
+          const timing = window.performance.timing;
+          const loadTime = timing.loadEventEnd - timing.navigationStart;
+          
+          // Send performance data to service worker
+          navigator.serviceWorker.ready.then(registration => {
+            registration.active.postMessage({
+              type: 'PERFORMANCE_LOG',
+              data: {
+                loadTime,
+                timestamp: new Date().toISOString(),
+                url: window.location.href
+              }
+            });
+          });
+        }
+        
+      } catch (error) {
+        console.error('Service Worker registration failed:', error);
+      }
+    });
+  }
+
+  function showUpdateNotification() {
+    // Create update notification
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+      <div style="
+        position: fixed; 
+        top: 1rem; 
+        right: 1rem; 
+        background: #00B4D8; 
+        color: white; 
+        padding: 1rem; 
+        border-radius: 0.5rem; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+        z-index: 1000; 
+        max-width: 300px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      ">
+        <span>🔄 New version available!</span>
+        <button onclick="window.location.reload()" style="
+          background: white; 
+          color: #00B4D8; 
+          border: none; 
+          padding: 0.25rem 0.5rem; 
+          border-radius: 0.25rem; 
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: 600;
+        ">Update</button>
+        <button onclick="this.parentElement.parentElement.remove()" style="
+          background: transparent; 
+          color: white; 
+          border: none; 
+          padding: 0.25rem; 
+          cursor: pointer;
+          font-size: 16px;
+        ">×</button>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 10 seconds
+    setTimeout(() => {
+      if (notification.parentElement) {
+        notification.remove();
+      }
+    }, 10000);
+  }
+  
+  // Handle offline/online status
+  function updateConnectionStatus() {
+    const isOnline = navigator.onLine;
+    const statusIndicator = document.getElementById('connection-status');
+    
+    if (!statusIndicator) {
+      const indicator = document.createElement('div');
+      indicator.id = 'connection-status';
+      indicator.style.cssText = `
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      `;
+      document.body.appendChild(indicator);
+    }
+    
+    const indicator = document.getElementById('connection-status');
+    
+    if (isOnline) {
+      indicator.textContent = '🟢 Online';
+      indicator.style.background = '#10b981';
+      indicator.style.color = 'white';
+      indicator.style.opacity = '0';
+      setTimeout(() => {
+        if (indicator) indicator.style.display = 'none';
+      }, 2000);
+    } else {
+      indicator.textContent = '🔴 Offline';
+      indicator.style.background = '#ef4444';
+      indicator.style.color = 'white';
+      indicator.style.opacity = '1';
+      indicator.style.display = 'block';
+    }
+  }
+
+  window.addEventListener('online', updateConnectionStatus);
+  window.addEventListener('offline', updateConnectionStatus);
+  
+  // Initial connection status check
+  document.addEventListener('DOMContentLoaded', updateConnectionStatus);
+</script>

@@ -1,0 +1,34 @@
+{
+  "name": "zuzusport-performance-monitoring",
+  "version": "1.0.0",
+  "description": "Performance monitoring setup for ZuzuSport website",
+  "scripts": {
+    "lighthouse": "lhci collect --numberOfRuns=3",
+    "lighthouse:ci": "lhci autorun",
+    "perf:budget": "node scripts/performance-budget-check.js",
+    "perf:mobile": "lighthouse http://localhost:8080 --form-factor=mobile --output=json --output-path=mobile-perf.json --chrome-flags='--headless --no-sandbox'",
+    "perf:regression": "node scripts/performance-regression-check.js",
+    "serve": "http-server . -p 8080",
+    "serve:background": "http-server . -p 8080 &",
+    "test:performance": "npm run serve:background && sleep 3 && npm run lighthouse && npm run perf:budget",
+    "test:mobile": "npm run serve:background && sleep 3 && npm run perf:mobile"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.12.0",
+    "http-server": "^14.1.1",
+    "lighthouse": "^11.0.0",
+    "yaml": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "performance",
+    "lighthouse",
+    "web-vitals",
+    "monitoring",
+    "zuzusport"
+  ],
+  "author": "ZuzuSport Team",
+  "license": "MIT"
+}

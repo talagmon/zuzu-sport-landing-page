@@ -1,0 +1,79 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-10-13T19:26:36.261Z",
+  "config": {
+    "version": "1.0.0",
+    "cacheName": "zuzusport-v1",
+    "cacheStrategies": {
+      "critical": {
+        "strategy": "CacheFirst",
+        "maxAge": 2592000,
+        "maxEntries": 50
+      },
+      "static": {
+        "strategy": "StaleWhileRevalidate",
+        "maxAge": 604800,
+        "maxEntries": 100
+      },
+      "images": {
+        "strategy": "CacheFirst",
+        "maxAge": 2592000,
+        "maxEntries": 200
+      },
+      "dynamic": {
+        "strategy": "NetworkFirst",
+        "maxAge": 300,
+        "maxEntries": 50
+      }
+    },
+    "precacheResources": [
+      "/",
+      "/index-he.html",
+      "/bundles/critical.css",
+      "/bundles/main.js",
+      "/resources/optimized/hero-kids.webp",
+      "/resources/optimized/hero-kids.jpg",
+      "/site.webmanifest",
+      "/favicon.ico"
+    ],
+    "runtimeCaching": [
+      {
+        "urlPattern": {},
+        "strategy": "images",
+        "cacheName": "images"
+      },
+      {
+        "urlPattern": {},
+        "strategy": "static",
+        "cacheName": "static-resources"
+      },
+      {
+        "urlPattern": {},
+        "strategy": "static",
+        "cacheName": "google-fonts-stylesheets"
+      },
+      {
+        "urlPattern": {},
+        "strategy": "critical",
+        "cacheName": "google-fonts-webfonts"
+      },
+      {
+        "urlPattern": {},
+        "strategy": "static",
+        "cacheName": "tailwind-css"
+      }
+    ],
+    "offlineFallbacks": {
+      "document": "/offline.html",
+      "image": "/resources/icon-192x192.png",
+      "audio": null,
+      "video": null
+    }
+  },
+  "usage": {
+    "registration": "Include sw-register.html in your HTML pages",
+    "serviceWorker": "Place service-worker.js in your site root",
+    "offline": "Place offline.html in your site root",
+    "testing": "Test offline functionality by disabling network in DevTools"
+  }
+}

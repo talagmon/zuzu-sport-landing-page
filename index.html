@@ -11,6 +11,45 @@
     <meta name="theme-color" content="#2F4F4F">
     <link rel="canonical" href="https://zuzusport.com/">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zuzusport.com/">
+    <meta property="og:title" content="Zuzu Sport - Transform Screen Time Into Healthy Movement for Your Kids">
+    <meta property="og:description" content="Turn screen time battles into healthy movement with Zuzu Sport. Expert-designed fitness activities for kids ages 6-14. Download now from App Store or Google Play.">
+    <meta property="og:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Zuzu Sport">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zuzusport.com/">
+    <meta property="twitter:title" content="Zuzu Sport - Transform Screen Time Into Healthy Movement for Your Kids">
+    <meta property="twitter:description" content="Turn screen time battles into healthy movement with Zuzu Sport. Expert-designed fitness activities for kids ages 6-14. Download now from App Store or Google Play.">
+    <meta property="twitter:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="twitter:creator" content="@zuzusport">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Zuzu Sport">
+    <meta name="publisher" content="Barshaf Investments Ltd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Zuzu Sport">
+    <meta name="application-name" content="Zuzu Sport">
+    <meta name="msapplication-TileColor" content="#2F4F4F">
+    
+    <!-- Language and Regional -->
+    <link rel="alternate" hreflang="en" href="https://zuzusport.com/">
+    <link rel="alternate" hreflang="he" href="https://zuzusport.com/index-he.html">
+    <link rel="alternate" hreflang="x-default" href="https://zuzusport.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <!-- Preload critical fonts for performance -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'>
@@ -434,10 +473,72 @@
             }
         }
         
-        /* Hide FAB and show mobile menu button on small screens */
+        /* Enhanced Mobile Optimizations */
         @media (max-width: 767px) {
             .mobile-menu-btn-enhanced {
                 display: flex;
+            }
+            
+            /* Better touch targets on mobile */
+            .btn-primary {
+                min-height: 48px;
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+            
+            /* Improved hero section spacing on mobile */
+            .hero-bg {
+                min-height: 100vh;
+                padding-top: 80px;
+            }
+            
+            /* Better mobile typography */
+            h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .text-xl {
+                font-size: 1.125rem;
+                line-height: 1.6;
+            }
+            
+            /* Enhanced mobile cards */
+            .card-hover {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* Mobile-optimized FAB */
+            .fab-download {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+                box-shadow: 0 4px 20px rgba(0, 180, 216, 0.4);
+            }
+            
+            /* Mobile grid optimizations */
+            .grid {
+                gap: 1rem;
+            }
+            
+            /* Better mobile menu links */
+            .mobile-menu-enhanced .menu-links a {
+                min-height: 56px;
+                font-size: 1.125rem;
+                padding: 16px 20px;
+            }
+        }
+        
+        /* Medium screens optimizations */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-bg {
+                padding-top: 100px;
+            }
+            
+            h1 {
+                font-size: 3rem !important;
             }
         }
         
@@ -452,7 +553,141 @@
                 display: none;
             }
         }
+        
+        /* Large screens optimizations */
+        @media (min-width: 1024px) {
+            .hero-bg {
+                padding-top: 120px;
+            }
+            
+            /* Better desktop grid spacing */
+            .grid {
+                gap: 2rem;
+            }
+        }
+        
+        /* High DPI screen optimizations */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-bg::before {
+                background-size: 100px 100px;
+            }
+        }
+        
+        /* Landscape mobile optimizations */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .hero-bg {
+                min-height: auto;
+                padding: 60px 0 40px;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1rem;
+            }
+        }
     </style>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://zuzusport.com/#organization",
+          "name": "Zuzu Sport",
+          "url": "https://zuzusport.com/",
+          "logo": "https://zuzusport.com/resources/logo.png",
+          "description": "Transform screen time battles into healthy movement with expert-designed fitness activities for kids ages 6-14.",
+          "founder": {
+            "@type": "Organization",
+            "name": "Barshaf Investments Ltd"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "hello@zuzusport.co.il",
+            "availableLanguage": ["English", "Hebrew"]
+          },
+          "sameAs": [
+            "https://play.google.com/store/apps/details?id=com.zuzu.sports",
+            "https://apps.apple.com/app/zuzusport/id6741363934"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://zuzusport.com/#website",
+          "url": "https://zuzusport.com/",
+          "name": "Zuzu Sport",
+          "description": "Transform screen time battles into healthy movement for kids",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://zuzusport.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://zuzusport.com/#webpage",
+          "url": "https://zuzusport.com/",
+          "name": "Zuzu Sport - Transform Screen Time Into Healthy Movement for Your Kids",
+          "description": "Turn screen time battles into healthy movement with Zuzu Sport. Expert-designed fitness activities for kids ages 6-14. Download now from App Store or Google Play.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://zuzusport.com/#website"
+          }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://zuzusport.com/#mobileapp",
+          "name": "Zuzu Sport",
+          "description": "Expert-designed fitness activities for kids ages 6-14. Transform screen time into healthy movement.",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": ["iOS", "Android"],
+          "offers": {
+            "@type": "Offer",
+            "price": "19.90",
+            "priceCurrency": "ILS",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "19.90",
+              "priceCurrency": "ILS",
+              "referenceQuantity": {
+                "@type": "QuantitativeValue",
+                "value": "1",
+                "unitText": "month"
+              }
+            }
+          },
+          "author": {
+            "@id": "https://zuzusport.com/#organization"
+          },
+          "downloadUrl": [
+            "https://play.google.com/store/apps/details?id=com.zuzu.sports",
+            "https://apps.apple.com/app/zuzusport/id6741363934"
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://zuzusport.com/#service",
+          "name": "Kids Fitness App",
+          "description": "Professional fitness activities designed specifically for children ages 6-14",
+          "provider": {
+            "@id": "https://zuzusport.com/#organization"
+          },
+          "serviceType": "Health and Fitness",
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "Children",
+            "suggestedMinAge": 6,
+            "suggestedMaxAge": 14
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="font-suisse text-gray-800">
     <!-- Skip Navigation Link -->

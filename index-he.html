@@ -9,7 +9,46 @@
     <!-- Accessibility Meta Tags -->
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0077B6">
-    <link rel="canonical" href="https://zuzusport.com/index-he">
+    <link rel="canonical" href="https://zuzusport.com/index-he.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zuzusport.com/index-he.html">
+    <meta property="og:title" content="זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם">
+    <meta property="og:description" content="הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו עכשיו מ-App Store או Google Play.">
+    <meta property="og:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="זוזו ספורט">
+    <meta property="og:locale" content="he_IL">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zuzusport.com/index-he.html">
+    <meta property="twitter:title" content="זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם">
+    <meta property="twitter:description" content="הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו עכשיו מ-App Store או Google Play.">
+    <meta property="twitter:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="twitter:creator" content="@zuzusport">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="זוזו ספורט">
+    <meta name="publisher" content="Barshaf Investments Ltd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="זוזו ספורט">
+    <meta name="application-name" content="זוזו ספורט">
+    <meta name="msapplication-TileColor" content="#0077B6">
+    
+    <!-- Language and Regional -->
+    <link rel="alternate" hreflang="he" href="https://zuzusport.com/index-he.html">
+    <link rel="alternate" hreflang="en" href="https://zuzusport.com/">
+    <link rel="alternate" hreflang="x-default" href="https://zuzusport.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     
     <!-- Fonts - Hebrew Support -->
     <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -348,10 +387,79 @@
             }
         }
         
-        /* Hide FAB and show mobile menu button on small screens */
+        /* Enhanced Mobile Optimizations (RTL) */
         @media (max-width: 767px) {
             .mobile-menu-btn-enhanced {
                 display: flex;
+            }
+            
+            /* Better touch targets on mobile */
+            .btn-primary {
+                min-height: 48px;
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+            
+            /* Improved hero section spacing on mobile */
+            .hero-bg {
+                min-height: 100vh;
+                padding-top: 80px;
+            }
+            
+            /* Better mobile typography for Hebrew */
+            h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+                text-align: right;
+            }
+            
+            .text-xl {
+                font-size: 1.125rem;
+                line-height: 1.6;
+            }
+            
+            /* Enhanced mobile cards */
+            .card-hover {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* Mobile-optimized FAB (RTL positioning) */
+            .fab-download {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                left: 20px; /* RTL positioning */
+                box-shadow: 0 4px 20px rgba(0, 180, 216, 0.4);
+            }
+            
+            /* Mobile grid optimizations */
+            .grid {
+                gap: 1rem;
+            }
+            
+            /* Better mobile menu links */
+            .mobile-menu-enhanced .menu-links a {
+                min-height: 56px;
+                font-size: 1.125rem;
+                padding: 16px 20px;
+                text-align: right;
+            }
+            
+            /* RTL specific optimizations */
+            [dir="rtl"] .text-right {
+                text-align: right !important;
+            }
+        }
+        
+        /* Medium screens optimizations */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-bg {
+                padding-top: 100px;
+            }
+            
+            h1 {
+                font-size: 3rem !important;
             }
         }
         
@@ -366,7 +474,143 @@
                 display: none;
             }
         }
+        
+        /* Large screens optimizations */
+        @media (min-width: 1024px) {
+            .hero-bg {
+                padding-top: 120px;
+            }
+            
+            /* Better desktop grid spacing */
+            .grid {
+                gap: 2rem;
+            }
+        }
+        
+        /* High DPI screen optimizations */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-bg::before {
+                background-size: 100px 100px;
+            }
+        }
+        
+        /* Landscape mobile optimizations (Hebrew) */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .hero-bg {
+                min-height: auto;
+                padding: 60px 0 40px;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1rem;
+            }
+        }
     </style>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://zuzusport.com/#organization",
+          "name": "זוזו ספורט",
+          "alternateName": "Zuzu Sport",
+          "url": "https://zuzusport.com/",
+          "logo": "https://zuzusport.com/resources/logo.png",
+          "description": "הפכו קרבות זמן המסך לתנועה בריאה עם פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14.",
+          "founder": {
+            "@type": "Organization",
+            "name": "Barshaf Investments Ltd"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "hello@zuzusport.co.il",
+            "availableLanguage": ["English", "Hebrew"]
+          },
+          "sameAs": [
+            "https://play.google.com/store/apps/details?id=com.zuzu.sports",
+            "https://apps.apple.com/app/zuzusport/id6741363934"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://zuzusport.com/#website",
+          "url": "https://zuzusport.com/",
+          "name": "זוזו ספורט",
+          "description": "הפכו זמן מסך לתנועה בריאה עבור הילדים",
+          "inLanguage": "he-IL",
+          "isPartOf": {
+            "@id": "https://zuzusport.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://zuzusport.com/index-he.html#webpage",
+          "url": "https://zuzusport.com/index-he.html",
+          "name": "זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם",
+          "description": "הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו עכשיו מ-App Store או Google Play.",
+          "inLanguage": "he-IL",
+          "isPartOf": {
+            "@id": "https://zuzusport.com/#website"
+          }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://zuzusport.com/#mobileapp",
+          "name": "זוזו ספורט",
+          "alternateName": "Zuzu Sport",
+          "description": "פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הפכו זמן מסך לתנועה בריאה.",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": ["iOS", "Android"],
+          "offers": {
+            "@type": "Offer",
+            "price": "19.90",
+            "priceCurrency": "ILS",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "19.90",
+              "priceCurrency": "ILS",
+              "referenceQuantity": {
+                "@type": "QuantitativeValue",
+                "value": "1",
+                "unitText": "month"
+              }
+            }
+          },
+          "author": {
+            "@id": "https://zuzusport.com/#organization"
+          },
+          "downloadUrl": [
+            "https://play.google.com/store/apps/details?id=com.zuzu.sports",
+            "https://apps.apple.com/app/zuzusport/id6741363934"
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://zuzusport.com/#service",
+          "name": "אפליקצית כושר לילדים",
+          "description": "פעילויות כושר מקצועיות מעוצבות במיוחד עבור ילדים בגילאי 6-14",
+          "provider": {
+            "@id": "https://zuzusport.com/#organization"
+          },
+          "serviceType": "Health and Fitness",
+          "audience": {
+            "@type": "Audience",
+            "audienceType": "Children",
+            "suggestedMinAge": 6,
+            "suggestedMaxAge": 14
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -459,7 +703,10 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="resources/hero-kids.jpg" alt="ילדים שמחים מתרגלים יחד" class="rounded-2xl shadow-2xl w-full h-auto">
+                    <picture>
+                        <source srcset="resources/hero-kids.webp" type="image/webp">
+                        <img src="resources/hero-kids.jpg" alt="ילדים שמחים מתרגלים יחד" class="rounded-2xl shadow-2xl w-full h-auto" loading="eager">
+                    </picture>
                     <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
                         <div class="text-2xl font-bold text-teal">5,000+</div>
                         <div class="text-sm text-gray-600">ילדים פעילים</div>
@@ -606,7 +853,10 @@
                     <p class="text-gray-600 mb-6 text-right">
                         הילד שלכם בוחר מבין מגוון קטגוריות של תנועה – כמו יוגה, ריקוד, אימוני חוזק וקרדיו – כולן מותאמות לילדים ונבנו על ידי מומחי כושר לילדים.
                     </p>
-                    <img src="resources/app-screenshot-1.png" alt="מסך בחירת פעילויות" class="w-48 mx-auto rounded-xl shadow-lg">
+                    <picture>
+                        <source data-srcset="resources/app-screenshot-1.webp" type="image/webp">
+                        <img data-src="resources/app-screenshot-1.png" alt="מסך בחירת פעילויות" class="w-48 mx-auto rounded-xl shadow-lg lazy" loading="lazy">
+                    </picture>
                 </div>
                 
                 <div class="text-center reveal" dir="rtl">
@@ -615,7 +865,10 @@
                     <p class="text-gray-600 mb-6 text-right">
                         עקבו אחרי סרטוני הדרכה שמלמדים ביצוע נכון תוך שמירה על עניין ומוטיבציה של הילדים.
                     </p>
-                    <img src="resources/app-screenshot-3.png" alt="הישגים ופרסים" class="w-48 mx-auto rounded-xl shadow-lg">
+                    <picture>
+                        <source data-srcset="resources/app-screenshot-3.webp" type="image/webp">
+                        <img data-src="resources/app-screenshot-3.png" alt="הישגים ופרסים" class="w-48 mx-auto rounded-xl shadow-lg lazy" loading="lazy">
+                    </picture>
                 </div>
                 
                 <div class="text-center reveal" dir="rtl">
@@ -624,7 +877,10 @@
                     <p class="text-gray-600 mb-6 text-right">
                         פתחו הישגים, זכו בפרסים וראו את הביטחון והכוח של הילד שלכם גדלים מיום ליום.
                     </p>
-                    <img src="resources/app-screenshot-2.png" alt="תרגיל בביצוע" class="w-48 mx-auto rounded-xl shadow-lg">
+                    <picture>
+                        <source data-srcset="resources/app-screenshot-2.webp" type="image/webp">
+                        <img data-src="resources/app-screenshot-2.png" alt="תרגיל בביצוע" class="w-48 mx-auto rounded-xl shadow-lg lazy" loading="lazy">
+                    </picture>
                 </div>
             </div>
             
@@ -699,7 +955,10 @@
                     </div>
                     
                     <div>
-                        <img src="resources/app-screenshot-1.png" alt="לוח בקרת מעקב התקדמות" class="w-full rounded-xl shadow-lg">
+                        <picture>
+                            <source srcset="resources/app-screenshot-1.webp" type="image/webp">
+                            <img src="resources/app-screenshot-1.png" alt="לוח בקרת מעקב התקדמות" class="w-full rounded-xl shadow-lg" loading="lazy">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1041,6 +1300,39 @@
 
             document.querySelectorAll('.reveal').forEach(el => {
                 observer.observe(el);
+            });
+            
+            // Lazy loading for images
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Handle picture sources
+                        const parentPicture = img.closest('picture');
+                        if (parentPicture) {
+                            const sources = parentPicture.querySelectorAll('source[data-srcset]');
+                            sources.forEach(source => {
+                                source.srcset = source.dataset.srcset;
+                                source.removeAttribute('data-srcset');
+                            });
+                        }
+                        
+                        // Handle img element
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
             });
             
             // Initialize particle background animation

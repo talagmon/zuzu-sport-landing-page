@@ -1,0 +1,933 @@
+{
+  "buildTime": "2025-10-13T19:30:47.178Z",
+  "version": "2.0.0",
+  "optimizations": {
+    "images": {
+      "app-screenshot-1.png": {
+        "original": "app-screenshot-1.png",
+        "optimized": {
+          "webp": "optimized/app-screenshot-1.webp",
+          "avif": "optimized/app-screenshot-1.avif",
+          "fallback": "optimized/app-screenshot-1.png"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/app-screenshot-1-375w.webp",
+            "avif": "optimized/app-screenshot-1-375w.avif",
+            "fallback": "optimized/app-screenshot-1-375w.png"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/app-screenshot-1-768w.webp",
+            "avif": "optimized/app-screenshot-1-768w.avif",
+            "fallback": "optimized/app-screenshot-1-768w.png"
+          }
+        ]
+      },
+      "app-screenshot-2.png": {
+        "original": "app-screenshot-2.png",
+        "optimized": {
+          "webp": "optimized/app-screenshot-2.webp",
+          "avif": "optimized/app-screenshot-2.avif",
+          "fallback": "optimized/app-screenshot-2.png"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/app-screenshot-2-375w.webp",
+            "avif": "optimized/app-screenshot-2-375w.avif",
+            "fallback": "optimized/app-screenshot-2-375w.png"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/app-screenshot-2-768w.webp",
+            "avif": "optimized/app-screenshot-2-768w.avif",
+            "fallback": "optimized/app-screenshot-2-768w.png"
+          }
+        ]
+      },
+      "app-screenshot-3.png": {
+        "original": "app-screenshot-3.png",
+        "optimized": {
+          "webp": "optimized/app-screenshot-3.webp",
+          "avif": "optimized/app-screenshot-3.avif",
+          "fallback": "optimized/app-screenshot-3.png"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/app-screenshot-3-375w.webp",
+            "avif": "optimized/app-screenshot-3-375w.avif",
+            "fallback": "optimized/app-screenshot-3-375w.png"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/app-screenshot-3-768w.webp",
+            "avif": "optimized/app-screenshot-3-768w.avif",
+            "fallback": "optimized/app-screenshot-3-768w.png"
+          }
+        ]
+      },
+      "family-exercise.jpg": {
+        "original": "family-exercise.jpg",
+        "optimized": {
+          "webp": "optimized/family-exercise.webp",
+          "avif": "optimized/family-exercise.avif",
+          "fallback": "optimized/family-exercise.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/family-exercise-375w.webp",
+            "avif": "optimized/family-exercise-375w.avif",
+            "fallback": "optimized/family-exercise-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/family-exercise-768w.webp",
+            "avif": "optimized/family-exercise-768w.avif",
+            "fallback": "optimized/family-exercise-768w.jpg"
+          },
+          {
+            "breakpoint": "desktop",
+            "width": 1200,
+            "webp": "optimized/family-exercise-1200w.webp",
+            "avif": "optimized/family-exercise-1200w.avif",
+            "fallback": "optimized/family-exercise-1200w.jpg"
+          }
+        ]
+      },
+      "hero-kids.jpg": {
+        "original": "hero-kids.jpg",
+        "optimized": {
+          "webp": "optimized/hero-kids.webp",
+          "avif": "optimized/hero-kids.avif",
+          "fallback": "optimized/hero-kids.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/hero-kids-375w.webp",
+            "avif": "optimized/hero-kids-375w.avif",
+            "fallback": "optimized/hero-kids-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/hero-kids-768w.webp",
+            "avif": "optimized/hero-kids-768w.avif",
+            "fallback": "optimized/hero-kids-768w.jpg"
+          },
+          {
+            "breakpoint": "desktop",
+            "width": 1200,
+            "webp": "optimized/hero-kids-1200w.webp",
+            "avif": "optimized/hero-kids-1200w.avif",
+            "fallback": "optimized/hero-kids-1200w.jpg"
+          }
+        ]
+      },
+      "icon-144x144.png": {
+        "original": "icon-144x144.png",
+        "optimized": {
+          "webp": "optimized/icon-144x144.webp",
+          "avif": "optimized/icon-144x144.avif",
+          "fallback": "optimized/icon-144x144.png"
+        },
+        "responsive": []
+      },
+      "icon-16x16.png": {
+        "original": "icon-16x16.png",
+        "optimized": {
+          "webp": "optimized/icon-16x16.webp",
+          "avif": "optimized/icon-16x16.avif",
+          "fallback": "optimized/icon-16x16.png"
+        },
+        "responsive": []
+      },
+      "icon-192x192.png": {
+        "original": "icon-192x192.png",
+        "optimized": {
+          "webp": "optimized/icon-192x192.webp",
+          "avif": "optimized/icon-192x192.avif",
+          "fallback": "optimized/icon-192x192.png"
+        },
+        "responsive": []
+      },
+      "icon-32x32.png": {
+        "original": "icon-32x32.png",
+        "optimized": {
+          "webp": "optimized/icon-32x32.webp",
+          "avif": "optimized/icon-32x32.avif",
+          "fallback": "optimized/icon-32x32.png"
+        },
+        "responsive": []
+      },
+      "icon-48x48.png": {
+        "original": "icon-48x48.png",
+        "optimized": {
+          "webp": "optimized/icon-48x48.webp",
+          "avif": "optimized/icon-48x48.avif",
+          "fallback": "optimized/icon-48x48.png"
+        },
+        "responsive": []
+      },
+      "icon-512x512.png": {
+        "original": "icon-512x512.png",
+        "optimized": {
+          "webp": "optimized/icon-512x512.webp",
+          "avif": "optimized/icon-512x512.avif",
+          "fallback": "optimized/icon-512x512.png"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/icon-512x512-375w.webp",
+            "avif": "optimized/icon-512x512-375w.avif",
+            "fallback": "optimized/icon-512x512-375w.png"
+          }
+        ]
+      },
+      "icon-72x72.png": {
+        "original": "icon-72x72.png",
+        "optimized": {
+          "webp": "optimized/icon-72x72.webp",
+          "avif": "optimized/icon-72x72.avif",
+          "fallback": "optimized/icon-72x72.png"
+        },
+        "responsive": []
+      },
+      "icon-96x96.png": {
+        "original": "icon-96x96.png",
+        "optimized": {
+          "webp": "optimized/icon-96x96.webp",
+          "avif": "optimized/icon-96x96.avif",
+          "fallback": "optimized/icon-96x96.png"
+        },
+        "responsive": []
+      },
+      "progress-chart.jpg": {
+        "original": "progress-chart.jpg",
+        "optimized": {
+          "webp": "optimized/progress-chart.webp",
+          "avif": "optimized/progress-chart.avif",
+          "fallback": "optimized/progress-chart.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/progress-chart-375w.webp",
+            "avif": "optimized/progress-chart-375w.avif",
+            "fallback": "optimized/progress-chart-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/progress-chart-768w.webp",
+            "avif": "optimized/progress-chart-768w.avif",
+            "fallback": "optimized/progress-chart-768w.jpg"
+          }
+        ]
+      },
+      "safety-expert.jpg": {
+        "original": "safety-expert.jpg",
+        "optimized": {
+          "webp": "optimized/safety-expert.webp",
+          "avif": "optimized/safety-expert.avif",
+          "fallback": "optimized/safety-expert.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/safety-expert-375w.webp",
+            "avif": "optimized/safety-expert-375w.avif",
+            "fallback": "optimized/safety-expert-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/safety-expert-768w.webp",
+            "avif": "optimized/safety-expert-768w.avif",
+            "fallback": "optimized/safety-expert-768w.jpg"
+          }
+        ]
+      },
+      "testimonial-1.jpg": {
+        "original": "testimonial-1.jpg",
+        "optimized": {
+          "webp": "optimized/testimonial-1.webp",
+          "avif": "optimized/testimonial-1.avif",
+          "fallback": "optimized/testimonial-1.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/testimonial-1-375w.webp",
+            "avif": "optimized/testimonial-1-375w.avif",
+            "fallback": "optimized/testimonial-1-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/testimonial-1-768w.webp",
+            "avif": "optimized/testimonial-1-768w.avif",
+            "fallback": "optimized/testimonial-1-768w.jpg"
+          }
+        ]
+      },
+      "testimonial-2.jpg": {
+        "original": "testimonial-2.jpg",
+        "optimized": {
+          "webp": "optimized/testimonial-2.webp",
+          "avif": "optimized/testimonial-2.avif",
+          "fallback": "optimized/testimonial-2.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/testimonial-2-375w.webp",
+            "avif": "optimized/testimonial-2-375w.avif",
+            "fallback": "optimized/testimonial-2-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/testimonial-2-768w.webp",
+            "avif": "optimized/testimonial-2-768w.avif",
+            "fallback": "optimized/testimonial-2-768w.jpg"
+          }
+        ]
+      },
+      "testimonial-3.jpg": {
+        "original": "testimonial-3.jpg",
+        "optimized": {
+          "webp": "optimized/testimonial-3.webp",
+          "avif": "optimized/testimonial-3.avif",
+          "fallback": "optimized/testimonial-3.jpg"
+        },
+        "responsive": [
+          {
+            "breakpoint": "mobile",
+            "width": 375,
+            "webp": "optimized/testimonial-3-375w.webp",
+            "avif": "optimized/testimonial-3-375w.avif",
+            "fallback": "optimized/testimonial-3-375w.jpg"
+          },
+          {
+            "breakpoint": "tablet",
+            "width": 768,
+            "webp": "optimized/testimonial-3-768w.webp",
+            "avif": "optimized/testimonial-3-768w.avif",
+            "fallback": "optimized/testimonial-3-768w.jpg"
+          }
+        ]
+      }
+    },
+    "bundles": {
+      "timestamp": "2025-10-13T19:30:47.174Z",
+      "config": {
+        "sourceDir": ".",
+        "outputDir": "dist/bundles",
+        "bundles": {
+          "critical": {
+            "css": [
+              "resources/optimized/image-optimization.css"
+            ],
+            "js": [],
+            "priority": "critical"
+          },
+          "main": {
+            "css": [],
+            "js": [
+              "main.js"
+            ],
+            "priority": "high"
+          },
+          "features": {
+            "css": [],
+            "js": [],
+            "priority": "normal"
+          },
+          "lazy": {
+            "css": [],
+            "js": [
+              "resources/optimized/lazy-loading.js"
+            ],
+            "priority": "low"
+          }
+        },
+        "optimization": {
+          "minify": true,
+          "gzip": true,
+          "sourcemaps": false,
+          "cacheBreaking": true
+        },
+        "http2Push": [
+          "bundles/critical.css",
+          "bundles/critical.js",
+          "bundles/main.css",
+          "bundles/main.js"
+        ]
+      },
+      "bundles": {
+        "critical": {
+          "css": {
+            "content": "picture{display:block;opacity:0;transition:opacity 0.3s ease-in-out}picture.loaded{opacity:1}picture img{width:100%;height:auto;display:block}.hero-image{aspect-ratio:16/9;object-fit:cover}.testimonial-image{aspect-ratio:1;object-fit:cover;border-radius:50%}.app-screenshot{aspect-ratio:9/16;object-fit:cover;border-radius:1rem}picture:not(.loaded){background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}@media print{picture source[type=\"image/webp\"],picture source[type=\"image/avif\"]{display:none}}",
+            "fileName": "critical.c880b339.css",
+            "originalSize": 1025,
+            "minifiedSize": 655,
+            "includedFiles": [
+              "resources/optimized/image-optimization.css"
+            ],
+            "hash": "c880b339"
+          },
+          "priority": "critical",
+          "loadOrder": 0
+        },
+        "main": {
+          "js": {
+            "content": "document.addEventListener('DOMContentLoaded',function(){initAccessibilityFeatures();initTypewriter();initScrollAnimations();initMobileMenu();initTestimonialCarousel();initBenefitCalculator();initParticleBackground();initProgressAnimations();initKeyboardNavigation();initFocusManagement();});function initTypewriter(){if(window.hebrewTypewriterInitialized)return;const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const typedElement=document.getElementById('typed-text');if(!typedElement)return;if(!prefersReducedMotion){const typed=new Typed('#typed-text',{strings: [ 'Transform Screen Time','Into Healthy Movement','For Your Kids' ],typeSpeed: 60,backSpeed: 40,backDelay: 2000,startDelay: 500,loop: false,showCursor: true,cursorChar: '|',onComplete: function(){setTimeout(()=>{const cursor=document.querySelector('.typed-cursor');if(cursor)cursor.style.display='none';announceToScreenReader('Main headline animation completed');},1000);}});}else{typedElement.textContent='Transform Screen Time Into Healthy Movement For Your Kids';announceToScreenReader('Welcome to Zuzu Sport - Transform Screen Time Into Healthy Movement For Your Kids');}}function initScrollAnimations(){const observerOptions={threshold: 0.1,rootMargin: '0px 0px -50px 0px'};const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('active');if(entry.target.querySelector('.progress-bar')){const progressBar=entry.target.querySelector('.progress-bar');setTimeout(()=>{progressBar.style.width=progressBar.style.width || '80%';},500);}}});},observerOptions);document.querySelectorAll('.reveal').forEach(el=>{observer.observe(el);});}function initMobileMenu(){const mobileMenuBtn=document.getElementById('mobile-menu-btn');const mobileMenu=document.getElementById('mobile-menu');if(mobileMenuBtn && mobileMenu){mobileMenuBtn.addEventListener('click',()=>{const isHidden=mobileMenu.classList.contains('hidden');mobileMenu.classList.toggle('hidden');mobileMenuBtn.setAttribute('aria-expanded',isHidden);if(isHidden){const firstMenuItem=mobileMenu.querySelector('a,button');if(firstMenuItem){setTimeout(()=> firstMenuItem.focus(),100);}announceToScreenReader('Menu opened');}else{announceToScreenReader('Menu closed');}});document.addEventListener('click',(e)=>{if(!mobileMenuBtn.contains(e.target)&& !mobileMenu.contains(e.target)){if(!mobileMenu.classList.contains('hidden')){mobileMenu.classList.add('hidden');mobileMenuBtn.setAttribute('aria-expanded','false');announceToScreenReader('Menu closed');}}});mobileMenu.addEventListener('keydown',(e)=>{const menuItems=Array.from(mobileMenu.querySelectorAll('a,button'));const currentIndex=menuItems.indexOf(document.activeElement);switch(e.key){case 'Escape': e.preventDefault();mobileMenu.classList.add('hidden');mobileMenuBtn.setAttribute('aria-expanded','false');mobileMenuBtn.focus();announceToScreenReader('Menu closed');break;case 'ArrowDown': e.preventDefault();const nextIndex=(currentIndex + 1)% menuItems.length;menuItems[nextIndex].focus();break;case 'ArrowUp': e.preventDefault();const prevIndex=currentIndex===0 ? menuItems.length - 1 : currentIndex - 1;menuItems[prevIndex].focus();break;}});}}function initTestimonialCarousel(){const carousel=document.getElementById('testimonial-carousel');if(carousel){new Splide('#testimonial-carousel',{type: 'loop',perPage: 1,perMove: 1,gap: '2rem',autoplay: true,interval: 5000,pauseOnHover: true,arrows: false,pagination: true,breakpoints:{768:{perPage: 1,gap: '1rem'}}}).mount();}}function initBenefitCalculator(){const activity1Select=document.getElementById('activity1');const activity2Select=document.getElementById('activity2');const currentCostEl=document.getElementById('current-cost');const savingsEl=document.getElementById('savings');const annualSavingsEl=document.getElementById('annual-savings');function calculateSavings(){const activity1Cost=parseInt(activity1Select.value)|| 0;const activity2Cost=parseInt(activity2Select.value)|| 0;const currentTotal=activity1Cost + activity2Cost;const zuzuCost=19.90;const monthlySavings=currentTotal - zuzuCost;const annualSavings=monthlySavings * 12;animateNumber(currentCostEl,currentTotal);animateNumber(savingsEl,Math.max(0,monthlySavings));animateNumber(annualSavingsEl,Math.max(0,annualSavings));}if(activity1Select && activity2Select){activity1Select.addEventListener('change',calculateSavings);activity2Select.addEventListener('change',calculateSavings);calculateSavings();}}function animateNumber(element,targetValue){if(!element)return;const startValue=parseInt(element.textContent.replace(/[^\\d]/g,''))|| 0;const duration=1000;const startTime=performance.now();function updateNumber(currentTime){const elapsed=currentTime - startTime;const progress=Math.min(elapsed / duration,1);const easeOutQuart=1 - Math.pow(1 - progress,4);const currentValue=Math.round(startValue +(targetValue - startValue)* easeOutQuart);element.textContent=`₪${currentValue}`;if(progress < 1){requestAnimationFrame(updateNumber);}}requestAnimationFrame(updateNumber);}function initParticleBackground(){const canvas=document.getElementById('particles-canvas');if(!canvas)return;let particles=[];let animationId;function setup(){const canvas=createCanvas(windowWidth,windowHeight);canvas.parent('particles-canvas');for(let i=0;i < 50;i++){particles.push({x: random(width),y: random(height),size: random(2,6),speedX: random(-0.5,0.5),speedY: random(-0.5,0.5),opacity: random(0.1,0.3)});}}function draw(){clear();particles.forEach(particle=>{particle.x +=particle.speedX;particle.y +=particle.speedY;if(particle.x < 0)particle.x=width;if(particle.x > width)particle.x=0;if(particle.y < 0)particle.y=height;if(particle.y > height)particle.y=0;fill(255,255,255,particle.opacity * 255);noStroke();ellipse(particle.x,particle.y,particle.size);});}function windowResized(){resizeCanvas(windowWidth,windowHeight);}window.setup=setup;window.draw=draw;window.windowResized=windowResized;}function initProgressAnimations(){const progressBars=document.querySelectorAll('.progress-bar');const progressObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const progressBar=entry.target;const targetWidth=progressBar.style.width;progressBar.style.width='0%';setTimeout(()=>{progressBar.style.width=targetWidth;},200);}});},{threshold: 0.5});progressBars.forEach(bar=>{progressObserver.observe(bar);});}document.querySelectorAll('a[href^=\"#\"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){const offsetTop=target.offsetTop - 80;window.scrollTo({top: offsetTop,behavior: 'smooth'});}});});document.querySelectorAll('a[href=\"#\"],button').forEach(element=>{element.addEventListener('click',function(e){if(this.getAttribute('href')==='#' || this.getAttribute('href').includes('trial')){e.preventDefault();const originalText=this.textContent;this.textContent='Loading...';this.style.opacity='0.7';setTimeout(()=>{this.textContent=originalText;this.style.opacity='1';showNotification('Trial signup coming soon! We\\'ll notify you when it\\'s available.','success');},1500);}});});function showNotification(message,type='info'){const notification=document.createElement('div');notification.className=`fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${type==='success' ? 'bg-sage text-white' : type==='error' ? 'bg-coral text-white' : 'bg-teal text-white'}`;notification.innerHTML=` <div class=\"flex items-center justify-between\"> <span class=\"mr-4\">${message}</span> <button class=\"text-white hover:text-gray-200\" onclick=\"this.parentElement.parentElement.remove()\"> <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"> <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path> </svg> </button> </div> `;document.body.appendChild(notification);setTimeout(()=>{notification.style.transform='translateX(0)';},100);setTimeout(()=>{notification.style.transform='translateX(full)';setTimeout(()=>{if(notification.parentElement){notification.remove();}},300);},5000);}function initLazyLoading(){const images=document.querySelectorAll('img[data-src]');const imageObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){const img=entry.target;img.src=img.dataset.src;img.classList.remove('lazy');imageObserver.unobserve(img);}});});images.forEach(img=> imageObserver.observe(img));}if(document.querySelectorAll('img[data-src]').length > 0){initLazyLoading();}function initParallax(){const hero=document.querySelector('.hero-bg');if(!hero)return;window.addEventListener('scroll',()=>{const scrolled=window.pageYOffset;const rate=scrolled * -0.5;hero.style.transform=`translateY(${rate}px)`;});}initParallax();document.querySelectorAll('.card-hover').forEach(card=>{card.addEventListener('mouseenter',function(){anime({targets: this,scale: 1.02,translateY: -8,duration: 300,easing: 'easeOutCubic'});});card.addEventListener('mouseleave',function(){anime({targets: this,scale: 1,translateY: 0,duration: 300,easing: 'easeOutCubic'});});});document.querySelectorAll('.btn-primary').forEach(btn=>{btn.addEventListener('click',function(e){const ripple=document.createElement('span');const rect=this.getBoundingClientRect();const size=Math.max(rect.width,rect.height);const x=e.clientX - rect.left - size / 2;const y=e.clientY - rect.top - size / 2;ripple.style.width=ripple.style.height=size + 'px';ripple.style.left=x + 'px';ripple.style.top=y + 'px';ripple.classList.add('ripple');this.appendChild(ripple);setTimeout(()=>{ripple.remove();},600);});});const style=document.createElement('style');style.textContent=` .btn-primary{position: relative;overflow: hidden;}.ripple{position: absolute;border-radius: 50%;background: rgba(255,255,255,0.3);transform: scale(0);animation: ripple-animation 0.6s linear;pointer-events: none;}@keyframes ripple-animation{to{transform: scale(4);opacity: 0;}}`;document.head.appendChild(style);function initAccessibilityFeatures(){const skipLink=document.querySelector('.skip-link');const mainContent=document.getElementById('main-content');if(skipLink && mainContent){skipLink.addEventListener('click',(e)=>{e.preventDefault();mainContent.tabIndex=-1;mainContent.focus();mainContent.addEventListener('blur',()=>{mainContent.removeAttribute('tabindex');},{once: true});});}document.querySelectorAll('img:not([alt])').forEach(img=>{img.setAttribute('alt','Decorative image');});announceToScreenReader(`Page loaded: ${document.title}`);addFocusIndicators();initHighContrastMode();initReducedMotionSupport();}function initKeyboardNavigation(){document.querySelectorAll('.card-hover').forEach(card=>{if(!card.hasAttribute('tabindex')){card.setAttribute('tabindex','0');}card.addEventListener('keydown',(e)=>{if(e.key==='Enter' || e.key===' '){e.preventDefault();const link=card.querySelector('a');if(link){link.click();}}});});const mainMenuItems=document.querySelectorAll('nav [role=\"menubar\"] a');mainMenuItems.forEach((item,index)=>{item.addEventListener('keydown',(e)=>{switch(e.key){case 'ArrowRight': e.preventDefault();const nextItem=mainMenuItems[index + 1] || mainMenuItems[0];nextItem.focus();break;case 'ArrowLeft': e.preventDefault();const prevItem=mainMenuItems[index - 1] || mainMenuItems[mainMenuItems.length - 1];prevItem.focus();break;}});});}function initFocusManagement(){let lastFocusedElement;document.addEventListener('focusin',(e)=>{lastFocusedElement=e.target;});document.addEventListener('keydown',(e)=>{if(e.key==='Tab'){const modal=document.querySelector('.modal:not(.hidden)');if(modal){trapFocusInModal(modal,e);}}});}function trapFocusInModal(modal,e){const focusableElements=modal.querySelectorAll('a[href],button,textarea,input[type=\"text\"],input[type=\"radio\"],input[type=\"checkbox\"],select');const firstElement=focusableElements[0];const lastElement=focusableElements[focusableElements.length - 1];if(e.shiftKey){if(document.activeElement===firstElement){lastElement.focus();e.preventDefault();}}else{if(document.activeElement===lastElement){firstElement.focus();e.preventDefault();}}}function announceToScreenReader(message){const announcement=document.createElement('div');announcement.setAttribute('aria-live','polite');announcement.setAttribute('aria-atomic','true');announcement.className='sr-only';announcement.textContent=message;document.body.appendChild(announcement);setTimeout(()=>{if(announcement.parentNode){announcement.parentNode.removeChild(announcement);}},1000);}function addFocusIndicators(){const style=document.createElement('style');style.textContent=` .focus-visible,*:focus-visible{outline: 3px solid #FF7F7F !important;outline-offset: 2px !important;}.sr-only{position: absolute !important;width: 1px !important;height: 1px !important;padding: 0 !important;margin: -1px !important;overflow: hidden !important;clip: rect(0,0,0,0)!important;white-space: nowrap !important;border: 0 !important;}`;document.head.appendChild(style);}function initHighContrastMode(){const mediaQuery=window.matchMedia('(prefers-contrast: high)');function handleHighContrast(e){if(e.matches){document.body.classList.add('high-contrast-mode');announceToScreenReader('High contrast mode enabled');}else{document.body.classList.remove('high-contrast-mode');}}mediaQuery.addListener(handleHighContrast);handleHighContrast(mediaQuery);}function initReducedMotionSupport(){const mediaQuery=window.matchMedia('(prefers-reduced-motion: reduce)');function handleReducedMotion(e){if(e.matches){document.body.classList.add('reduced-motion');const carousels=document.querySelectorAll('[data-autoplay]');carousels.forEach(carousel=>{carousel.removeAttribute('data-autoplay');});announceToScreenReader('Reduced motion mode enabled');}else{document.body.classList.remove('reduced-motion');}}mediaQuery.addListener(handleReducedMotion);handleReducedMotion(mediaQuery);}function showNotification(message,type='info'){const notification=document.createElement('div');notification.setAttribute('role','alert');notification.setAttribute('aria-live','assertive');notification.className=`fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${type==='success' ? 'bg-sage text-white' : type==='error' ? 'bg-coral text-white' : 'bg-teal text-white'}`;notification.innerHTML=` <div class=\"flex items-center justify-between\"> <span class=\"mr-4\">${message}</span> <button class=\"text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white\" aria-label=\"Close notification\" onclick=\"this.parentElement.parentElement.remove()\"> <svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"> <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path> </svg> </button> </div> `;document.body.appendChild(notification);notification.focus();setTimeout(()=>{notification.style.transform='translateX(0)';},100);setTimeout(()=>{notification.style.transform='translateX(full)';setTimeout(()=>{if(notification.parentElement){notification.remove();}},300);},5000);}console.log(` 🏃‍♀️ Welcome to Zuzu Sport! 🏃‍♂️ We're building something amazing for families. Transform screen time into healthy movement! Interested in joining our mission? Contact us: hello@zuzusport.co.il Built with ❤️ for healthy,happy families. Accessibility-first design for everyone! `);",
+            "fileName": "main.0d334a8d.js",
+            "originalSize": 25082,
+            "minifiedSize": 15554,
+            "includedFiles": [
+              "main.js"
+            ],
+            "hash": "0d334a8d"
+          },
+          "priority": "high",
+          "loadOrder": 1
+        },
+        "features": {
+          "priority": "normal",
+          "loadOrder": 2
+        },
+        "lazy": {
+          "js": {
+            "content": "<!-- Lazy Loading Script --> <script> const imageObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){const picture=entry.target;const sources=picture.querySelectorAll('source');const img=picture.querySelector('img');sources.forEach(source=>{if(source.dataset.srcset){source.srcset=source.dataset.srcset;source.removeAttribute('data-srcset');}});if(img.dataset.src){img.src=img.dataset.src;img.removeAttribute('data-src');}picture.classList.add('loaded');observer.unobserve(picture);}});},{rootMargin: '50px',threshold: 0.1});document.addEventListener('DOMContentLoaded',()=>{const lazyPictures=document.querySelectorAll('picture[data-lazy]');lazyPictures.forEach(picture=>{imageObserver.observe(picture);});});if(!window.IntersectionObserver){document.addEventListener('DOMContentLoaded',()=>{const lazyPictures=document.querySelectorAll('picture[data-lazy]');lazyPictures.forEach(picture=>{const sources=picture.querySelectorAll('source');const img=picture.querySelector('img');sources.forEach(source=>{if(source.dataset.srcset){source.srcset=source.dataset.srcset;}});if(img.dataset.src){img.src=img.dataset.src;}picture.classList.add('loaded');});});}</script>",
+            "fileName": "lazy.70db2704.js",
+            "originalSize": 2049,
+            "minifiedSize": 1215,
+            "includedFiles": [
+              "resources/optimized/lazy-loading.js"
+            ],
+            "hash": "70db2704"
+          },
+          "priority": "low",
+          "loadOrder": 3
+        }
+      },
+      "loadOrder": [
+        "critical",
+        "main",
+        "features",
+        "lazy"
+      ],
+      "http2Push": [
+        "bundles/critical.css",
+        "bundles/critical.js",
+        "bundles/main.css",
+        "bundles/main.js"
+      ]
+    },
+    "serviceWorker": {
+      "version": "1.0.0",
+      "generated": "2025-10-13T19:30:47.178Z",
+      "config": {
+        "version": "1.0.0",
+        "cacheName": "zuzusport-v1",
+        "cacheStrategies": {
+          "critical": {
+            "strategy": "CacheFirst",
+            "maxAge": 2592000,
+            "maxEntries": 50
+          },
+          "static": {
+            "strategy": "StaleWhileRevalidate",
+            "maxAge": 604800,
+            "maxEntries": 100
+          },
+          "images": {
+            "strategy": "CacheFirst",
+            "maxAge": 2592000,
+            "maxEntries": 200
+          },
+          "dynamic": {
+            "strategy": "NetworkFirst",
+            "maxAge": 300,
+            "maxEntries": 50
+          }
+        },
+        "precacheResources": [
+          "/",
+          "/index-he.html",
+          "/bundles/critical.css",
+          "/bundles/main.js",
+          "/resources/optimized/hero-kids.webp",
+          "/resources/optimized/hero-kids.jpg",
+          "/site.webmanifest",
+          "/favicon.ico"
+        ],
+        "runtimeCaching": [
+          {
+            "urlPattern": {},
+            "strategy": "images",
+            "cacheName": "images"
+          },
+          {
+            "urlPattern": {},
+            "strategy": "static",
+            "cacheName": "static-resources"
+          },
+          {
+            "urlPattern": {},
+            "strategy": "static",
+            "cacheName": "google-fonts-stylesheets"
+          },
+          {
+            "urlPattern": {},
+            "strategy": "critical",
+            "cacheName": "google-fonts-webfonts"
+          },
+          {
+            "urlPattern": {},
+            "strategy": "static",
+            "cacheName": "tailwind-css"
+          }
+        ],
+        "offlineFallbacks": {
+          "document": "/offline.html",
+          "image": "/resources/icon-192x192.png",
+          "audio": null,
+          "video": null
+        }
+      },
+      "usage": {
+        "registration": "Include sw-register.html in your HTML pages",
+        "serviceWorker": "Place service-worker.js in your site root",
+        "offline": "Place offline.html in your site root",
+        "testing": "Test offline functionality by disabling network in DevTools"
+      }
+    },
+    "criticalCSS": true
+  },
+  "files": [
+    "apple-touch-icon.png",
+    "bundles/critical.c880b339.css",
+    "bundles/http2-headers.txt",
+    "bundles/lazy.70db2704.js",
+    "bundles/loader.js",
+    "bundles/main.0d334a8d.js",
+    "bundles/manifest.json",
+    "bundles/resource-hints.html",
+    "cache-config.json",
+    "cookie-policy-he.html",
+    "cookie-policy.html",
+    "coppa-compliance-he.html",
+    "coppa-compliance.html",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon.ico",
+    "index-he.html",
+    "index.html",
+    "offline.html",
+    "privacy-policy-he.html",
+    "privacy-policy.html",
+    "progress-he.html",
+    "progress.html",
+    "resources/app-screenshot-1.png",
+    "resources/app-screenshot-1.webp",
+    "resources/app-screenshot-2.png",
+    "resources/app-screenshot-2.webp",
+    "resources/app-screenshot-3.png",
+    "resources/app-screenshot-3.webp",
+    "resources/family-exercise.jpg",
+    "resources/family-exercise.webp",
+    "resources/hero-kids.jpg",
+    "resources/hero-kids.webp",
+    "resources/icon-144x144.png",
+    "resources/icon-16x16.png",
+    "resources/icon-192x192.png",
+    "resources/icon-32x32.png",
+    "resources/icon-48x48.png",
+    "resources/icon-512x512.png",
+    "resources/icon-72x72.png",
+    "resources/icon-96x96.png",
+    "resources/logo-source.svg",
+    "resources/optimized/app-screenshot-1-375w.avif",
+    "resources/optimized/app-screenshot-1-375w.png",
+    "resources/optimized/app-screenshot-1-375w.webp",
+    "resources/optimized/app-screenshot-1-768w.avif",
+    "resources/optimized/app-screenshot-1-768w.png",
+    "resources/optimized/app-screenshot-1-768w.webp",
+    "resources/optimized/app-screenshot-1.avif",
+    "resources/optimized/app-screenshot-1.png",
+    "resources/optimized/app-screenshot-1.webp",
+    "resources/optimized/app-screenshot-2-375w.avif",
+    "resources/optimized/app-screenshot-2-375w.png",
+    "resources/optimized/app-screenshot-2-375w.webp",
+    "resources/optimized/app-screenshot-2-768w.avif",
+    "resources/optimized/app-screenshot-2-768w.png",
+    "resources/optimized/app-screenshot-2-768w.webp",
+    "resources/optimized/app-screenshot-2.avif",
+    "resources/optimized/app-screenshot-2.png",
+    "resources/optimized/app-screenshot-2.webp",
+    "resources/optimized/app-screenshot-3-375w.avif",
+    "resources/optimized/app-screenshot-3-375w.png",
+    "resources/optimized/app-screenshot-3-375w.webp",
+    "resources/optimized/app-screenshot-3-768w.avif",
+    "resources/optimized/app-screenshot-3-768w.png",
+    "resources/optimized/app-screenshot-3-768w.webp",
+    "resources/optimized/app-screenshot-3.avif",
+    "resources/optimized/app-screenshot-3.png",
+    "resources/optimized/app-screenshot-3.webp",
+    "resources/optimized/family-exercise-1200w.avif",
+    "resources/optimized/family-exercise-1200w.jpg",
+    "resources/optimized/family-exercise-1200w.webp",
+    "resources/optimized/family-exercise-375w.avif",
+    "resources/optimized/family-exercise-375w.jpg",
+    "resources/optimized/family-exercise-375w.webp",
+    "resources/optimized/family-exercise-768w.avif",
+    "resources/optimized/family-exercise-768w.jpg",
+    "resources/optimized/family-exercise-768w.webp",
+    "resources/optimized/family-exercise.avif",
+    "resources/optimized/family-exercise.jpg",
+    "resources/optimized/family-exercise.webp",
+    "resources/optimized/hero-kids-1200w.avif",
+    "resources/optimized/hero-kids-1200w.jpg",
+    "resources/optimized/hero-kids-1200w.webp",
+    "resources/optimized/hero-kids-375w.avif",
+    "resources/optimized/hero-kids-375w.jpg",
+    "resources/optimized/hero-kids-375w.webp",
+    "resources/optimized/hero-kids-768w.avif",
+    "resources/optimized/hero-kids-768w.jpg",
+    "resources/optimized/hero-kids-768w.webp",
+    "resources/optimized/hero-kids.avif",
+    "resources/optimized/hero-kids.jpg",
+    "resources/optimized/hero-kids.webp",
+    "resources/optimized/icon-144x144.avif",
+    "resources/optimized/icon-144x144.png",
+    "resources/optimized/icon-144x144.webp",
+    "resources/optimized/icon-16x16.avif",
+    "resources/optimized/icon-16x16.png",
+    "resources/optimized/icon-16x16.webp",
+    "resources/optimized/icon-192x192.avif",
+    "resources/optimized/icon-192x192.png",
+    "resources/optimized/icon-192x192.webp",
+    "resources/optimized/icon-32x32.avif",
+    "resources/optimized/icon-32x32.png",
+    "resources/optimized/icon-32x32.webp",
+    "resources/optimized/icon-48x48.avif",
+    "resources/optimized/icon-48x48.png",
+    "resources/optimized/icon-48x48.webp",
+    "resources/optimized/icon-512x512-375w.avif",
+    "resources/optimized/icon-512x512-375w.png",
+    "resources/optimized/icon-512x512-375w.webp",
+    "resources/optimized/icon-512x512.avif",
+    "resources/optimized/icon-512x512.png",
+    "resources/optimized/icon-512x512.webp",
+    "resources/optimized/icon-72x72.avif",
+    "resources/optimized/icon-72x72.png",
+    "resources/optimized/icon-72x72.webp",
+    "resources/optimized/icon-96x96.avif",
+    "resources/optimized/icon-96x96.png",
+    "resources/optimized/icon-96x96.webp",
+    "resources/optimized/image-optimization.css",
+    "resources/optimized/lazy-loading.js",
+    "resources/optimized/optimization-manifest.json",
+    "resources/optimized/progress-chart-375w.avif",
+    "resources/optimized/progress-chart-375w.jpg",
+    "resources/optimized/progress-chart-375w.webp",
+    "resources/optimized/progress-chart-768w.avif",
+    "resources/optimized/progress-chart-768w.jpg",
+    "resources/optimized/progress-chart-768w.webp",
+    "resources/optimized/progress-chart.avif",
+    "resources/optimized/progress-chart.jpg",
+    "resources/optimized/progress-chart.webp",
+    "resources/optimized/safety-expert-375w.avif",
+    "resources/optimized/safety-expert-375w.jpg",
+    "resources/optimized/safety-expert-375w.webp",
+    "resources/optimized/safety-expert-768w.avif",
+    "resources/optimized/safety-expert-768w.jpg",
+    "resources/optimized/safety-expert-768w.webp",
+    "resources/optimized/safety-expert.avif",
+    "resources/optimized/safety-expert.jpg",
+    "resources/optimized/safety-expert.webp",
+    "resources/optimized/testimonial-1-375w.avif",
+    "resources/optimized/testimonial-1-375w.jpg",
+    "resources/optimized/testimonial-1-375w.webp",
+    "resources/optimized/testimonial-1-768w.avif",
+    "resources/optimized/testimonial-1-768w.jpg",
+    "resources/optimized/testimonial-1-768w.webp",
+    "resources/optimized/testimonial-1.avif",
+    "resources/optimized/testimonial-1.jpg",
+    "resources/optimized/testimonial-1.webp",
+    "resources/optimized/testimonial-2-375w.avif",
+    "resources/optimized/testimonial-2-375w.jpg",
+    "resources/optimized/testimonial-2-375w.webp",
+    "resources/optimized/testimonial-2-768w.avif",
+    "resources/optimized/testimonial-2-768w.jpg",
+    "resources/optimized/testimonial-2-768w.webp",
+    "resources/optimized/testimonial-2.avif",
+    "resources/optimized/testimonial-2.jpg",
+    "resources/optimized/testimonial-2.webp",
+    "resources/optimized/testimonial-3-375w.avif",
+    "resources/optimized/testimonial-3-375w.jpg",
+    "resources/optimized/testimonial-3-375w.webp",
+    "resources/optimized/testimonial-3-768w.avif",
+    "resources/optimized/testimonial-3-768w.jpg",
+    "resources/optimized/testimonial-3-768w.webp",
+    "resources/optimized/testimonial-3.avif",
+    "resources/optimized/testimonial-3.jpg",
+    "resources/optimized/testimonial-3.webp",
+    "resources/originals/app-screenshot-1.png",
+    "resources/originals/app-screenshot-2.png",
+    "resources/originals/app-screenshot-3.png",
+    "resources/originals/family-exercise.jpg",
+    "resources/originals/hero-kids.jpg",
+    "resources/originals/progress-chart.jpg",
+    "resources/originals/safety-expert.jpg",
+    "resources/originals/testimonial-1.jpg",
+    "resources/originals/testimonial-2.jpg",
+    "resources/originals/testimonial-3.jpg",
+    "resources/progress-chart.jpg",
+    "resources/progress-chart.webp",
+    "resources/safety-expert.jpg",
+    "resources/safety-expert.webp",
+    "resources/testimonial-1.jpg",
+    "resources/testimonial-1.webp",
+    "resources/testimonial-2.jpg",
+    "resources/testimonial-2.webp",
+    "resources/testimonial-3.jpg",
+    "resources/testimonial-3.webp",
+    "robots.txt",
+    "safety-he.html",
+    "safety.html",
+    "service-worker.js",
+    "site.webmanifest",
+    "sitemap.xml",
+    "sw-register.html",
+    "terms-he.html",
+    "terms.html"
+  ],
+  "checksums": {
+    "apple-touch-icon.png": 19686,
+    "bundles/critical.c880b339.css": 655,
+    "bundles/http2-headers.txt": 120,
+    "bundles/lazy.70db2704.js": 1215,
+    "bundles/loader.js": 21405,
+    "bundles/main.0d334a8d.js": 15576,
+    "bundles/manifest.json": 19705,
+    "bundles/resource-hints.html": 449,
+    "cache-config.json": 1934,
+    "cookie-policy-he.html": 26446,
+    "cookie-policy.html": 29190,
+    "coppa-compliance-he.html": 34864,
+    "coppa-compliance.html": 35043,
+    "favicon-16x16.png": 1481,
+    "favicon-32x32.png": 2909,
+    "favicon.ico": 5430,
+    "index-he.html": 87580,
+    "index.html": 98220,
+    "offline.html": 3972,
+    "privacy-policy-he.html": 17244,
+    "privacy-policy.html": 24942,
+    "progress-he.html": 64835,
+    "progress.html": 59128,
+    "resources/app-screenshot-1.png": 3735885,
+    "resources/app-screenshot-1.webp": 128466,
+    "resources/app-screenshot-2.png": 1395949,
+    "resources/app-screenshot-2.webp": 77540,
+    "resources/app-screenshot-3.png": 3776443,
+    "resources/app-screenshot-3.webp": 120890,
+    "resources/family-exercise.jpg": 377123,
+    "resources/family-exercise.webp": 63700,
+    "resources/hero-kids.jpg": 369431,
+    "resources/hero-kids.webp": 62530,
+    "resources/icon-144x144.png": 12940,
+    "resources/icon-16x16.png": 1481,
+    "resources/icon-192x192.png": 16657,
+    "resources/icon-32x32.png": 2909,
+    "resources/icon-48x48.png": 4066,
+    "resources/icon-512x512.png": 24574,
+    "resources/icon-72x72.png": 7147,
+    "resources/icon-96x96.png": 8588,
+    "resources/logo-source.svg": 1189,
+    "resources/optimized/app-screenshot-1-375w.avif": 31876,
+    "resources/optimized/app-screenshot-1-375w.png": 796146,
+    "resources/optimized/app-screenshot-1-375w.webp": 34256,
+    "resources/optimized/app-screenshot-1-768w.avif": 67074,
+    "resources/optimized/app-screenshot-1-768w.png": 3107351,
+    "resources/optimized/app-screenshot-1-768w.webp": 78934,
+    "resources/optimized/app-screenshot-1.avif": 108849,
+    "resources/optimized/app-screenshot-1.png": 3056161,
+    "resources/optimized/app-screenshot-1.webp": 133090,
+    "resources/optimized/app-screenshot-2-375w.avif": 19848,
+    "resources/optimized/app-screenshot-2-375w.png": 537938,
+    "resources/optimized/app-screenshot-2-375w.webp": 22940,
+    "resources/optimized/app-screenshot-2-768w.avif": 35944,
+    "resources/optimized/app-screenshot-2-768w.png": 2244474,
+    "resources/optimized/app-screenshot-2-768w.webp": 50314,
+    "resources/optimized/app-screenshot-2.avif": 61172,
+    "resources/optimized/app-screenshot-2.png": 1140028,
+    "resources/optimized/app-screenshot-2.webp": 88044,
+    "resources/optimized/app-screenshot-3-375w.avif": 27594,
+    "resources/optimized/app-screenshot-3-375w.png": 779917,
+    "resources/optimized/app-screenshot-3-375w.webp": 30288,
+    "resources/optimized/app-screenshot-3-768w.avif": 62268,
+    "resources/optimized/app-screenshot-3-768w.png": 2917030,
+    "resources/optimized/app-screenshot-3-768w.webp": 72688,
+    "resources/optimized/app-screenshot-3.avif": 100361,
+    "resources/optimized/app-screenshot-3.png": 3308151,
+    "resources/optimized/app-screenshot-3.webp": 127344,
+    "resources/optimized/family-exercise-1200w.avif": 52072,
+    "resources/optimized/family-exercise-1200w.jpg": 93043,
+    "resources/optimized/family-exercise-1200w.webp": 65232,
+    "resources/optimized/family-exercise-375w.avif": 14526,
+    "resources/optimized/family-exercise-375w.jpg": 18324,
+    "resources/optimized/family-exercise-375w.webp": 15272,
+    "resources/optimized/family-exercise-768w.avif": 29871,
+    "resources/optimized/family-exercise-768w.jpg": 49527,
+    "resources/optimized/family-exercise-768w.webp": 35884,
+    "resources/optimized/family-exercise.avif": 85464,
+    "resources/optimized/family-exercise.jpg": 152474,
+    "resources/optimized/family-exercise.webp": 88630,
+    "resources/optimized/hero-kids-1200w.avif": 50009,
+    "resources/optimized/hero-kids-1200w.jpg": 90169,
+    "resources/optimized/hero-kids-1200w.webp": 62346,
+    "resources/optimized/hero-kids-375w.avif": 14261,
+    "resources/optimized/hero-kids-375w.jpg": 18040,
+    "resources/optimized/hero-kids-375w.webp": 15350,
+    "resources/optimized/hero-kids-768w.avif": 29024,
+    "resources/optimized/hero-kids-768w.jpg": 48030,
+    "resources/optimized/hero-kids-768w.webp": 35118,
+    "resources/optimized/hero-kids.avif": 82414,
+    "resources/optimized/hero-kids.jpg": 147500,
+    "resources/optimized/hero-kids.webp": 88882,
+    "resources/optimized/icon-144x144.avif": 2071,
+    "resources/optimized/icon-144x144.png": 12297,
+    "resources/optimized/icon-144x144.webp": 2112,
+    "resources/optimized/icon-16x16.avif": 429,
+    "resources/optimized/icon-16x16.png": 1480,
+    "resources/optimized/icon-16x16.webp": 236,
+    "resources/optimized/icon-192x192.avif": 2522,
+    "resources/optimized/icon-192x192.png": 16008,
+    "resources/optimized/icon-192x192.webp": 2716,
+    "resources/optimized/icon-32x32.avif": 834,
+    "resources/optimized/icon-32x32.png": 2582,
+    "resources/optimized/icon-32x32.webp": 586,
+    "resources/optimized/icon-48x48.avif": 1052,
+    "resources/optimized/icon-48x48.png": 3990,
+    "resources/optimized/icon-48x48.webp": 824,
+    "resources/optimized/icon-512x512-375w.avif": 4166,
+    "resources/optimized/icon-512x512-375w.png": 43443,
+    "resources/optimized/icon-512x512-375w.webp": 4752,
+    "resources/optimized/icon-512x512.avif": 5894,
+    "resources/optimized/icon-512x512.png": 23489,
+    "resources/optimized/icon-512x512.webp": 6746,
+    "resources/optimized/icon-72x72.avif": 1356,
+    "resources/optimized/icon-72x72.png": 6939,
+    "resources/optimized/icon-72x72.webp": 1126,
+    "resources/optimized/icon-96x96.avif": 1596,
+    "resources/optimized/icon-96x96.png": 8236,
+    "resources/optimized/icon-96x96.webp": 1458,
+    "resources/optimized/image-optimization.css": 907,
+    "resources/optimized/lazy-loading.js": 1942,
+    "resources/optimized/optimization-manifest.json": 11180,
+    "resources/optimized/progress-chart-375w.avif": 8670,
+    "resources/optimized/progress-chart-375w.jpg": 19809,
+    "resources/optimized/progress-chart-375w.webp": 10892,
+    "resources/optimized/progress-chart-768w.avif": 22831,
+    "resources/optimized/progress-chart-768w.jpg": 50140,
+    "resources/optimized/progress-chart-768w.webp": 27424,
+    "resources/optimized/progress-chart.avif": 43473,
+    "resources/optimized/progress-chart.jpg": 92345,
+    "resources/optimized/progress-chart.webp": 37268,
+    "resources/optimized/safety-expert-375w.avif": 14178,
+    "resources/optimized/safety-expert-375w.jpg": 21126,
+    "resources/optimized/safety-expert-375w.webp": 16136,
+    "resources/optimized/safety-expert-768w.avif": 29793,
+    "resources/optimized/safety-expert-768w.jpg": 56079,
+    "resources/optimized/safety-expert-768w.webp": 37540,
+    "resources/optimized/safety-expert.avif": 40801,
+    "resources/optimized/safety-expert.jpg": 86123,
+    "resources/optimized/safety-expert.webp": 55120,
+    "resources/optimized/testimonial-1-375w.avif": 16520,
+    "resources/optimized/testimonial-1-375w.jpg": 21836,
+    "resources/optimized/testimonial-1-375w.webp": 18616,
+    "resources/optimized/testimonial-1-768w.avif": 45039,
+    "resources/optimized/testimonial-1-768w.jpg": 68634,
+    "resources/optimized/testimonial-1-768w.webp": 54120,
+    "resources/optimized/testimonial-1.avif": 66964,
+    "resources/optimized/testimonial-1.jpg": 109215,
+    "resources/optimized/testimonial-1.webp": 82212,
+    "resources/optimized/testimonial-2-375w.avif": 12800,
+    "resources/optimized/testimonial-2-375w.jpg": 18797,
+    "resources/optimized/testimonial-2-375w.webp": 14174,
+    "resources/optimized/testimonial-2-768w.avif": 34318,
+    "resources/optimized/testimonial-2-768w.jpg": 55325,
+    "resources/optimized/testimonial-2-768w.webp": 38328,
+    "resources/optimized/testimonial-2.avif": 57989,
+    "resources/optimized/testimonial-2.jpg": 90785,
+    "resources/optimized/testimonial-2.webp": 67012,
+    "resources/optimized/testimonial-3-375w.avif": 18388,
+    "resources/optimized/testimonial-3-375w.jpg": 23742,
+    "resources/optimized/testimonial-3-375w.webp": 21126,
+    "resources/optimized/testimonial-3-768w.avif": 55830,
+    "resources/optimized/testimonial-3-768w.jpg": 77771,
+    "resources/optimized/testimonial-3-768w.webp": 68130,
+    "resources/optimized/testimonial-3.avif": 89780,
+    "resources/optimized/testimonial-3.jpg": 128044,
+    "resources/optimized/testimonial-3.webp": 109052,
+    "resources/originals/app-screenshot-1.png": 3735885,
+    "resources/originals/app-screenshot-2.png": 1395949,
+    "resources/originals/app-screenshot-3.png": 3776443,
+    "resources/originals/family-exercise.jpg": 377123,
+    "resources/originals/hero-kids.jpg": 369431,
+    "resources/originals/progress-chart.jpg": 279841,
+    "resources/originals/safety-expert.jpg": 1135833,
+    "resources/originals/testimonial-1.jpg": 1388520,
+    "resources/originals/testimonial-2.jpg": 1236305,
+    "resources/originals/testimonial-3.jpg": 1458338,
+    "resources/progress-chart.jpg": 279841,
+    "resources/progress-chart.webp": 29114,
+    "resources/safety-expert.jpg": 1135833,
+    "resources/safety-expert.webp": 42864,
+    "resources/testimonial-1.jpg": 1388520,
+    "resources/testimonial-1.webp": 58552,
+    "resources/testimonial-2.jpg": 1236305,
+    "resources/testimonial-2.webp": 44982,
+    "resources/testimonial-3.jpg": 1458338,
+    "resources/testimonial-3.webp": 79046,
+    "robots.txt": 381,
+    "safety-he.html": 52813,
+    "safety.html": 45825,
+    "service-worker.js": 9686,
+    "site.webmanifest": 1635,
+    "sitemap.xml": 3259,
+    "sw-register.html": 4863,
+    "terms-he.html": 21631,
+    "terms.html": 49489
+  },
+  "performance": {
+    "totalSize": 54584988,
+    "compressionRatio": 38.11620968887626,
+    "optimizedImages": 0,
+    "bundleCount": 4
+  }
+}
