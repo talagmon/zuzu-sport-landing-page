@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Disallow development and temporary files
+Disallow: /*-backup.html
+Disallow: /*-backup/
+Disallow: /localhost.har
+Disallow: /lighthouse-*.json
+Disallow: /*.tmp
+Disallow: /*.bak
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /resources/
+
+# Sitemap
+Sitemap: https://zuzusport.com/sitemap.xml
+
+# Crawl-delay for courtesy
+Crawl-delay: 1

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם</title>
+    <meta name="description" content="הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו את האפליקציה מ-App Store או Google Play.">
+    
+    <!-- Accessibility Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0077B6">
+    <link rel="canonical" href="https://zuzusport.com/index-he.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zuzusport.com/index-he.html">
+    <meta property="og:title" content="זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם">
+    <meta property="og:description" content="הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו עכשיו מ-App Store או Google Play.">
+    <meta property="og:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="זוזו ספורט">
+    <meta property="og:locale" content="he_IL">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zuzusport.com/index-he.html">
+    <meta property="twitter:title" content="זוזו ספורט - הפכו זמן מסך לתנועה בריאה עבור הילדים שלכם">
+    <meta property="twitter:description" content="הפכו קרבות זמן המסך לתנועה בריאה עם זוזו ספורט. פעילויות כושר מעוצבות על ידי מומחים לילדים בגילאי 6-14. הורידו עכשיו מ-App Store או Google Play.">
+    <meta property="twitter:image" content="https://zuzusport.com/resources/hero-kids.webp">
+    <meta property="twitter:creator" content="@zuzusport">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="זוזו ספורט">
+    <meta name="publisher" content="Barshaf Investments Ltd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="זוזו ספורט">
+    <meta name="application-name" content="זוזו ספורט">
+    <meta name="msapplication-TileColor" content="#0077B6">
+    
+    <!-- Language and Regional -->
+    <link rel="alternate" hreflang="he" href="https://zuzusport.com/index-he.html">
+    <link rel="alternate" hreflang="en" href="https://zuzusport.com/">
+    <link rel="alternate" hreflang="x-default" href="https://zuzusport.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Fonts - Hebrew Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ensure Tailwind is loaded before config
+        window.tailwindLoadTimeout = setTimeout(function() {
+            if (typeof tailwind === 'undefined') {
+                console.warn('Tailwind CSS failed to load from CDN');
+            }
+        }, 3000);
+    </script>
+    <script>
+        // Wait for Tailwind to load before configuring
+        function configureTailwind() {
+            if (typeof tailwind !== 'undefined') {
+                clearTimeout(window.tailwindLoadTimeout);
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                'canela': ['Canela', 'serif'],
+                                'suisse': ['Suisse International', 'sans-serif']
+                            },
+                            colors: {
+                                // Original colors (keeping for fallback)
+                                'sage': '#8FBC8F',
+                                'coral': '#FF7F7F', 
+                                'teal': '#2F4F4F',
+                                'cream': '#FDF5E6',
+                                // Ocean-coral color palette - calming and sophisticated
+                                'ocean-deep': '#0077B6',
+                                'ocean-bright': '#00B4D8',
+                                'ocean-light': '#90E0EF',
+                                'ocean-pale': '#CAF0F8',
+                                'coral-soft': '#F5B7B1',
+                                // Additional complementary colors
+                                'ocean-cream': '#F8FCFF',
+                                'coral-light': '#FADBD8',
+                                'ocean-medium': '#48B2D8' 
+                            }
+                        }
+                    }
+                };
+            } else {
+                setTimeout(configureTailwind, 100);
+            }
+        }
+        configureTailwind();
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Lazy loading for images
+            const lazyImages = document.querySelectorAll('img.lazy');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Handle picture sources
+                        const parentPicture = img.closest('picture');
+                        if (parentPicture) {
+                            const sources = parentPicture.querySelectorAll('source[data-srcset]');
+                            sources.forEach(source => {
+                                source.srcset = source.dataset.srcset;
+                                source.removeAttribute('data-srcset');
+                            });
+                        }
+                        
+                        // Handle img element
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+            
+            // Initialize particle background animation
+            initParticleBackground();
+
+            // Calculator functionality
+            const activity1 = document.getElementById('activity1');
+            const activity2 = document.getElementById('activity2');
+            
+            if (activity1 && activity2) {
+                function updateCalculator() {
+                    const cost1 = parseInt(activity1.value) || 0;
+                    const cost2 = parseInt(activity2.value) || 0;
+                    const totalCost = cost1 + cost2;
+                    const zuzuCost = 19.90;
+                    const savings = Math.max(0, totalCost - zuzuCost);
+                    const annualSavings = savings * 12;
+                    
+                    document.getElementById('current-cost').textContent = `₪${totalCost}`;
+                    document.getElementById('savings').textContent = `₪${savings.toFixed(2)}`;
+                    document.getElementById('annual-savings').textContent = `₪${annualSavings.toFixed(2)}`;
+                }
+                
+                activity1.addEventListener('change', updateCalculator);
+                activity2.addEventListener('change', updateCalculator);
+            }
+        });
+        
+        // Particle background animation function
+        function initParticleBackground() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+
+            let particles = [];
+
+            function setup() {
+                const canvasElement = createCanvas(windowWidth, windowHeight);
+                canvasElement.parent('particles-canvas');
+                
+                // Create particles
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: random(width),
+                        y: random(height),
+                        size: random(2, 6),
+                        speedX: random(-0.5, 0.5),
+                        speedY: random(-0.5, 0.5),
+                        opacity: random(0.1, 0.3)
+                    });
+                }
+            }
+
+            function draw() {
+                clear();
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    // Update position
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = width;
+                    if (particle.x > width) particle.x = 0;
+                    if (particle.y < 0) particle.y = height;
+                    if (particle.y > height) particle.y = 0;
+                    
+                    // Draw particle
+                    fill(255, 255, 255, particle.opacity * 255);
+                    noStroke();
+                    ellipse(particle.x, particle.y, particle.size);
+                });
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+
+            // Make functions global for p5.js
+            window.setup = setup;
+            window.draw = draw;
+            window.windowResized = windowResized;
+        }
+    </script>
+
+<script>
+// Image optimization with WebP support detection
+document.addEventListener('DOMContentLoaded', function() {
+    function supportsWebP() {
+        return new Promise(resolve => {
+            const webP = new Image();
+            webP.onload = webP.onerror = function () {
+                resolve(webP.height === 2);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        });
+    }
+
+    supportsWebP().then(supported => {
+        const images = document.querySelectorAll('img[data-fallback]');
+        images.forEach(img => {
+            if (!supported) {
+                img.src = img.dataset.fallback;
+            }
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    });
+    
+    // Initialize image loading states
+    const images = document.querySelectorAll('img[data-fallback]');
+    images.forEach(img => {
+        img.style.opacity = '0';
+    });
+});
+</script>
+</body>
+</html>

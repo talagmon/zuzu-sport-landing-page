@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Zuzu Sport | Safe & Secure Kids Fitness App</title>
+    <meta name="description" content="Zuzu Sport Privacy Policy - Learn how we protect your child's privacy and data. COPPA compliant kids fitness app with parental controls.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ensure Tailwind is loaded before config
+        window.tailwindLoadTimeout = setTimeout(function() {
+            if (typeof tailwind === 'undefined') {
+                console.warn('Tailwind CSS failed to load from CDN');
+            }
+        }, 3000);
+    </script>
+    <script>
+        // Wait for Tailwind to load before configuring
+        function configureTailwind() {
+            if (typeof tailwind !== 'undefined') {
+                clearTimeout(window.tailwindLoadTimeout);
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                'canela': ['Canela', 'serif'],
+                                'suisse': ['Suisse International', 'sans-serif']
+                            },
+                            colors: {
+                                // Original colors (keeping for fallback)
+                                'sage': '#8FBC8F',
+                                'coral': '#FF7F7F', 
+                                'teal': '#2F4F4F',
+                                'cream': '#FDF5E6',
+                                // Ocean-coral color palette - calming and sophisticated
+                                'ocean-deep': '#0077B6',
+                                'ocean-bright': '#00B4D8',
+                                'ocean-light': '#90E0EF',
+                                'ocean-pale': '#CAF0F8',
+                                'coral-soft': '#F5B7B1',
+                                // Additional complementary colors
+                                'ocean-cream': '#F8FCFF',
+                                'coral-light': '#FADBD8',
+                                'ocean-medium': '#48B2D8' 
+                            }
+                        }
+                    }
+                };
+            } else {
+                setTimeout(configureTailwind, 100);
+            }
+        }
+        configureTailwind();
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+<script>
+// Image optimization with WebP support detection
+document.addEventListener('DOMContentLoaded', function() {
+    function supportsWebP() {
+        return new Promise(resolve => {
+            const webP = new Image();
+            webP.onload = webP.onerror = function () {
+                resolve(webP.height === 2);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        });
+    }
+
+    supportsWebP().then(supported => {
+        const images = document.querySelectorAll('img[data-fallback]');
+        images.forEach(img => {
+            if (!supported) {
+                img.src = img.dataset.fallback;
+            }
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    });
+    
+    // Initialize image loading states
+    const images = document.querySelectorAll('img[data-fallback]');
+    images.forEach(img => {
+        img.style.opacity = '0';
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00B4D8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)" stroke="#F8FCFF" stroke-width="8"/>
+  
+  <!-- Main "Z" Shape -->
+  <g fill="#F8FCFF" stroke="none">
+    <!-- First Z -->
+    <path d="M120 180 L240 180 L120 280 L240 280 L240 310 L90 310 L90 280 L210 180 L90 180 L90 150 L120 150 Z"/>
+    
+    <!-- Second Z (offset) -->
+    <path d="M280 180 L400 180 L280 280 L400 280 L400 310 L250 310 L250 280 L370 180 L250 180 L250 150 L280 150 Z"/>
+  </g>
+  
+  <!-- Playful elements - small circles -->
+  <circle cx="180" cy="360" r="12" fill="#CAF0F8" opacity="0.8"/>
+  <circle cx="330" cy="360" r="12" fill="#CAF0F8" opacity="0.8"/>
+  <circle cx="256" cy="380" r="8" fill="#F5B7B1" opacity="0.9"/>
+  
+  <!-- Sport/movement indicator -->
+  <path d="M256 390 L266 410 L246 410 Z" fill="#F5B7B1" opacity="0.7"/>
+</svg>

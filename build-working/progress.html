@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Child's Progress - Educational Benefits & Growth with Zuzu Sport</title>
+    <meta name="description" content="Discover how Zuzu Sport helps your child grow stronger, smarter, and more confident. Track progress across physical, cognitive, and social development areas.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ensure Tailwind is loaded before config
+        window.tailwindLoadTimeout = setTimeout(function() {
+            if (typeof tailwind === 'undefined') {
+                console.warn('Tailwind CSS failed to load from CDN');
+            }
+        }, 3000);
+    </script>
+    <script>
+        // Wait for Tailwind to load before configuring
+        function configureTailwind() {
+            if (typeof tailwind !== 'undefined') {
+                clearTimeout(window.tailwindLoadTimeout);
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                'canela': ['Canela', 'serif'],
+                                'suisse': ['Suisse International', 'sans-serif']
+                            },
+                            colors: {
+                                // Original colors (keeping for fallback)
+                                'sage': '#8FBC8F',
+                                'coral': '#FF7F7F', 
+                                'teal': '#2F4F4F',
+                                'cream': '#FDF5E6',
+                                // Ocean-coral color palette - calming and sophisticated
+                                'ocean-deep': '#0077B6',
+                                'ocean-bright': '#00B4D8',
+                                'ocean-light': '#90E0EF',
+                                'ocean-pale': '#CAF0F8',
+                                'coral-soft': '#F5B7B1',
+                                // Additional complementary colors
+                                'ocean-cream': '#F8FCFF',
+                                'coral-light': '#FADBD8',
+                                'ocean-medium': '#48B2D8' 
+                            }
+                        }
+                    }
+                };
+            } else {
+                setTimeout(configureTailwind, 100);
+            }
+        }
+        configureTailwind();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Animate progress circles
+                        if (entry.target.querySelector('.progress-circle')) {
+                            animateProgressCircles(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize activity chart
+            initActivityChart();
+        });
+
+        // Animate progress circles
+        function animateProgressCircles(container) {
+            const circles = container.querySelectorAll('.progress-ring-fill');
+            circles.forEach((circle, index) => {
+                const percentage = [85, 92, 78, 88][index] || 0;
+                const circumference = 2 * Math.PI * 52;
+                const offset = circumference - (percentage / 100) * circumference;
+                
+                setTimeout(() => {
+                    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                    circle.style.strokeDashoffset = offset;
+                }, index * 200);
+            });
+        }
+
+        // Initialize activity chart
+        function initActivityChart() {
+            const chartDom = document.getElementById('activity-chart');
+            if (!chartDom) return;
+            
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#8FBC8F'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['Yoga', 'Dance', 'Strength', 'Cardio'],
+                    textStyle: {
+                        color: '#2F4F4F'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisLabel: {
+                            color: '#666'
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            color: '#666'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Yoga',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#8FBC8F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(143, 188, 143, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(143, 188, 143, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [12, 15, 10, 18, 8, 14, 16]
+                    },
+                    {
+                        name: 'Dance',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#FF7F7F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(255, 127, 127, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(255, 127, 127, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [8, 12, 6, 14, 10, 18, 12]
+                    },
+                    {
+                        name: 'Strength',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#2F4F4F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(47, 79, 79, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(47, 79, 79, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [15, 8, 12, 10, 16, 8, 14]
+                    },
+                    {
+                        name: 'Cardio',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#8FBC8F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(143, 188, 143, 0.2)'
+                                }, {
+                                    offset: 1, color: 'rgba(143, 188, 143, 0.05)'
+                                }]
+                            }
+                        },
+                        data: [10, 14, 8, 12, 14, 16, 10]
+                    }
+                ]
+            };
+            
+            myChart.setOption(option);
+            
+            // Make chart responsive
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
+                type === 'success' ? 'bg-ocean-light text-white' : 
+                type === 'error' ? 'bg-coral text-white' : 
+                'text-gray-800" style="background-color: #CAF0F8;'
+            }`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="mr-4">${message}</span>
+                    <button class="text-white hover:text-gray-200" onclick="this.parentElement.parentElement.remove()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 5000);
+        }
+    </script>
+
+<script>
+// Image optimization with WebP support detection
+document.addEventListener('DOMContentLoaded', function() {
+    function supportsWebP() {
+        return new Promise(resolve => {
+            const webP = new Image();
+            webP.onload = webP.onerror = function () {
+                resolve(webP.height === 2);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        });
+    }
+
+    supportsWebP().then(supported => {
+        const images = document.querySelectorAll('img[data-fallback]');
+        images.forEach(img => {
+            if (!supported) {
+                img.src = img.dataset.fallback;
+            }
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    });
+    
+    // Initialize image loading states
+    const images = document.querySelectorAll('img[data-fallback]');
+    images.forEach(img => {
+        img.style.opacity = '0';
+    });
+});
+</script>
+</body>
+</html>

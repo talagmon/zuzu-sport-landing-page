@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Child's Progress - Educational Benefits & Growth with Zuzu Sport</title>
+    <meta name="description" content="Discover how Zuzu Sport helps your child grow stronger, smarter, and more confident. Track progress across physical, cognitive, and social development areas.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'canela': ['Canela', 'serif'],
+                        'suisse': ['Suisse International', 'sans-serif']
+                    },
+                    colors: {
+                        // Original colors (keeping for fallback)
+                        'sage': '#8FBC8F',
+                        'coral': '#FF7F7F', 
+                        'teal': '#2F4F4F',
+                        'cream': '#FDF5E6',
+                        // Ocean-coral color palette - calming and sophisticated
+                        'ocean-deep': '#0077B6',
+                        'ocean-bright': '#00B4D8',
+                        'ocean-light': '#90E0EF',
+                        'ocean-pale': '#CAF0F8',
+                        'coral-soft': '#F5B7B1',
+                        // Additional complementary colors
+                        'ocean-cream': '#F8FCFF',
+                        'coral-light': '#FADBD8',
+                        'ocean-medium': '#48B2D8' 
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            background-color: #F8FCFF; /* ocean-cream - fresh and clean */ 
+            font-family: 'Suisse International', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(47, 79, 79, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%); /* ocean-bright to ocean-deep */
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 180, 216, 0.4); /* ocean-bright shadow */
+            background: linear-gradient(135deg, #48B2D8 0%, #90E0EF 100%); /* lighter ocean gradient on hover */
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle .progress-ring {
+            fill: none;
+            stroke: #e5e7eb;
+            stroke-width: 8;
+        }
+        
+        .progress-circle .progress-ring-fill {
+            fill: none;
+            stroke: #8FBC8F;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dasharray 2s ease-in-out;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: linear-gradient(135deg, 
+                #F8FCFF 0%,     /* ocean-cream */
+                #CAF0F8 25%,    /* ocean-pale */
+                #90E0EF 50%,    /* ocean-light */
+                #00B4D8 75%,    /* ocean-bright */
+                #F5B7B1 100%    /* coral-soft accent */
+            );
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0.375rem;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #8FBC8F, transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.1) 0%, rgba(47, 79, 79, 0.1) 100%);
+            border: 1px solid rgba(143, 188, 143, 0.3);
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, #FF7F7F 0%, #2F4F4F 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-suisse text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 border-b border-ocean-light/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-canela font-bold text-ocean-deep">Zuzu Sport</div>
+                    <div class="ml-2 text-sm text-ocean-light">For Healthy Kids</div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-ocean-deep transition-colors">Home</a>
+                    <a href="safety.html" class="text-gray-600 hover:text-ocean-deep transition-colors">Safety</a>
+                    <a href="progress.html" class="text-ocean-deep font-medium border-b-2 border-coral pb-1">Progress</a>
+                    <a href="index.html#trial" class="btn-primary text-white px-6 py-2 rounded-full font-medium">Start Free Trial</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-teal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-ocean-light/20">
+            <div class="px-4 py-2 space-y-2">
+                <a href="index.html" class="block py-2 text-gray-600">Home</a>
+                <a href="safety.html" class="block py-2 text-gray-600">Safety</a>
+                <a href="progress.html" class="block py-2 text-teal font-medium">Progress</a>
+                <a href="index.html#trial" class="block py-2 text-coral font-medium">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-ocean-light/20 to-ocean-deep/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h1 class="text-5xl lg:text-6xl font-canela font-bold text-teal mb-6">
+                    Watch Your Child Grow
+                </h1>
+                <p class="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    Track your child's progress across physical, cognitive, and social development. See real results that matter for their future success and wellbeing.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="text-center reveal">
+                    <div class="progress-circle mx-auto mb-4">
+                        <svg width="120" height="120">
+                            <circle class="progress-ring" cx="60" cy="60" r="52"></circle>
+                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="0 327"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-teal">85%</div>
+                                <div class="text-xs text-gray-600">Physical</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-canela font-bold text-teal">Physical Development</h3>
+                    <p class="text-sm text-gray-600">Strength, coordination, and motor skills</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="progress-circle mx-auto mb-4">
+                        <svg width="120" height="120">
+                            <circle class="progress-ring" cx="60" cy="60" r="52"></circle>
+                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="0 327" style="stroke: #FF7F7F;"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-coral">92%</div>
+                                <div class="text-xs text-gray-600">Cognitive</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-canela font-bold text-teal">Cognitive Growth</h3>
+                    <p class="text-sm text-gray-600">Focus, memory, and learning skills</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="progress-circle mx-auto mb-4">
+                        <svg width="120" height="120">
+                            <circle class="progress-ring" cx="60" cy="60" r="52"></circle>
+                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="0 327" style="stroke: #2F4F4F;"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-teal">78%</div>
+                                <div class="text-xs text-gray-600">Social</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-canela font-bold text-teal">Social Skills</h3>
+                    <p class="text-sm text-gray-600">Confidence, teamwork, and self-esteem</p>
+                </div>
+                
+                <div class="text-center reveal">
+                    <div class="progress-circle mx-auto mb-4">
+                        <svg width="120" height="120">
+                            <circle class="progress-ring" cx="60" cy="60" r="52"></circle>
+                            <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="0 327" style="stroke: #8FBC8F;"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-ocean-light">88%</div>
+                                <div class="text-xs text-gray-600">Overall</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-canela font-bold text-teal">Overall Growth</h3>
+                    <p class="text-sm text-gray-600">Complete developmental progress</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Progress Dashboard -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    Real-Time Progress Tracking
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive insights into your child's development across multiple dimensions, updated in real-time as they complete activities.
+                </p>
+            </div>
+            
+            <div class="bg-cream rounded-3xl shadow-xl p-8 lg:p-12 reveal">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-canela font-bold text-teal">Weekly Activity</h3>
+                                    <div class="text-2xl font-bold text-ocean-light">5/7</div>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-gradient-to-r from-sage to-teal h-3 rounded-full" style="width: 71%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Days active this week</p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-canela font-bold text-teal">Total Minutes</h3>
+                                    <div class="text-2xl font-bold text-coral">342</div>
+                                </div>
+                                <div class="text-3xl mb-2">⏱️</div>
+                                <p class="text-sm text-gray-600">This month</p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-canela font-bold text-teal">Current Streak</h3>
+                                    <div class="text-2xl font-bold text-teal">12</div>
+                                </div>
+                                <div class="text-3xl mb-2">🔥</div>
+                                <p class="text-sm text-gray-600">Consecutive days</p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-canela font-bold text-teal">Achievements</h3>
+                                    <div class="text-2xl font-bold text-ocean-light">8</div>
+                                </div>
+                                <div class="text-3xl mb-2">🏆</div>
+                                <p class="text-sm text-gray-600">Earned this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <h3 class="text-lg font-canela font-bold text-teal mb-4">Activity Breakdown</h3>
+                            <div id="activity-chart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <h3 class="text-lg font-canela font-bold text-teal mb-4">Recent Achievements</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="achievement-badge w-10 h-10 rounded-full flex items-center justify-center text-sm">🏃</div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Cardio Champion</div>
+                                        <div class="text-xs text-gray-600">Completed 10 cardio activities</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="achievement-badge w-10 h-10 rounded-full flex items-center justify-center text-sm">🧘</div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Yoga Master</div>
+                                        <div class="text-xs text-gray-600">Held tree pose for 30 seconds</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="achievement-badge w-10 h-10 rounded-full flex items-center justify-center text-sm">💪</div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Strength Builder</div>
+                                        <div class="text-xs text-gray-600">Improved push-up count by 50%</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="achievement-badge w-10 h-10 rounded-full flex items-center justify-center text-sm">🎯</div>
+                                    <div>
+                                        <div class="font-medium text-gray-800">Consistency Star</div>
+                                        <div class="text-xs text-gray-600">Active 7 days in a row</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <h3 class="text-lg font-canela font-bold text-teal mb-4">Skill Development</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Balance</span>
+                                        <span class="text-sm text-ocean-light">Level 4</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-ocean-light h-2 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Flexibility</span>
+                                        <span class="text-sm text-coral">Level 3</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-coral h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Strength</span>
+                                        <span class="text-sm text-teal">Level 5</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-teal h-2 rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Coordination</span>
+                                        <span class="text-sm text-ocean-light">Level 4</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-ocean-light h-2 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Benefits Explorer -->
+    <section class="py-20 bg-ocean-light/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    Educational Benefits
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every activity is designed to support your child's academic and cognitive development while keeping them physically active.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h3 class="text-2xl font-canela font-bold text-teal mb-6">Learning Connections</h3>
+                        <div class="space-y-6">
+                            <div class="timeline-item">
+                                <h4 class="text-lg font-semibold text-teal mb-2">Mathematics</h4>
+                                <p class="text-gray-600 mb-3">
+                                    Counting exercises, timing activities, and pattern recognition help reinforce mathematical concepts through physical movement.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Counting</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Patterns</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Timing</span>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-lg font-semibold text-teal mb-2">Language Arts</h4>
+                                <p class="text-gray-600 mb-3">
+                                    Following instructions, learning new vocabulary, and storytelling through movement enhance language development.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Vocabulary</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Instructions</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Storytelling</span>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-lg font-semibold text-teal mb-2">Science</h4>
+                                <p class="text-gray-600 mb-3">
+                                    Understanding body systems, energy, and cause-and-effect relationships through physical experimentation.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Body Systems</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Energy</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Cause & Effect</span>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4 class="text-lg font-semibold text-teal mb-2">Social Studies</h4>
+                                <p class="text-gray-600 mb-3">
+                                    Learning about different cultures through dance, understanding community through teamwork activities.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Cultures</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Community</span>
+                                    <span class="skill-badge px-3 py-1 rounded-full text-sm">Teamwork</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <div class="bg-white rounded-3xl shadow-xl p-8">
+                        <h3 class="text-2xl font-canela font-bold text-teal mb-6">Cognitive Benefits</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-teal mb-2">Enhanced Focus</h4>
+                                    <p class="text-gray-600">
+                                        Regular physical activity improves attention span and concentration, leading to better academic performance.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-coral/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-teal mb-2">Better Memory</h4>
+                                    <p class="text-gray-600">
+                                        Exercise increases blood flow to the brain, improving memory retention and recall abilities.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 /20 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: #CAF0F8;">
+                                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-teal mb-2">Problem Solving</h4>
+                                    <p class="text-gray-600">
+                                        Movement-based learning develops critical thinking and problem-solving skills through physical challenges.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-ocean-light/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a1.5 1.5 0 011.5 1.5v1.5a1.5 1.5 0 01-1.5 1.5H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-teal mb-2">Emotional Regulation</h4>
+                                    <p class="text-gray-600">
+                                        Regular exercise helps children manage stress and emotions more effectively, leading to better behavior.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Insights -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-canela font-bold text-teal mb-6">
+                    Parent Insights & Reports
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Stay informed about your child's progress with detailed reports and actionable insights that help you support their growth.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-ocean-light/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-ocean-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-canela font-bold text-teal">Weekly Reports</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Activity summary and trends
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Skill development progress
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Behavioral improvements
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-ocean-light mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Personalized recommendations
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-coral/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-canela font-bold text-teal">Growth Trends</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-coral mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Long-term progress tracking
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-coral mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Comparative analysis
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-coral mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Milestone celebrations
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-coral mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Goal setting and tracking
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-cream rounded-3xl shadow-xl p-8 reveal">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 /20 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #CAF0F8;">
+                            <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-canela font-bold text-teal">Expert Insights</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Expert-curated content
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Developmental milestones
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Parenting tips and resources
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Activity recommendations
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 text-gray-800" style="background-color: #CAF0F8;">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl lg:text-5xl font-canela font-bold mb-6">
+                Start Tracking Your Child's Growth Today
+            </h2>
+            <p class="text-xl mb-8 text-gray-700">
+                Join thousands of parents who are already seeing the benefits of comprehensive progress tracking.
+            </p>
+            
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 mb-8 shadow-lg">
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2 text-ocean-deep">7 Days</div>
+                        <div class="text-sm text-gray-600">Free Trial</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2 text-ocean-deep">₪19.90</div>
+                        <div class="text-sm text-gray-600">Per Month After</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2 text-ocean-deep">Cancel</div>
+                        <div class="text-sm text-gray-600">Anytime</div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://play.google.com/store/apps/details?id=com.zuzu.sports&hl=iw&pli=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                        <svg class="mr-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                        </svg>
+                        Google Play
+                    </a>
+                    <a href="https://apps.apple.com/il/app/zuzusport-זוזו-ספורט-לילדים/id6741363934?l=he" target="_blank" class="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105">
+                        <svg class="mr-3 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.19 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                        </svg>
+                        App Store
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-sm text-gray-600">
+                No credit card required for trial • Cancel anytime • 30-day money-back guarantee
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-gray-800" style="background-color: #CAF0F8;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="text-2xl font-canela font-bold mb-2 text-ocean-deep">Zuzu Sport</div>
+                    <p class="text-gray-700 mb-4">Transforming Screen Time Into Healthy Movement</p>
+                    <div class="flex space-x-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.zuzu.sports&hl=iw&pli=1" target="_blank" class="text-ocean-bright hover:text-ocean-deep">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                            </svg>
+                        </a>
+                        <a href="https://apps.apple.com/il/app/zuzusport-זוזו-ספורט-לילדים/id6741363934?l=he" target="_blank" class="text-ocean-bright hover:text-ocean-deep">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.19 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-ocean-deep">Legal</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="privacy-policy.html" class="text-gray-600 hover:text-ocean-deep">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-600 hover:text-ocean-deep">Terms & Conditions</a></li>
+                        <li><a href="cookie-policy.html" class="text-gray-600 hover:text-ocean-deep">Cookie Policy</a></li>
+                        <li><a href="safety.html" class="text-gray-600 hover:text-ocean-deep">Child Safety</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-ocean-deep">Support</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:hello@zuzusport.co.il" class="text-gray-600 hover:text-ocean-deep">Contact Support</a></li>
+                        <li><a href="https://wa.me/972546880474" target="_blank" class="text-gray-600 hover:text-ocean-deep">WhatsApp</a></li>
+                        <li><a href="progress.html" class="text-gray-600 hover:text-ocean-deep">Progress Tracking</a></li>
+                        <li><a href="#faq" class="text-gray-600 hover:text-ocean-deep">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-300 mt-8 pt-8 text-center text-sm text-gray-600">
+                <p>© 2025 ZUZUSport מבית Barshaf Investments Ltd | COPPA & GDPR Compliant | Designed for healthy, happy families.</p>
+                <p class="mt-2">
+                    📊 Progress Tracking • 🛡️ Child-Safe Platform • 👨‍👩‍👧‍👦 Family-Focused
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize mobile menu and scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Animate progress circles
+                        if (entry.target.querySelector('.progress-circle')) {
+                            animateProgressCircles(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize activity chart
+            initActivityChart();
+        });
+
+        // Animate progress circles
+        function animateProgressCircles(container) {
+            const circles = container.querySelectorAll('.progress-ring-fill');
+            circles.forEach((circle, index) => {
+                const percentage = [85, 92, 78, 88][index] || 0;
+                const circumference = 2 * Math.PI * 52;
+                const offset = circumference - (percentage / 100) * circumference;
+                
+                setTimeout(() => {
+                    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                    circle.style.strokeDashoffset = offset;
+                }, index * 200);
+            });
+        }
+
+        // Initialize activity chart
+        function initActivityChart() {
+            const chartDom = document.getElementById('activity-chart');
+            if (!chartDom) return;
+            
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#8FBC8F'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['Yoga', 'Dance', 'Strength', 'Cardio'],
+                    textStyle: {
+                        color: '#2F4F4F'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisLabel: {
+                            color: '#666'
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            color: '#666'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Yoga',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#8FBC8F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(143, 188, 143, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(143, 188, 143, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [12, 15, 10, 18, 8, 14, 16]
+                    },
+                    {
+                        name: 'Dance',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#FF7F7F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(255, 127, 127, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(255, 127, 127, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [8, 12, 6, 14, 10, 18, 12]
+                    },
+                    {
+                        name: 'Strength',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#2F4F4F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(47, 79, 79, 0.3)'
+                                }, {
+                                    offset: 1, color: 'rgba(47, 79, 79, 0.1)'
+                                }]
+                            }
+                        },
+                        data: [15, 8, 12, 10, 16, 8, 14]
+                    },
+                    {
+                        name: 'Cardio',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            color: '#8FBC8F'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(143, 188, 143, 0.2)'
+                                }, {
+                                    offset: 1, color: 'rgba(143, 188, 143, 0.05)'
+                                }]
+                            }
+                        },
+                        data: [10, 14, 8, 12, 14, 16, 10]
+                    }
+                ]
+            };
+            
+            myChart.setOption(option);
+            
+            // Make chart responsive
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
+                type === 'success' ? 'bg-ocean-light text-white' : 
+                type === 'error' ? 'bg-coral text-white' : 
+                'text-gray-800" style="background-color: #CAF0F8;'
+            }`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="mr-4">${message}</span>
+                    <button class="text-white hover:text-gray-200" onclick="this.parentElement.parentElement.remove()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 5000);
+        }
+    </script>
+
+<script>
+// Lazy loading with WebP fallback
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img[data-fallback]');
+    
+    images.forEach(img => {
+        // Test WebP support
+        const webp = new Image();
+        webp.onload = webp.onerror = function () {
+            if (webp.height == 2) {
+                // WebP supported - image is already correct
+                img.style.opacity = '1';
+            } else {
+                // WebP not supported - use fallback
+                img.src = img.dataset.fallback;
+                img.style.opacity = '1';
+            }
+        };
+        webp.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        
+        // Initially hide image until format is determined
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease';
+    });
+});
+</script>
+</body>
+</html>

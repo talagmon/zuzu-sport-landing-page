@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety First - Zuzu Sport's Commitment to Your Child's Wellbeing</title>
+    <meta name="description" content="Learn about Zuzu Sport's comprehensive safety measures, expert-designed content, and parent controls that keep your child safe while staying active.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Suisse+International:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ensure Tailwind is loaded before config
+        window.tailwindLoadTimeout = setTimeout(function() {
+            if (typeof tailwind === 'undefined') {
+                console.warn('Tailwind CSS failed to load from CDN');
+            }
+        }, 3000);
+    </script>
+    <script>
+        // Wait for Tailwind to load before configuring
+        function configureTailwind() {
+            if (typeof tailwind !== 'undefined') {
+                clearTimeout(window.tailwindLoadTimeout);
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                'canela': ['Canela', 'serif'],
+                                'suisse': ['Suisse International', 'sans-serif']
+                            },
+                            colors: {
+                                // Original colors (keeping for fallback)
+                                'sage': '#8FBC8F',
+                                'coral': '#FF7F7F', 
+                                'teal': '#2F4F4F',
+                                'cream': '#FDF5E6',
+                                // Ocean-coral color palette - calming and sophisticated
+                                'ocean-deep': '#0077B6',
+                                'ocean-bright': '#00B4D8',
+                                'ocean-light': '#90E0EF',
+                                'ocean-pale': '#CAF0F8',
+                                'coral-soft': '#F5B7B1',
+                                // Additional complementary colors
+                                'ocean-cream': '#F8FCFF',
+                                'coral-light': '#FADBD8',
+                                'ocean-medium': '#48B2D8' 
+                            }
+                        }
+                    }
+                };
+            } else {
+                setTimeout(configureTailwind, 100);
+            }
+        }
+        configureTailwind();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Safety checklist functionality
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                    const totalCount = checkboxes.length;
+                    
+                    if (checkedCount === totalCount) {
+                        showNotification('Great job! You\'ve completed the safety checklist. Your child is ready for safe exercise!', 'success');
+                    }
+                });
+            });
+
+            // Download safety guide
+            const downloadBtn = document.getElementById('download-safety-guide');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    // Create and download a sample PDF
+                    createAndDownloadSafetyGuide();
+                });
+            }
+
+            // Contact privacy team (if exists)
+            const contactButtons = document.querySelectorAll('button');
+            contactButtons.forEach(btn => {
+                if (btn.textContent.includes('Contact Privacy Team')) {
+                    btn.addEventListener('click', function() {
+                        showNotification('Privacy team contact form coming soon!', 'info');
+                    });
+                }
+            });
+        });
+
+        // Create and download safety guide PDF
+        function createAndDownloadSafetyGuide() {
+            const safetyGuideContent = `
+# Zuzu Sport Safety Guide
+
+## Age-Appropriate Exercise Guidelines
+
+### Ages 6-8
+- Adult supervision required at all times
+- Maximum 15-20 minute sessions
+- Focus on fun and basic movements
+- Immediate stop if child shows fatigue
+
+### Ages 9-11
+- Adult supervision recommended
+- 20-30 minute sessions allowed
+- Introduce more complex movements gradually
+- Teach proper hydration habits
+
+### Ages 12-14
+- Independent exercise with check-ins
+- Up to 45 minute sessions
+- Focus on proper form and technique
+- Encourage goal-setting and progress tracking
+
+## Pre-Exercise Safety Checklist
+
+✓ Clear 2x2 meter practice space
+✓ Non-slip surface or yoga mat
+✓ Comfortable, flexible clothing
+✓ Water bottle nearby
+✓ Adult supervision for ages 6-8
+✓ Emergency contact info accessible
+
+## Exercise Environment
+
+- Temperature: 18-22°C (65-72°F)
+- Good ventilation required
+- Remove obstacles and hazards
+- Adequate lighting
+- No pets in exercise area
+
+## Warning Signs to Stop Exercise
+
+- Excessive fatigue or breathlessness
+- Dizziness or nausea
+- Joint or muscle pain
+- Overheating or excessive sweating
+- Any discomfort or reluctance from child
+
+## Emergency Procedures
+
+1. Stop activity immediately
+2. Ensure child is safe and comfortable
+3. Provide water if needed
+4. Contact healthcare provider if concerns persist
+5. Keep emergency contacts readily available
+
+## Contact Information
+
+For questions about child safety:
+Email: help@zuzusport.co.il
+Phone: +972-3-SAFETY-1
+
+---
+
+© 2024 Zuzu Sport - Your Child's Safety is Our Priority
+            `;
+            
+            // Create PDF-style content and download as PDF
+            const pdfContent = `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Zuzu Sport Safety Guide</title>
+<style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6}h1,h2,h3{color:#2F4F4F}h1{border-bottom:2px solid #8FBC8F;padding-bottom:10px}h2{margin-top:30px}ul{margin:10px 0}li{margin:5px 0}
+        /* Fallback CSS for navigation and critical styling */
+        .space-x-6 > * + * { margin-left: 1.5rem !important; }
+        .space-x-4 > * + * { margin-left: 1rem !important; }
+        .space-x-8 > * + * { margin-left: 2rem !important; }
+        .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+        .py-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+        .py-3 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+        .py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+        .py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+        .py-8 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+        .py-12 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+        .py-16 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+        .py-20 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+        .px-6 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+        .px-8 { padding-left: 2rem !important; padding-right: 2rem !important; }
+        .text-sm { font-size: 0.875rem !important; }
+        .text-lg { font-size: 1.125rem !important; }
+        .text-xl { font-size: 1.25rem !important; }
+        .text-2xl { font-size: 1.5rem !important; }
+        .text-3xl { font-size: 1.875rem !important; }
+        .text-4xl { font-size: 2.25rem !important; }
+        .text-5xl { font-size: 3rem !important; }
+        .font-bold { font-weight: 700 !important; }
+        .font-semibold { font-weight: 600 !important; }
+        .font-medium { font-weight: 500 !important; }
+        .rounded-lg { border-radius: 0.5rem !important; }
+        .rounded-xl { border-radius: 0.75rem !important; }
+        .rounded-2xl { border-radius: 1rem !important; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important; }
+        .flex { display: flex !important; }
+        .items-center { align-items: center !important; }
+        .justify-center { justify-content: center !important; }
+        .justify-between { justify-content: space-between !important; }
+        .grid { display: grid !important; }
+        .gap-6 { gap: 1.5rem !important; }
+        .gap-8 { gap: 2rem !important; }
+        .gap-12 { gap: 3rem !important; }
+        .max-w-6xl { max-width: 72rem !important; }
+        .max-w-4xl { max-width: 56rem !important; }
+        .max-w-2xl { max-width: 42rem !important; }
+        .mx-auto { margin-left: auto !important; margin-right: auto !important; }
+        .container { width: 100% !important; margin-left: auto !important; margin-right: auto !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+        .text-white { color: white !important; }
+        .text-center { text-align: center !important; }
+        .block { display: block !important; }
+        .hidden { display: none !important; }
+        .relative { position: relative !important; }
+        .absolute { position: absolute !important; }
+        .inset-0 { top: 0 !important; right: 0 !important; bottom: 0 !important; left: 0 !important; }
+        .w-full { width: 100% !important; }
+        .h-full { height: 100% !important; }
+        .object-cover { object-fit: cover !important; }
+        .transition-all { transition: all 0.3s ease !important; }
+        .duration-300 { transition-duration: 300ms !important; }
+        .hover\:scale-105:hover { transform: scale(1.05) !important; }
+        .hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important; }
+        .bg-white { background-color: white !important; }
+        .bg-gray-100 { background-color: #f3f4f6 !important; }
+        .bg-gray-900 { background-color: #111827 !important; }
+        .text-gray-600 { color: #4b5563 !important; }
+        .text-gray-700 { color: #374151 !important; }
+        .text-gray-800 { color: #1f2937 !important; }
+        .text-gray-900 { color: #111827 !important; }
+        .border { border-width: 1px !important; }
+        .border-gray-200 { border-color: #e5e7eb !important; }
+        .overflow-hidden { overflow: hidden !important; }
+        
+        /* Navigation specific fixes */
+        nav a { margin-right: 1.5rem !important; }
+        nav a:last-child { margin-right: 0 !important; }
+        .nav-link { display: inline-block !important; padding: 0.5rem 0 !important; }
+        
+        /* Grid layouts */
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+        
+        @media (min-width: 640px) {
+            .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+            .sm\:px-6 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+            .md\:px-8 { padding-left: 2rem !important; padding-right: 2rem !important; }
+            .md\:text-5xl { font-size: 3rem !important; }
+            .md\:text-6xl { font-size: 3.75rem !important; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+            .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+            .lg\:px-8 { padding-left: 2rem !important; padding-right: 2rem !important; }
+            .lg\:text-6xl { font-size: 3.75rem !important; }
+        }
+        </style>
+</head><body>${safetyGuideContent.replace(/\n/g, '<br>').replace(/# /g, '<h1>').replace(/## /g, '<h2>').replace(/### /g, '<h3>').replace(/✓ /g, '✓ ')}
+<script>
+// Image optimization with WebP support detection
+document.addEventListener('DOMContentLoaded', function() {
+    function supportsWebP() {
+        return new Promise(resolve => {
+            const webP = new Image();
+            webP.onload = webP.onerror = function () {
+                resolve(webP.height === 2);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        });
+    }
+
+    supportsWebP().then(supported => {
+        const images = document.querySelectorAll('img[data-fallback]');
+        images.forEach(img => {
+            if (!supported) {
+                img.src = img.dataset.fallback;
+            }
+            img.style.opacity = '1';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    });
+    
+    // Initialize image loading states
+    const images = document.querySelectorAll('img[data-fallback]');
+    images.forEach(img => {
+        img.style.opacity = '0';
+    });
+});
+</script>
+</body></html>`;
+            
+            const blob = new Blob([pdfContent], { type: 'text/html;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Zuzu-Sport-Safety-Guide.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showNotification('Safety guide downloaded successfully! Check your Downloads folder.', 'success');
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
+                type === 'success' ? 'bg-ocean-light text-white' : 
+                type === 'error' ? 'bg-coral text-white' : 
+                'text-gray-800" style="background-color: #CAF0F8;'
+            }`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="mr-4">${message}</span>
+                    <button class="text-white hover:text-gray-200" onclick="this.parentElement.parentElement.remove()">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(full)';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
