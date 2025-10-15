@@ -508,6 +508,34 @@
                     text-align: right !important;
                     direction: rtl !important;
                 }
+                
+                /* Mobile Safari specific RTL fixes */
+                .hero-bg .justify-start {
+                    justify-content: flex-end !important;
+                    align-items: flex-end !important;
+                }
+                
+                /* Force the hero content container to be RTL */
+                .hero-bg > div,
+                .hero-bg .content-overlay,
+                .hero-bg .grid > div:first-child {
+                    direction: rtl !important;
+                    text-align: right !important;
+                }
+                
+                /* Aggressive button container fix for mobile Safari */
+                .hero-bg .flex.flex-col.sm\:flex-row {
+                    direction: rtl !important;
+                    align-items: flex-end !important;
+                    justify-content: flex-end !important;
+                    text-align: right !important;
+                }
+                
+                /* Features list fix */
+                .hero-bg .flex.items-center.justify-start {
+                    justify-content: flex-end !important;
+                    direction: rtl !important;
+                }
             }
         }
         
@@ -566,6 +594,29 @@
             
             .text-xl {
                 font-size: 1rem;
+            }
+        }
+        
+        /* WebKit mobile Safari specific RTL fixes */
+        @supports (-webkit-touch-callout: none) {
+            @media (max-width: 1023px) {
+                .hero-bg [dir="rtl"] .flex {
+                    -webkit-box-orient: vertical !important;
+                    -webkit-box-direction: reverse !important;
+                    -webkit-box-pack: end !important;
+                    -webkit-box-align: end !important;
+                }
+                
+                .hero-bg [dir="rtl"] * {
+                    -webkit-text-align-last: right !important;
+                    text-align-last: right !important;
+                }
+                
+                /* Force Safari to respect RTL */
+                .hero-bg {
+                    -webkit-writing-mode: horizontal-tb !important;
+                    writing-mode: horizontal-tb !important;
+                }
             }
         }
     </style>
@@ -1308,8 +1359,40 @@
             }
         }
         
+        // Mobile Safari RTL fix
+        function forceMobileRTL() {
+            const isMobile = window.innerWidth <= 1023;
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if ((isMobile && isSafari) || isIOS) {
+                const heroElements = document.querySelectorAll('.hero-bg h1, .hero-bg p, .hero-bg .flex');
+                heroElements.forEach(element => {
+                    element.style.setProperty('text-align', 'right', 'important');
+                    element.style.setProperty('direction', 'rtl', 'important');
+                    if (element.classList.contains('flex')) {
+                        element.style.setProperty('justify-content', 'flex-end', 'important');
+                        element.style.setProperty('align-items', 'flex-end', 'important');
+                    }
+                });
+                
+                // Force the main hero container
+                const heroContainer = document.querySelector('.hero-bg [dir="rtl"]');
+                if (heroContainer) {
+                    heroContainer.style.setProperty('text-align', 'right', 'important');
+                    heroContainer.style.setProperty('direction', 'rtl', 'important');
+                }
+            }
+        }
+        
         // Close mobile menu when clicking on links
         document.addEventListener('DOMContentLoaded', function() {
+            // Apply mobile RTL fix
+            forceMobileRTL();
+            
+            // Reapply on resize
+            window.addEventListener('resize', forceMobileRTL);
+            
             const mobileMenuLinks = document.querySelectorAll('#mobile-menu-he a');
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', function() {
