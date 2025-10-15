@@ -418,143 +418,26 @@
                 text-align: right !important;
             }
             
-            /* Complete Mobile RTL Override - Nuclear Option */
+            /* Simple Mobile RTL Override - Keep Content Intact */
             @media (max-width: 1023px) {
-                /* Hide original hero content and replace with mobile-specific */
-                .hero-bg .grid.lg\:grid-cols-2 > div:first-child {
-                    display: none !important;
-                }
-                
-                /* Create new mobile RTL container */
-                .hero-bg .grid.lg\:grid-cols-2::before {
-                    content: "";
-                    display: block;
-                    width: 100%;
-                    position: relative;
-                    z-index: 10;
-                }
-                
-                /* Force everything in hero to be RTL */
-                .hero-bg,
-                .hero-bg *,
-                .hero-bg div,
+                /* Force all text in hero to be RTL */
+                .hero-bg h1,
                 .hero-bg p,
-                .hero-bg h1,
-                .hero-bg span {
+                .hero-bg div[dir="rtl"] {
                     direction: rtl !important;
                     text-align: right !important;
-                    writing-mode: unset !important;
+                    font-family: 'Assistant', 'Heebo', sans-serif !important;
                 }
                 
-                /* Remove all flexbox from hero section on mobile */
-                .hero-bg .flex {
-                    display: block !important;
-                    text-align: right !important;
-                    direction: rtl !important;
-                }
-                
-                /* Button styling for mobile RTL */
-                .hero-bg .flex.flex-col a {
-                    display: block !important;
-                    margin: 0 0 1rem 0 !important;
-                    text-align: center !important;
-                    width: 100% !important;
-                    box-sizing: border-box !important;
-                }
-                
-                /* Features list mobile RTL */
-                .hero-bg .flex.items-center.justify-start {
-                    display: block !important;
-                    text-align: right !important;
-                }
-                
-                .hero-bg .flex.items-center.justify-start > div {
-                    display: inline-block !important;
-                    margin: 0 1rem 0.5rem 0 !important;
-                    text-align: right !important;
-                    vertical-align: top !important;
-                }
-                
-                /* Typography override */
-                .hero-bg h1,
+                /* Typography for typewriter */
                 .hero-bg #hero-heading,
                 .hero-bg #typed-text {
-                    font-family: 'Assistant', 'Heebo', sans-serif !important;
                     direction: rtl !important;
                     text-align: right !important;
-                    unicode-bidi: bidi-override !important;
+                    font-family: 'Assistant', 'Heebo', sans-serif !important;
                 }
             }
             
-            /* Mobile RTL hero text alignment - Enhanced for Safari */
-            @media (max-width: 1023px) {
-                [dir="rtl"] .hero-bg h1,
-                [dir="rtl"] .hero-bg p,
-                [dir="rtl"] .hero-bg .text-right {
-                    text-align: right !important;
-                    direction: rtl !important;
-                }
-                
-                [dir="rtl"] .hero-bg .flex,
-                [dir="rtl"] .hero-bg .justify-center,
-                [dir="rtl"] .hero-bg .justify-end {
-                    justify-content: flex-end !important;
-                    direction: rtl !important;
-                }
-                
-                /* Force RTL for the entire hero content on mobile */
-                .hero-bg [dir="rtl"] {
-                    text-align: right !important;
-                    direction: rtl !important;
-                }
-                
-                /* Target the specific hero elements */
-                #hero-heading,
-                #typed-text {
-                    text-align: right !important;
-                    direction: rtl !important;
-                    display: block !important;
-                }
-                
-                /* Override any flex properties that could cause left alignment */
-                .hero-bg .flex {
-                    display: block !important;
-                }
-                
-                /* Force all hero text elements to be right-aligned */
-                .hero-bg * {
-                    text-align: right !important;
-                    direction: rtl !important;
-                }
-                
-                /* Mobile Safari specific RTL fixes */
-                .hero-bg .justify-start {
-                    justify-content: flex-end !important;
-                    align-items: flex-end !important;
-                }
-                
-                /* Force the hero content container to be RTL */
-                .hero-bg > div,
-                .hero-bg .content-overlay,
-                .hero-bg .grid > div:first-child {
-                    direction: rtl !important;
-                    text-align: right !important;
-                }
-                
-                /* Aggressive button container fix for mobile Safari */
-                .hero-bg .flex.flex-col.sm\:flex-row {
-                    direction: rtl !important;
-                    align-items: flex-end !important;
-                    justify-content: flex-end !important;
-                    text-align: right !important;
-                }
-                
-                /* Features list fix */
-                .hero-bg .flex.items-center.justify-start {
-                    justify-content: flex-end !important;
-                    direction: rtl !important;
-                }
-            }
         }
         
         /* Medium screens optimizations */
@@ -609,29 +492,6 @@
             
             .text-xl {
                 font-size: 1rem;
-            }
-        }
-        
-        /* WebKit mobile Safari specific RTL fixes */
-        @supports (-webkit-touch-callout: none) {
-            @media (max-width: 1023px) {
-                .hero-bg [dir="rtl"] .flex {
-                    -webkit-box-orient: vertical !important;
-                    -webkit-box-direction: reverse !important;
-                    -webkit-box-pack: end !important;
-                    -webkit-box-align: end !important;
-                }
-                
-                .hero-bg [dir="rtl"] * {
-                    -webkit-text-align-last: right !important;
-                    text-align-last: right !important;
-                }
-                
-                /* Force Safari to respect RTL */
-                .hero-bg {
-                    -webkit-writing-mode: horizontal-tb !important;
-                    writing-mode: horizontal-tb !important;
-                }
             }
         }
     </style>
@@ -1368,93 +1228,20 @@
             }
         }
         
-        // Complete Mobile RTL Rebuild
-        function rebuildHeroForMobileRTL() {
+        // Simple Mobile RTL Fix - No DOM manipulation
+        function applyMobileRTL() {
             const isMobile = window.innerWidth <= 1023;
             
             if (isMobile) {
-                const heroContainer = document.querySelector('.hero-bg .grid.lg\\:grid-cols-2 > div:first-child');
-                if (heroContainer && !heroContainer.classList.contains('rtl-rebuilt')) {
-                    // Mark as rebuilt to avoid duplicate processing
-                    heroContainer.classList.add('rtl-rebuilt');
-                    
-                    // Get original content
-                    const heading = heroContainer.querySelector('#hero-heading');
-                    const paragraph = heroContainer.querySelector('p');
-                    const buttonContainer = heroContainer.querySelector('.flex.flex-col');
-                    const featuresList = heroContainer.querySelector('.flex.items-center.justify-start');
-                    
-                    // Clear the container
-                    heroContainer.innerHTML = '';
-                    
-                    // Rebuild with proper RTL structure
-                    heroContainer.style.cssText = 'direction: rtl !important; text-align: right !important;';
-                    
-                    // Rebuild heading
-                    if (heading) {
-                        const newHeading = document.createElement('h1');
-                        newHeading.id = 'hero-heading';
-                        newHeading.className = heading.className;
-                        newHeading.innerHTML = `<span id="typed-text" class="typewriter" style="direction: rtl !important; text-align: right !important;"></span>`;
-                        newHeading.style.cssText = 'direction: rtl !important; text-align: right !important; font-family: "Assistant", "Heebo", sans-serif !important;';
-                        heroContainer.appendChild(newHeading);
-                    }
-                    
-                    // Rebuild paragraph
-                    if (paragraph) {
-                        const newParagraph = document.createElement('p');
-                        newParagraph.className = paragraph.className;
-                        newParagraph.textContent = paragraph.textContent;
-                        newParagraph.style.cssText = 'direction: rtl !important; text-align: right !important; font-family: "Assistant", "Heebo", sans-serif !important;';
-                        heroContainer.appendChild(newParagraph);
-                    }
-                    
-                    // Rebuild buttons
-                    if (buttonContainer) {
-                        const newButtonContainer = document.createElement('div');
-                        newButtonContainer.style.cssText = 'direction: rtl !important; text-align: right !important; margin-bottom: 2rem;';
-                        
-                        const buttons = buttonContainer.querySelectorAll('a');
-                        buttons.forEach(button => {
-                            const newButton = button.cloneNode(true);
-                            newButton.style.cssText = 'display: block !important; margin: 0 0 1rem 0 !important; text-align: center !important; direction: ltr !important;';
-                            newButtonContainer.appendChild(newButton);
-                        });
-                        
-                        heroContainer.appendChild(newButtonContainer);
-                    }
-                    
-                    // Rebuild features
-                    if (featuresList) {
-                        const newFeaturesList = document.createElement('div');
-                        newFeaturesList.style.cssText = 'direction: rtl !important; text-align: right !important;';
-                        
-                        const features = featuresList.querySelectorAll('.flex.items-center');
-                        features.forEach(feature => {
-                            const newFeature = document.createElement('div');
-                            newFeature.innerHTML = feature.innerHTML;
-                            newFeature.style.cssText = 'display: inline-block !important; margin: 0 1rem 0.5rem 0 !important; text-align: right !important; direction: rtl !important; font-family: "Assistant", "Heebo", sans-serif !important;';
-                            newFeaturesList.appendChild(newFeature);
-                        });
-                        
-                        heroContainer.appendChild(newFeaturesList);
-                    }
-                    
-                    // Reinitialize typewriter with RTL support
-                    setTimeout(() => {
-                        if (window.Typed) {
-                            new Typed('#typed-text', {
-                                strings: ['הפכו זמן מסך', 'לתנועה בריאה', 'עבור הילדים שלכם'],
-                                typeSpeed: 80,
-                                backSpeed: 50,
-                                backDelay: 2000,
-                                startDelay: 500,
-                                loop: false,
-                                showCursor: true,
-                                cursorChar: '|'
-                            });
-                        }
-                    }, 100);
+                // Hero section - simple style application
+                const heroSection = document.querySelector('.hero-bg');
+                if (heroSection) {
+                    const textElements = heroSection.querySelectorAll('h1, p, div[dir="rtl"]');
+                    textElements.forEach(el => {
+                        el.style.setProperty('direction', 'rtl', 'important');
+                        el.style.setProperty('text-align', 'right', 'important');
+                        el.style.setProperty('font-family', '"Assistant", "Heebo", sans-serif', 'important');
+                    });
                 }
                 
                 // Fix mobile menu RTL
@@ -1474,43 +1261,11 @@
         
         // Close mobile menu when clicking on links
         document.addEventListener('DOMContentLoaded', function() {
-            // Apply mobile RTL rebuild
-            rebuildHeroForMobileRTL();
+            // Apply mobile RTL fix
+            applyMobileRTL();
             
             // Reapply on resize
-            window.addEventListener('resize', rebuildHeroForMobileRTL);
-            
-            // Inject aggressive mobile CSS for RTL
-            const isMobile = window.innerWidth <= 1023;
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            
-            if (isMobile || isIOS) {
-                const style = document.createElement('style');
-                style.textContent = `
-                    @media (max-width: 1023px) {
-                        .hero-bg * {
-                            text-align: right !important;
-                            direction: rtl !important;
-                        }
-                        .hero-bg .flex {
-                            display: block !important;
-                        }
-                        .hero-bg .flex.flex-col > * {
-                            display: block !important;
-                            margin-bottom: 1rem !important;
-                        }
-                        .hero-bg .flex.items-center {
-                            display: block !important;
-                        }
-                        .hero-bg .flex.items-center > div {
-                            display: inline-block !important;
-                            margin-left: 1rem !important;
-                            text-align: right !important;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
+            window.addEventListener('resize', applyMobileRTL);
             
             const mobileMenuLinks = document.querySelectorAll('#mobile-menu-he a');
             mobileMenuLinks.forEach(link => {
