@@ -396,35 +396,7 @@
                 min-height: 56px;
                 font-size: 1.125rem;
                 padding: 16px 20px;
-                text-align: right !important;
-                direction: rtl !important;
-                font-family: 'Assistant', 'Heebo', sans-serif !important;
-                justify-content: flex-end !important;
-            }
-            
-            /* Force mobile menu container to be RTL */
-            .mobile-menu-enhanced .menu-links {
-                direction: rtl !important;
-                text-align: right !important;
-            }
-            
-            .mobile-menu-enhanced .menu-content {
-                direction: rtl !important;
-                text-align: right !important;
-            }
-            
-            /* RTL specific optimizations */
-            [dir="rtl"] .text-right {
-                text-align: right !important;
-            }
-            
-            /* Simple Mobile RTL Override - Keep Content Intact */
-            @media (max-width: 1023px) {
-                /* Stack hero columns on mobile with gap */
-                .hero-bg .grid.lg\:grid-cols-2 { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-
-                /* Respect RTL in hero text */
-                .hero-bg [dir="rtl"] * { text-align: right !important; }
+                text-align: right;
             }
                     max-width: none !important;
                     margin-left: 0 !important;
