@@ -34,8 +34,13 @@
     <meta name="author" content="זוזו ספורט">
     <meta name="publisher" content="Barshaf Investments Ltd">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="זוזו ספורט">
-    <meta name="application-name" content="זוזו ספורט">
+    
+    <!-- Cache busting -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="msapplication-TileColor" content="#0077B6">
     
     <!-- Language and Regional -->
@@ -463,15 +468,45 @@
                 }
             }
             
-            /* Mobile RTL hero text alignment */
+            /* Mobile RTL hero text alignment - Enhanced for Safari */
             @media (max-width: 1023px) {
                 [dir="rtl"] .hero-bg h1,
-                [dir="rtl"] .hero-bg p {
+                [dir="rtl"] .hero-bg p,
+                [dir="rtl"] .hero-bg .text-right {
                     text-align: right !important;
+                    direction: rtl !important;
                 }
                 
-                [dir="rtl"] .hero-bg .flex {
+                [dir="rtl"] .hero-bg .flex,
+                [dir="rtl"] .hero-bg .justify-center,
+                [dir="rtl"] .hero-bg .justify-end {
                     justify-content: flex-end !important;
+                    direction: rtl !important;
+                }
+                
+                /* Force RTL for the entire hero content on mobile */
+                .hero-bg [dir="rtl"] {
+                    text-align: right !important;
+                    direction: rtl !important;
+                }
+                
+                /* Target the specific hero elements */
+                #hero-heading,
+                #typed-text {
+                    text-align: right !important;
+                    direction: rtl !important;
+                    display: block !important;
+                }
+                
+                /* Override any flex properties that could cause left alignment */
+                .hero-bg .flex {
+                    display: block !important;
+                }
+                
+                /* Force all hero text elements to be right-aligned */
+                .hero-bg * {
+                    text-align: right !important;
+                    direction: rtl !important;
                 }
             }
         }
@@ -684,11 +719,11 @@
             <canvas id="particles-canvas" aria-hidden="true"></canvas>
         <div class="content-overlay max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div dir="rtl" class="text-right">
-                    <h1 id="hero-heading" class="text-4xl sm:text-5xl lg:text-7xl font-canela font-bold mb-6 leading-tight text-gray-800 min-h-[8rem] lg:min-h-[10rem] flex items-start justify-end lg:justify-start text-right">
-                        <span id="typed-text" class="typewriter" aria-live="polite" aria-atomic="true"></span>
+                <div dir="rtl" class="text-right" style="text-align: right; direction: rtl;">
+                    <h1 id="hero-heading" class="text-4xl sm:text-5xl lg:text-7xl font-canela font-bold mb-6 leading-tight text-gray-800 min-h-[8rem] lg:min-h-[10rem] text-right" style="text-align: right !important; direction: rtl !important; display: block !important;">
+                        <span id="typed-text" class="typewriter" aria-live="polite" aria-atomic="true" style="text-align: right !important; direction: rtl !important; display: inline !important;"></span>
                     </h1>
-                    <p class="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed opacity-90 text-right max-w-2xl mx-auto lg:mx-0">
+                    <p class="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed opacity-90 text-right max-w-2xl mx-auto lg:mx-0" style="text-align: right; direction: rtl;">
                         הפכו קרבות זמן המסך לתנועה בריאה. פעילויות קצרות ומהנות שיוצרו על ידי מומחים כדי לעזור לילדים שלכם לזוז, להרגיש טוב עם עצמם – ולהתאהב בלהיות פעילים.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-end lg:justify-start">
