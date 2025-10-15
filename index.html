@@ -69,43 +69,114 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'canela': ['Canela', 'serif'],
-                        'suisse': ['Suisse International', 'sans-serif'],
-                        'heebo': ['Heebo', 'sans-serif'],
-                        'assistant': ['Assistant', 'sans-serif']
-                    },
-                    colors: {
-                        // Original colors (keeping for fallback)
-                        'sage': '#8FBC8F',
-                        'coral': '#FF7F7F', 
-                        'teal': '#2F4F4F',
-                        'cream': '#FDF5E6',
-                        // Ocean-coral color palette - calming and sophisticated
-                        'ocean-deep': '#0077B6',
-                        'ocean-bright': '#00B4D8',
-                        'ocean-light': '#90E0EF',
-                        'ocean-pale': '#CAF0F8',
-                        'coral-soft': '#F5B7B1',
-                        'ocean-cream': '#F8FCFF',
-                        'coral-light': '#FADBD8',
-                        'ocean-medium': '#48B2D8'
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS REMOVED - Using custom CSS for better RTL support -->
     
     <style>
+        /* Color variables */
+        :root {
+            --sage: #8FBC8F;
+            --coral: #FF7F7F;
+            --teal: #2F4F4F;
+            --cream: #FDF5E6;
+            --ocean-deep: #0077B6;
+            --ocean-bright: #00B4D8;
+            --ocean-light: #90E0EF;
+            --ocean-pale: #CAF0F8;
+            --coral-soft: #F5B7B1;
+            --ocean-cream: #F8FCFF;
+            --coral-light: #FADBD8;
+            --ocean-medium: #48B2D8;
+        }
+        
+        /* Basic utility classes to replace Tailwind */
+        .grid { display: grid; }
+        .flex { display: flex; }
+        .hidden { display: none; }
+        .relative { position: relative; }
+        .fixed { position: fixed; }
+        .absolute { position: absolute; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .space-x-reverse > * + * { margin-left: 0; margin-right: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .w-full { width: 100%; }
+        .h-auto { height: auto; }
+        .min-h-screen { min-height: 100vh; }
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-7xl { font-size: 4.5rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+        .opacity-90 { opacity: 0.9; }
+        .opacity-80 { opacity: 0.8; }
+        .text-white { color: white; }
+        .text-gray-800 { color: #1f2937; }
+        .bg-black { background-color: black; }
+        .hover\:bg-gray-800:hover { background-color: #1f2937; }
+        .inline-flex { display: inline-flex; }
+        .transition-all { transition: all 0.3s; }
+        .transform { transform: translateZ(0); }
+        .hover\:scale-105:hover { transform: scale(1.05); }
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        .w-5 { width: 1.25rem; }
+        .h-5 { height: 1.25rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .ml-3 { margin-left: 0.75rem; }
+        .flex-wrap { flex-wrap: wrap; }
+        .text-sm { font-size: 0.875rem; }
+        .z-50 { z-index: 50; }
+        .top-0 { top: 0; }
+        .h-16 { height: 4rem; }
+        .border-b { border-bottom-width: 1px; }
+        
+        /* Responsive utilities */
+        @media (min-width: 640px) {
+            .sm\:flex-row { flex-direction: row; }
+            .sm\:text-5xl { font-size: 3rem; }
+            .sm\:text-xl { font-size: 1.25rem; }
+            .sm\:w-auto { width: auto; }
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:text-7xl { font-size: 4.5rem; }
+            .lg\:text-2xl { font-size: 1.5rem; }
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+            .lg\:mx-0 { margin-left: 0; margin-right: 0; }
+        }
+        
         body { 
             background-color: #F8FCFF; /* ocean-cream */
             font-family: 'Assistant', 'Heebo', sans-serif;
+            margin: 0;
+            padding: 0;
         }
         
         .hero-bg {
@@ -575,7 +646,7 @@
 <body>
     <!-- DEBUG BUILD NUMBER -->
     <div style="position: fixed; top: 0; left: 0; right: 0; background: #ff0000; color: white; text-align: center; padding: 5px; z-index: 99999; font-family: monospace; font-size: 12px;">
-        BUILD v1.0.5 | 2025-01-15 18:18 | DEPLOYED
+        BUILD v1.0.6 | NO TAILWIND | RTL FIX
     </div>
     <div style="height: 30px;"></div>
     
