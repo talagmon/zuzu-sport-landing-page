@@ -391,12 +391,26 @@
                 gap: 1rem;
             }
             
-            /* Better mobile menu links */
+            /* Better mobile menu links - RTL */
             .mobile-menu-enhanced .menu-links a {
                 min-height: 56px;
                 font-size: 1.125rem;
                 padding: 16px 20px;
-                text-align: right;
+                text-align: right !important;
+                direction: rtl !important;
+                font-family: 'Assistant', 'Heebo', sans-serif !important;
+                justify-content: flex-end !important;
+            }
+            
+            /* Force mobile menu container to be RTL */
+            .mobile-menu-enhanced .menu-links {
+                direction: rtl !important;
+                text-align: right !important;
+            }
+            
+            .mobile-menu-enhanced .menu-content {
+                direction: rtl !important;
+                text-align: right !important;
             }
             
             /* RTL specific optimizations */
@@ -404,43 +418,71 @@
                 text-align: right !important;
             }
             
-            /* Mobile RTL hero text alignment - Complete Override */
+            /* Complete Mobile RTL Override - Nuclear Option */
             @media (max-width: 1023px) {
-                /* Force all hero text to be right-aligned */
-                .hero-bg h1,
+                /* Hide original hero content and replace with mobile-specific */
+                .hero-bg .grid.lg\:grid-cols-2 > div:first-child {
+                    display: none !important;
+                }
+                
+                /* Create new mobile RTL container */
+                .hero-bg .grid.lg\:grid-cols-2::before {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    position: relative;
+                    z-index: 10;
+                }
+                
+                /* Force everything in hero to be RTL */
+                .hero-bg,
+                .hero-bg *,
+                .hero-bg div,
                 .hero-bg p,
-                .hero-bg div[dir="rtl"] {
+                .hero-bg h1,
+                .hero-bg span {
+                    direction: rtl !important;
+                    text-align: right !important;
+                    writing-mode: unset !important;
+                }
+                
+                /* Remove all flexbox from hero section on mobile */
+                .hero-bg .flex {
+                    display: block !important;
                     text-align: right !important;
                     direction: rtl !important;
                 }
                 
-                /* Convert flex containers to grid for better mobile control */
-                .hero-bg .flex.flex-col.sm\:flex-row {
-                    display: grid !important;
-                    grid-template-columns: 1fr !important;
-                    gap: 1rem !important;
-                    justify-items: end !important;
-                    text-align: right !important;
-                    direction: rtl !important;
+                /* Button styling for mobile RTL */
+                .hero-bg .flex.flex-col a {
+                    display: block !important;
+                    margin: 0 0 1rem 0 !important;
+                    text-align: center !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
                 }
                 
-                /* Features list as grid */
-                .hero-bg .flex.items-center {
-                    display: grid !important;
-                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
-                    gap: 1rem !important;
-                    justify-items: end !important;
+                /* Features list mobile RTL */
+                .hero-bg .flex.items-center.justify-start {
+                    display: block !important;
                     text-align: right !important;
-                    direction: rtl !important;
                 }
                 
-                /* Individual feature items */
-                .hero-bg .flex.items-center > div {
-                    display: flex !important;
-                    flex-direction: row-reverse !important;
-                    justify-content: flex-start !important;
-                    align-items: center !important;
+                .hero-bg .flex.items-center.justify-start > div {
+                    display: inline-block !important;
+                    margin: 0 1rem 0.5rem 0 !important;
                     text-align: right !important;
+                    vertical-align: top !important;
+                }
+                
+                /* Typography override */
+                .hero-bg h1,
+                .hero-bg #hero-heading,
+                .hero-bg #typed-text {
+                    font-family: 'Assistant', 'Heebo', sans-serif !important;
+                    direction: rtl !important;
+                    text-align: right !important;
+                    unicode-bidi: bidi-override !important;
                 }
             }
             
@@ -1326,61 +1368,117 @@
             }
         }
         
-        // Mobile Safari RTL fix - Aggressive approach
-        function forceMobileRTL() {
+        // Complete Mobile RTL Rebuild
+        function rebuildHeroForMobileRTL() {
             const isMobile = window.innerWidth <= 1023;
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             
-            if (isMobile || isIOS) {
-                // Force all hero section elements to RTL
-                const heroSection = document.querySelector('.hero-bg');
-                if (heroSection) {
-                    // Apply to all elements within hero section
-                    const allElements = heroSection.querySelectorAll('*');
-                    allElements.forEach(element => {
-                        element.style.setProperty('text-align', 'right', 'important');
-                        element.style.setProperty('direction', 'rtl', 'important');
-                    });
+            if (isMobile) {
+                const heroContainer = document.querySelector('.hero-bg .grid.lg\\:grid-cols-2 > div:first-child');
+                if (heroContainer && !heroContainer.classList.contains('rtl-rebuilt')) {
+                    // Mark as rebuilt to avoid duplicate processing
+                    heroContainer.classList.add('rtl-rebuilt');
                     
-                    // Special handling for button container
-                    const buttonContainer = heroSection.querySelector('.flex.flex-col');
-                    if (buttonContainer) {
-                        buttonContainer.style.setProperty('display', 'block', 'important');
-                        buttonContainer.style.setProperty('text-align', 'right', 'important');
-                        
-                        // Individual buttons
-                        const buttons = buttonContainer.querySelectorAll('a');
-                        buttons.forEach(button => {
-                            button.style.setProperty('display', 'block', 'important');
-                            button.style.setProperty('margin', '0 0 1rem 0', 'important');
-                            button.style.setProperty('text-align', 'center', 'important');
-                        });
+                    // Get original content
+                    const heading = heroContainer.querySelector('#hero-heading');
+                    const paragraph = heroContainer.querySelector('p');
+                    const buttonContainer = heroContainer.querySelector('.flex.flex-col');
+                    const featuresList = heroContainer.querySelector('.flex.items-center.justify-start');
+                    
+                    // Clear the container
+                    heroContainer.innerHTML = '';
+                    
+                    // Rebuild with proper RTL structure
+                    heroContainer.style.cssText = 'direction: rtl !important; text-align: right !important;';
+                    
+                    // Rebuild heading
+                    if (heading) {
+                        const newHeading = document.createElement('h1');
+                        newHeading.id = 'hero-heading';
+                        newHeading.className = heading.className;
+                        newHeading.innerHTML = `<span id="typed-text" class="typewriter" style="direction: rtl !important; text-align: right !important;"></span>`;
+                        newHeading.style.cssText = 'direction: rtl !important; text-align: right !important; font-family: "Assistant", "Heebo", sans-serif !important;';
+                        heroContainer.appendChild(newHeading);
                     }
                     
-                    // Features list
-                    const featuresList = heroSection.querySelector('.flex.items-center.justify-start');
+                    // Rebuild paragraph
+                    if (paragraph) {
+                        const newParagraph = document.createElement('p');
+                        newParagraph.className = paragraph.className;
+                        newParagraph.textContent = paragraph.textContent;
+                        newParagraph.style.cssText = 'direction: rtl !important; text-align: right !important; font-family: "Assistant", "Heebo", sans-serif !important;';
+                        heroContainer.appendChild(newParagraph);
+                    }
+                    
+                    // Rebuild buttons
+                    if (buttonContainer) {
+                        const newButtonContainer = document.createElement('div');
+                        newButtonContainer.style.cssText = 'direction: rtl !important; text-align: right !important; margin-bottom: 2rem;';
+                        
+                        const buttons = buttonContainer.querySelectorAll('a');
+                        buttons.forEach(button => {
+                            const newButton = button.cloneNode(true);
+                            newButton.style.cssText = 'display: block !important; margin: 0 0 1rem 0 !important; text-align: center !important; direction: ltr !important;';
+                            newButtonContainer.appendChild(newButton);
+                        });
+                        
+                        heroContainer.appendChild(newButtonContainer);
+                    }
+                    
+                    // Rebuild features
                     if (featuresList) {
-                        featuresList.style.setProperty('display', 'block', 'important');
-                        featuresList.style.setProperty('text-align', 'right', 'important');
+                        const newFeaturesList = document.createElement('div');
+                        newFeaturesList.style.cssText = 'direction: rtl !important; text-align: right !important;';
                         
                         const features = featuresList.querySelectorAll('.flex.items-center');
                         features.forEach(feature => {
-                            feature.style.setProperty('display', 'inline-block', 'important');
-                            feature.style.setProperty('margin', '0 1rem 0.5rem 0', 'important');
-                            feature.style.setProperty('text-align', 'right', 'important');
+                            const newFeature = document.createElement('div');
+                            newFeature.innerHTML = feature.innerHTML;
+                            newFeature.style.cssText = 'display: inline-block !important; margin: 0 1rem 0.5rem 0 !important; text-align: right !important; direction: rtl !important; font-family: "Assistant", "Heebo", sans-serif !important;';
+                            newFeaturesList.appendChild(newFeature);
                         });
+                        
+                        heroContainer.appendChild(newFeaturesList);
                     }
+                    
+                    // Reinitialize typewriter with RTL support
+                    setTimeout(() => {
+                        if (window.Typed) {
+                            new Typed('#typed-text', {
+                                strings: ['הפכו זמן מסך', 'לתנועה בריאה', 'עבור הילדים שלכם'],
+                                typeSpeed: 80,
+                                backSpeed: 50,
+                                backDelay: 2000,
+                                startDelay: 500,
+                                loop: false,
+                                showCursor: true,
+                                cursorChar: '|'
+                            });
+                        }
+                    }, 100);
+                }
+                
+                // Fix mobile menu RTL
+                const mobileMenu = document.querySelector('.mobile-menu-enhanced');
+                if (mobileMenu) {
+                    mobileMenu.style.setProperty('direction', 'rtl', 'important');
+                    
+                    const menuLinks = mobileMenu.querySelectorAll('a');
+                    menuLinks.forEach(link => {
+                        link.style.setProperty('direction', 'rtl', 'important');
+                        link.style.setProperty('text-align', 'right', 'important');
+                        link.style.setProperty('font-family', '"Assistant", "Heebo", sans-serif', 'important');
+                    });
                 }
             }
         }
         
         // Close mobile menu when clicking on links
         document.addEventListener('DOMContentLoaded', function() {
-            // Apply mobile RTL fix
-            forceMobileRTL();
+            // Apply mobile RTL rebuild
+            rebuildHeroForMobileRTL();
             
             // Reapply on resize
-            window.addEventListener('resize', forceMobileRTL);
+            window.addEventListener('resize', rebuildHeroForMobileRTL);
             
             // Inject aggressive mobile CSS for RTL
             const isMobile = window.innerWidth <= 1023;
