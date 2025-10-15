@@ -456,15 +456,43 @@
                 text-align: right !important;
             }
             
-            /* Mobile RTL hero text alignment */
+            /* Mobile RTL hero text alignment - Complete Override */
             @media (max-width: 1023px) {
-                [dir="rtl"] .hero-bg h1,
-                [dir="rtl"] .hero-bg p {
+                /* Force all hero text to be right-aligned */
+                .hero-bg h1,
+                .hero-bg p,
+                .hero-bg div[dir="rtl"] {
                     text-align: right !important;
+                    direction: rtl !important;
                 }
                 
-                [dir="rtl"] .hero-bg .flex {
-                    justify-content: flex-end !important;
+                /* Convert flex containers to grid for better mobile control */
+                .hero-bg .flex.flex-col.sm\:flex-row {
+                    display: grid !important;
+                    grid-template-columns: 1fr !important;
+                    gap: 1rem !important;
+                    justify-items: end !important;
+                    text-align: right !important;
+                    direction: rtl !important;
+                }
+                
+                /* Features list as grid */
+                .hero-bg .flex.items-center {
+                    display: grid !important;
+                    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+                    gap: 1rem !important;
+                    justify-items: end !important;
+                    text-align: right !important;
+                    direction: rtl !important;
+                }
+                
+                /* Individual feature items */
+                .hero-bg .flex.items-center > div {
+                    display: flex !important;
+                    flex-direction: row-reverse !important;
+                    justify-content: flex-start !important;
+                    align-items: center !important;
+                    text-align: right !important;
                 }
             }
             
@@ -1359,28 +1387,50 @@
             }
         }
         
-        // Mobile Safari RTL fix
+        // Mobile Safari RTL fix - Aggressive approach
         function forceMobileRTL() {
             const isMobile = window.innerWidth <= 1023;
-            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             
-            if ((isMobile && isSafari) || isIOS) {
-                const heroElements = document.querySelectorAll('.hero-bg h1, .hero-bg p, .hero-bg .flex');
-                heroElements.forEach(element => {
-                    element.style.setProperty('text-align', 'right', 'important');
-                    element.style.setProperty('direction', 'rtl', 'important');
-                    if (element.classList.contains('flex')) {
-                        element.style.setProperty('justify-content', 'flex-end', 'important');
-                        element.style.setProperty('align-items', 'flex-end', 'important');
+            if (isMobile || isIOS) {
+                // Force all hero section elements to RTL
+                const heroSection = document.querySelector('.hero-bg');
+                if (heroSection) {
+                    // Apply to all elements within hero section
+                    const allElements = heroSection.querySelectorAll('*');
+                    allElements.forEach(element => {
+                        element.style.setProperty('text-align', 'right', 'important');
+                        element.style.setProperty('direction', 'rtl', 'important');
+                    });
+                    
+                    // Special handling for button container
+                    const buttonContainer = heroSection.querySelector('.flex.flex-col');
+                    if (buttonContainer) {
+                        buttonContainer.style.setProperty('display', 'block', 'important');
+                        buttonContainer.style.setProperty('text-align', 'right', 'important');
+                        
+                        // Individual buttons
+                        const buttons = buttonContainer.querySelectorAll('a');
+                        buttons.forEach(button => {
+                            button.style.setProperty('display', 'block', 'important');
+                            button.style.setProperty('margin', '0 0 1rem 0', 'important');
+                            button.style.setProperty('text-align', 'center', 'important');
+                        });
                     }
-                });
-                
-                // Force the main hero container
-                const heroContainer = document.querySelector('.hero-bg [dir="rtl"]');
-                if (heroContainer) {
-                    heroContainer.style.setProperty('text-align', 'right', 'important');
-                    heroContainer.style.setProperty('direction', 'rtl', 'important');
+                    
+                    // Features list
+                    const featuresList = heroSection.querySelector('.flex.items-center.justify-start');
+                    if (featuresList) {
+                        featuresList.style.setProperty('display', 'block', 'important');
+                        featuresList.style.setProperty('text-align', 'right', 'important');
+                        
+                        const features = featuresList.querySelectorAll('.flex.items-center');
+                        features.forEach(feature => {
+                            feature.style.setProperty('display', 'inline-block', 'important');
+                            feature.style.setProperty('margin', '0 1rem 0.5rem 0', 'important');
+                            feature.style.setProperty('text-align', 'right', 'important');
+                        });
+                    }
                 }
             }
         }
@@ -1392,6 +1442,38 @@
             
             // Reapply on resize
             window.addEventListener('resize', forceMobileRTL);
+            
+            // Inject aggressive mobile CSS for RTL
+            const isMobile = window.innerWidth <= 1023;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            
+            if (isMobile || isIOS) {
+                const style = document.createElement('style');
+                style.textContent = `
+                    @media (max-width: 1023px) {
+                        .hero-bg * {
+                            text-align: right !important;
+                            direction: rtl !important;
+                        }
+                        .hero-bg .flex {
+                            display: block !important;
+                        }
+                        .hero-bg .flex.flex-col > * {
+                            display: block !important;
+                            margin-bottom: 1rem !important;
+                        }
+                        .hero-bg .flex.items-center {
+                            display: block !important;
+                        }
+                        .hero-bg .flex.items-center > div {
+                            display: inline-block !important;
+                            margin-left: 1rem !important;
+                            text-align: right !important;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
             
             const mobileMenuLinks = document.querySelectorAll('#mobile-menu-he a');
             mobileMenuLinks.forEach(link => {
